@@ -61,7 +61,13 @@ const updateEmployee = asyncHandler(async (req, res) => {
 //@Route DELETE /api/v1/tea-factory/employees:id
 //@access public
 const deleteEmployee = asyncHandler(async (req, res) => {
-  res.status(200).json({ message: `employee deleted : ${req.params.id}` });
+  const employe = await Employe.findById(req.params.id);
+  if (!employe) {
+    res.status(404);
+    throw new Error("Employee Not Found");
+  }
+  const deleteEmp = await Employe.findByIdAndDelete(req.params.id);
+  res.status(200).json(deleteEmp);
 });
 
 module.exports = {
