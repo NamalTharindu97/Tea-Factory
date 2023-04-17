@@ -18,6 +18,12 @@ const getSingleEmployee = (req, res) => {
 //@Route POST /api/v1/tea-factory/employees
 //@access public
 const createEmployee = (req, res) => {
+  const { name, email, phone, gender, age, role } = req.body;
+  if (!name || !email || !phone || !gender || !age || !role) {
+    res.status(400);
+    throw new Error("all fields are mandotory");
+  }
+  console.log(req.body);
   res.status(200).json({ message: "create employee" });
 };
 
