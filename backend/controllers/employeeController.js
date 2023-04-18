@@ -1,6 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const Employe = require("../models/employeeModel");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 //@desc GET all Employee
 //@Route GET /api/v1/tea-factory/employees
@@ -86,7 +87,31 @@ const deleteEmployee = asyncHandler(async (req, res) => {
 //@Route POST /api/v1/tea-factory/employees/login
 //@access public
 const loginEmployee = asyncHandler(async (req, res) => {
-  res.status(200).json("login employee");
+  const { name, password } = req.body;
+  if (!name || !password) {
+    res.status(400);
+    throw new Error("all fields are mandotory");
+  }
+  const user = await Employe.findOne({ name });
+  //compare password with hashpasword
+  if (user && (await bcrypt.compare(password, user.password))) {
+    const accessToken = jwt.sign(
+      {
+        user: {
+          name: user.name,
+          email: user.email,
+          id: user.id,
+          role: user.role,
+        },
+      },
+      process.env.ACCESS_TOKEN_SECRET,
+      { expiresIn: "15m" }
+    );
+    res.status(200).json({ accessToken });
+  } else {
+    res.status(401);
+    throw new Error("email or password not valid");
+  }
 });
 
 //@desc GET  current  Employee
