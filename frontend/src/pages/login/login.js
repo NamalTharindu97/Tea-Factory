@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
+import "./login.css";
 
 function LoginForm() {
   const [username, setUsername] = useState("");
@@ -46,12 +47,12 @@ function LoginForm() {
   return (
     <form onSubmit={handleSubmit}>
       <label>
-        Username:
+        Username
         <input type="text" value={username} onChange={(event) => setUsername(event.target.value)} />
       </label>
       <br />
       <label>
-        Password:
+        Password
         <input type="password" value={password} onChange={(event) => setPassword(event.target.value)} />
       </label>
       <br />
