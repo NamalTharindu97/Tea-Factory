@@ -118,7 +118,7 @@ const loginEmployee = asyncHandler(async (req, res) => {
 //@Route GET /api/v1/tea-factory/employees/current
 //@access public
 const currentEmployee = asyncHandler(async (req, res) => {
-  res.status(200).json("success");
+  res.status(200).json(req.user);
 });
 
 module.exports = {
