@@ -1,0 +1,59 @@
+:root {
+  /* COLORS */
+  --primary: #27ae60;
+  --transparentPrimray: rgba(227, 120, 75, 0.4);
+  --DarkSpringGreen: #008066;
+  --VividSpringGreen: #00ffa8;
+  --LightGreen1: #16ff00;
+  --LightGreen2: #b4ff9f;
+  --red: #ff1717;
+  --blue: #0064c0;
+  --darkBlue: #111a2c;
+  --darkGray: #525c67;
+  --darkGray2: #757d85;
+  --gray: #898b9a;
+  --gray2: #bbbdc1;
+  --gray3: #cfd0d7;
+  --lightGray1: #dddddd;
+  --lightGray2: #f5f5f8;
+  --white2: #fbfbfb;
+  --white: #ffffff;
+  --black: #000000;
+
+  /* TRANSPARENT COLORS */
+  --transparent: transparent;
+  --transparentBlack1: rgba(0, 0, 0, 0.1);
+  --transparentBlack7: rgba(0, 0, 0, 0.7);
+
+  /* SIZES */
+  --base: 8px;
+  --font: 14px;
+  --radius: 12px;
+  --padding: 24px;
+
+  /* FONTS */
+  --largeTitleFont: "Poppins-Black", sans-serif;
+  --h1Font: "Poppins-Bold", sans-serif;
+  --h2Font: "Poppins-Bold", sans-serif;
+  --h3Font: "Poppins-SemiBold", sans-serif;
+  --h4Font: "Poppins-SemiBold", sans-serif;
+  --h5Font: "Poppins-SemiBold", sans-serif;
+  --body1Font: "Poppins-Regular", sans-serif;
+  --body2Font: "Poppins-Regular", sans-serif;
+  --body3Font: "Poppins-Regular", sans-serif;
+  --body4Font: "Poppins-Regular", sans-serif;
+  --body5Font: "Poppins-Regular", sans-serif;
+
+  /* FONTSIZES */
+  --largeTitle: 40px;
+  --h1: 30px;
+  --h2: 22px;
+  --h3: 16px;
+  --h4: 14px;
+  --h5: 12px;
+  --body1: 30px;
+  --body2: 22px;
+  --body3: 16px;
+  --body4: 14px;
+  --body5: 12px;
+}
