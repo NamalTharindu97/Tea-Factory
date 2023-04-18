@@ -5,9 +5,13 @@ const {
   createEmployee,
   updateEmployee,
   deleteEmployee,
+  loginEmployee,
+  currentEmployee,
 } = require("../controllers/employeeController");
 const router = express.Router();
 
+router.route("/current").get(currentEmployee);
+router.route("/login").post(loginEmployee);
 router.route("/").get(getEmployee);
 router.route("/:id").get(getSingleEmployee);
 router.route("/").post(createEmployee);
