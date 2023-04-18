@@ -1,5 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const Employe = require("../models/employeeModel");
+const bcrypt = require("bcrypt");
 
 //@desc GET all Employee
 //@Route GET /api/v1/tea-factory/employees
@@ -25,12 +26,18 @@ const getSingleEmployee = asyncHandler(async (req, res) => {
 //@Route POST /api/v1/tea-factory/employees
 //@access public
 const createEmployee = asyncHandler(async (req, res) => {
-  const { name, email, phone, gender, age, role } = req.body;
-  if (!name || !email || !phone || !gender || !age || !role) {
+  const { name, email, phone, gender, age, role, password } = req.body;
+  if (!name || !email || !phone || !gender || !age || !role || !password) {
     res.status(400);
     throw new Error("all fields are mandotory");
   }
-
+  const userAvailable = await Employe.findOne({ name });
+  if (userAvailable) {
+    res.status(400);
+    throw new Error("this name already taken");
+  }
+  //hash the password
+  const hashPassword = await bcrypt.hash(password, 10);
   const employee = await Employe.create({
     name,
     email,
@@ -38,7 +45,12 @@ const createEmployee = asyncHandler(async (req, res) => {
     gender,
     age,
     role,
+    password: hashPassword,
   });
+  if (!employee) {
+    res.status(404);
+    throw new Error("Employee data not valid");
+  }
   res.status(201).json(employee);
 });
 
@@ -70,10 +82,26 @@ const deleteEmployee = asyncHandler(async (req, res) => {
   res.status(200).json(deleteEmp);
 });
 
+//@descPOST  login  Employee
+//@Route POST /api/v1/tea-factory/employees/login
+//@access public
+const loginEmployee = asyncHandler(async (req, res) => {
+  res.status(200).json("login employee");
+});
+
+//@desc GET  current  Employee
+//@Route GET /api/v1/tea-factory/employees/current
+//@access public
+const currentEmployee = asyncHandler(async (req, res) => {
+  res.status(200).json("success");
+});
+
 module.exports = {
   getEmployee,
   getSingleEmployee,
   createEmployee,
   updateEmployee,
   deleteEmployee,
+  loginEmployee,
+  currentEmployee,
 };

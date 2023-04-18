@@ -5,6 +5,7 @@ const employeeSchema = mongoose.Schema(
     name: {
       type: String,
       required: [true, "please add the employee name"],
+      unique: [true, "this name already taken"],
     },
     email: {
       type: String,
@@ -25,6 +26,10 @@ const employeeSchema = mongoose.Schema(
     role: {
       type: String,
       required: [true, "please enter role"],
+    },
+    password: {
+      type: String,
+      required: [true, "please enter password"],
     },
   },
   {
