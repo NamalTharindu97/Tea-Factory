@@ -42,7 +42,7 @@ button {
   border: none;
   font-weight: 600;
   border-radius: 25px;
-  padding: 8px 150px;
+  padding: 8px 120px;
   cursor: pointer;
   font-style: italic;
   border: 2px solid var(--lightGray1);

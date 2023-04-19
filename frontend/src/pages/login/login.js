@@ -3,6 +3,7 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
+import { motion } from "framer-motion";
 import * as Yup from "yup";
 import "./login.css";
 
@@ -15,8 +16,8 @@ function LoginForm() {
       password: "",
     },
     validationSchema: Yup.object({
-      username: Yup.string().required("Username is required"),
-      password: Yup.string().required("Password is required"),
+      username: Yup.string().max(15, "Must be 15 characters or less").required("User name is required"),
+      password: Yup.string().max(20, "Must be 20 characters or less").required("Password is required"),
     }),
     onSubmit: async (values, { setSubmitting }) => {
       try {
@@ -47,17 +48,16 @@ function LoginForm() {
         }
       } catch (error) {
         console.log(error.response.data.message);
-        // Here you can handle the error, such as displaying an error message to the user
       }
       setSubmitting(false);
     },
   });
 
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <motion.form initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.5 }} onSubmit={formik.handleSubmit}>
       <label>
         {/* Username */}
-        <input
+        <motion.input
           type="text"
           name="username"
           value={formik.values.username}
@@ -65,13 +65,19 @@ function LoginForm() {
           onBlur={formik.handleBlur}
           placeholder="Enter Name Here"
           className={formik.touched.username && formik.errors.username ? "error-input" : ""}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
         />
-        {formik.touched.username && formik.errors.username ? <div className="error">{formik.errors.username}</div> : null}
+        {formik.touched.username && formik.errors.username ? (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.5 }} className="error">
+            {formik.errors.username}
+          </motion.div>
+        ) : null}
       </label>
       <br />
       <label>
         {/* Password */}
-        <input
+        <motion.input
           type="password"
           name="password"
           value={formik.values.password}
@@ -79,14 +85,20 @@ function LoginForm() {
           onBlur={formik.handleBlur}
           placeholder="Enter Password Here"
           className={formik.touched.password && formik.errors.password ? "error-input" : ""}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
         />
-        {formik.touched.password && formik.errors.password ? <div className="error">{formik.errors.password}</div> : null}
+        {formik.touched.password && formik.errors.password ? (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.5 }} className="error">
+            {formik.errors.password}
+          </motion.div>
+        ) : null}
       </label>
       <br />
-      <button type="submit" disabled={formik.isSubmitting}>
+      <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} type="submit" disabled={formik.isSubmitting}>
         Submit
-      </button>
-    </form>
+      </motion.button>
+    </motion.form>
   );
 }
 
