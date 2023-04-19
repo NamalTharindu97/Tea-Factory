@@ -54,51 +54,55 @@ function LoginForm() {
   });
 
   return (
-    <motion.form initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.5 }} onSubmit={formik.handleSubmit}>
-      <label>
-        {/* Username */}
-        <motion.input
-          type="text"
-          name="username"
-          value={formik.values.username}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          placeholder="Enter Name Here"
-          className={formik.touched.username && formik.errors.username ? "error-input" : ""}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-        />
-        {formik.touched.username && formik.errors.username ? (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.5 }} className="error">
-            {formik.errors.username}
-          </motion.div>
-        ) : null}
-      </label>
-      <br />
-      <label>
-        {/* Password */}
-        <motion.input
-          type="password"
-          name="password"
-          value={formik.values.password}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          placeholder="Enter Password Here"
-          className={formik.touched.password && formik.errors.password ? "error-input" : ""}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-        />
-        {formik.touched.password && formik.errors.password ? (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.5 }} className="error">
-            {formik.errors.password}
-          </motion.div>
-        ) : null}
-      </label>
-      <br />
-      <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} type="submit" disabled={formik.isSubmitting}>
-        Submit
-      </motion.button>
-    </motion.form>
+    <div className="containter">
+      <div className="container-inner">
+        <motion.form initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.5 }} onSubmit={formik.handleSubmit}>
+          <label>Login</label>
+          {/* Username */}
+          <motion.input
+            type="text"
+            name="username"
+            value={formik.values.username}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            placeholder="Enter Name Here"
+            className={formik.touched.username && formik.errors.username ? "error-input" : ""}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          />
+          {formik.touched.username && formik.errors.username ? (
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.5 }} className="error">
+              {formik.errors.username}
+            </motion.div>
+          ) : null}
+
+          <br />
+
+          {/* Password */}
+          <motion.input
+            type="password"
+            name="password"
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            placeholder="Enter Password Here"
+            className={formik.touched.password && formik.errors.password ? "error-input" : ""}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          />
+          {formik.touched.password && formik.errors.password ? (
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.5 }} className="error">
+              {formik.errors.password}
+            </motion.div>
+          ) : null}
+
+          <br />
+          <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} type="submit" disabled={formik.isSubmitting}>
+            Submit
+          </motion.button>
+        </motion.form>
+      </div>
+    </div>
   );
 }
 

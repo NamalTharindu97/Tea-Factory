@@ -32,17 +32,17 @@
   --padding: 24px;
 
   /* FONTS */
-  --largeTitleFont: "Poppins-Black", sans-serif;
-  --h1Font: "Poppins-Bold", sans-serif;
-  --h2Font: "Poppins-Bold", sans-serif;
-  --h3Font: "Poppins-SemiBold", sans-serif;
-  --h4Font: "Poppins-SemiBold", sans-serif;
-  --h5Font: "Poppins-SemiBold", sans-serif;
-  --body1Font: "Poppins-Regular", sans-serif;
-  --body2Font: "Poppins-Regular", sans-serif;
-  --body3Font: "Poppins-Regular", sans-serif;
-  --body4Font: "Poppins-Regular", sans-serif;
-  --body5Font: "Poppins-Regular", sans-serif;
+  --largeTitleFont: "Poppins-Black";
+  --h1Font: "Poppins-Bold";
+  --h2Font: "Poppins-Bold";
+  --h3Font: "Poppins-SemiBold";
+  --h4Font: "Poppins-SemiBold";
+  --h5Font: "Poppins-SemiBold";
+  --body1Font: "Poppins-Regular";
+  --body2Font: "Poppins-Regular";
+  --body3Font: "Poppins-Regular";
+  --body4Font: "Poppins-Regular";
+  --body5Font: "Poppins-Regular";
 
   /* FONTSIZES */
   --largeTitle: 40px;
