@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 :root {
   /* COLORS */
   --primary: #27ae60;
@@ -25,35 +26,20 @@
   --transparentBlack1: rgba(0, 0, 0, 0.1);
   --transparentBlack7: rgba(0, 0, 0, 0.7);
 
-  /* SIZES */
-  --base: 8px;
-  --font: 14px;
-  --radius: 12px;
-  --padding: 24px;
+  /* Font Sizes */
+  --smallFontSize: 0.75rem;
+  --mediumFontSize: 1rem;
+  --largeFontSize: 1.5rem;
+  --extraLargeFontSize: 2rem;
 
-  /* FONTS */
-  --largeTitleFont: "Poppins-Black";
-  --h1Font: "Poppins-Bold";
-  --h2Font: "Poppins-Bold";
-  --h3Font: "Poppins-SemiBold";
-  --h4Font: "Poppins-SemiBold";
-  --h5Font: "Poppins-SemiBold";
-  --body1Font: "Poppins-Regular";
-  --body2Font: "Poppins-Regular";
-  --body3Font: "Poppins-Regular";
-  --body4Font: "Poppins-Regular";
-  --body5Font: "Poppins-Regular";
-
-  /* FONTSIZES */
-  --largeTitle: 40px;
-  --h1: 30px;
-  --h2: 22px;
-  --h3: 16px;
-  --h4: 14px;
-  --h5: 12px;
-  --body1: 30px;
-  --body2: 22px;
-  --body3: 16px;
-  --body4: 14px;
-  --body5: 12px;
+  /* Font Weights */
+  --thinFont: "Poppins Thin", sans-serif;
+  --extraLightFont: "Poppins ExtraLight", sans-serif;
+  --lightFont: "Poppins Light", sans-serif;
+  --regularFont: "Poppins Regular", sans-serif;
+  --mediumFont: "Poppins Medium", sans-serif;
+  --semiBoldFont: "Poppins SemiBold", sans-serif;
+  --boldFont: "Poppins Bold", sans-serif;
+  --extraBoldFont: "Poppins ExtraBold", sans-serif;
+  --blackFont: "Poppins Black", sans-serif;
 }
