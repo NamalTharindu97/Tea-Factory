@@ -22,6 +22,7 @@
   --white2: #fbfbfb;
   --white: #ffffff;
   --black: #000000;
+  --grayGradient: linear-gradient(to bottom, #eaeaea, #aaaaaa, #6e6e6e, #373737, #000000);
 
   /* TRANSPARENT COLORS */
   --transparent: transparent;

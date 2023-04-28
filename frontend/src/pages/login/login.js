@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import * as Yup from "yup";
 import "./login.css";
 import logo from "../../asserts/EmployeAs/Img/logo.png";
+import { containerVarients, svgVarients, buttonVariants, textVarients, buttonVariants2 } from "./login-motion";
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -54,84 +55,8 @@ function LoginForm() {
     },
   });
 
-  const containerVarients = {
-    hidden: {
-      y: -1000,
-    },
-    visible: {
-      y: -10,
-      transition: {
-        delay: 0.2,
-        type: "spring",
-        stiffness: "120",
-      },
-    },
-  };
-
-  const svgVarients = {
-    hidden: {
-      rotate: 0,
-    },
-    visible: {
-      rotate: [0, -45, 0, -45, 0],
-      transition: {
-        delay: 3,
-        duration: 20,
-        repeat: Infinity,
-        ease: "easeInOut",
-      },
-    },
-  };
-
-  const buttonVariants = {
-    btnHidden: {
-      opacity: 0,
-      x: "100vw",
-    },
-    btnVisible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        type: "spring",
-        damping: 14,
-        delay: 0.6,
-      },
-    },
-    hover: {
-      scale: 1.1,
-      textShadow: "0px 0px 8px rgb(255,255,255)",
-      boxShadow: "0px 0px 8px rgb(255,255,255)",
-      transition: {
-        yoyo: Infinity,
-        duration: 0.4,
-      },
-    },
-    tap: {
-      scale: 0.9,
-      textShadow: "0px 0px 8px rgb(255,255,255)",
-      boxShadow: "0px 0px 8px rgb(255,255,255)",
-      transition: {
-        yoyo: Infinity,
-        duration: 0.4,
-      },
-    },
-  };
-
-  const textVarients = {
-    hidden: {
-      opacity: 0,
-    },
-    visible: {
-      opacity: 0.7,
-      transition: {
-        delay: 1,
-        duration: 2,
-      },
-    },
-  };
-
   return (
-    <div className="containter">
+    <div className="login">
       <motion.div className="container-inner" variants={containerVarients} initial="hidden" animate="visible">
         <motion.div className="log-photo">
           <motion.div className="login-text" variants={textVarients} initial="hidden" animate="visible">
@@ -163,7 +88,7 @@ function LoginForm() {
             onBlur={formik.handleBlur}
             placeholder="Enter Name Here"
             className={formik.touched.username && formik.errors.username ? "error-input" : ""}
-            variants={buttonVariants}
+            variants={buttonVariants2}
             whileHover="hover"
             initial="btnHidden"
             animate="btnVisible"
@@ -186,7 +111,7 @@ function LoginForm() {
             onBlur={formik.handleBlur}
             placeholder="Enter Password Here"
             className={formik.touched.password && formik.errors.password ? "error-input" : ""}
-            variants={buttonVariants}
+            variants={buttonVariants2}
             whileHover="hover"
             initial="btnHidden"
             animate="btnVisible"
@@ -199,7 +124,7 @@ function LoginForm() {
           ) : null}
 
           <br />
-          <motion.button variants={buttonVariants} whileHover="hover" initial="btnHidden" animate="btnVisible" type="submit" disabled={formik.isSubmitting}>
+          <motion.button variants={buttonVariants2} whileHover="hover" initial="btnHidden" animate="btnVisible" type="submit" disabled={formik.isSubmitting}>
             Submit
           </motion.button>
         </motion.form>
