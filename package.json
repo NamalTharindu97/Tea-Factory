@@ -1,0 +1,20 @@
+{
+  "name": "tea-factory",
+  "version": "1.0.0",
+  "description": "concurrently",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"cd backend && nodemon server.js\" \"cd frontend && npm start\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NamalTharindu97/Tea-Factory.git"
+  },
+  "author": "namal",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NamalTharindu97/Tea-Factory/issues"
+  },
+  "homepage": "https://github.com/NamalTharindu97/Tea-Factory#readme"
+}

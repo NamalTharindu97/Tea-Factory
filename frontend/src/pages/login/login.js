@@ -56,7 +56,7 @@ function LoginForm() {
   return (
     <div className="containter">
       <div className="container-inner">
-        <motion.form initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.5 }} onSubmit={formik.handleSubmit}>
+        <motion.form initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: "tween", duration: 1.2 }} onSubmit={formik.handleSubmit}>
           <label>Login</label>
           {/* Username */}
           <motion.input

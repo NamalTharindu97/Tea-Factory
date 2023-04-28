@@ -70,7 +70,7 @@ label {
   margin-bottom: 20px;
   font-weight: 600;
   color: var(--transparentBlack7);
-  font-size: large;
+  font-size: var(--largeFontSize);
   font-family: var(--semiBoldFont);
 }
 
