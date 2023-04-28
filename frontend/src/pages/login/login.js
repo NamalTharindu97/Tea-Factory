@@ -6,6 +6,7 @@ import { useFormik } from "formik";
 import { motion } from "framer-motion";
 import * as Yup from "yup";
 import "./login.css";
+import logo from "../../asserts/EmployeAs/Img/logo.png";
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -16,8 +17,8 @@ function LoginForm() {
       password: "",
     },
     validationSchema: Yup.object({
-      username: Yup.string().max(15, "Must be 15 characters or less").required("User name is required"),
-      password: Yup.string().max(20, "Must be 20 characters or less").required("Password is required"),
+      username: Yup.string().max(15, "Must be 15 characters or less").required("Required"),
+      password: Yup.string().max(20, "Must be 20 characters or less").required("Required"),
     }),
     onSubmit: async (values, { setSubmitting }) => {
       try {
@@ -56,9 +57,19 @@ function LoginForm() {
   return (
     <div className="containter">
       <div className="container-inner">
+        <div className="log-photo"></div>
         <motion.form initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: "tween", duration: 1.2 }} onSubmit={formik.handleSubmit}>
-          <label>Login</label>
-          {/* Username */}
+          <div className="upper-section">
+            <div className="logo">
+              <img src={logo} alt="logo" width="180" height="100" />
+            </div>
+            <div className="heading-1">
+              <p>Wellcome Back</p>
+            </div>
+          </div>
+          <div className="heading-2">
+            <p>Login To Manage Your Account</p>
+          </div>
           <motion.input
             type="text"
             name="username"
