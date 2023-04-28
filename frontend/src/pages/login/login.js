@@ -54,22 +54,107 @@ function LoginForm() {
     },
   });
 
+  const containerVarients = {
+    hidden: {
+      y: -1000,
+    },
+    visible: {
+      y: -10,
+      transition: {
+        delay: 0.2,
+        type: "spring",
+        stiffness: "120",
+      },
+    },
+  };
+
+  const svgVarients = {
+    hidden: {
+      rotate: 0,
+    },
+    visible: {
+      rotate: [0, -45, 0, -45, 0],
+      transition: {
+        delay: 3,
+        duration: 20,
+        repeat: Infinity,
+        ease: "easeInOut",
+      },
+    },
+  };
+
+  const buttonVariants = {
+    btnHidden: {
+      opacity: 0,
+      x: "100vw",
+    },
+    btnVisible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        type: "spring",
+        damping: 14,
+        delay: 0.6,
+      },
+    },
+    hover: {
+      scale: 1.1,
+      textShadow: "0px 0px 8px rgb(255,255,255)",
+      boxShadow: "0px 0px 8px rgb(255,255,255)",
+      transition: {
+        yoyo: Infinity,
+        duration: 0.4,
+      },
+    },
+    tap: {
+      scale: 0.9,
+      textShadow: "0px 0px 8px rgb(255,255,255)",
+      boxShadow: "0px 0px 8px rgb(255,255,255)",
+      transition: {
+        yoyo: Infinity,
+        duration: 0.4,
+      },
+    },
+  };
+
+  const textVarients = {
+    hidden: {
+      opacity: 0,
+    },
+    visible: {
+      opacity: 0.7,
+      transition: {
+        delay: 1,
+        duration: 2,
+      },
+    },
+  };
+
   return (
     <div className="containter">
-      <div className="container-inner">
-        <div className="log-photo"></div>
-        <motion.form initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: "tween", duration: 1.2 }} onSubmit={formik.handleSubmit}>
+      <motion.div className="container-inner" variants={containerVarients} initial="hidden" animate="visible">
+        <motion.div className="log-photo">
+          <motion.div className="login-text" variants={textVarients} initial="hidden" animate="visible">
+            <div>Step into the world</div>
+            <div>of tea</div>
+            <div>and</div>
+            <div>discover the essence</div>
+            <div>of nature in </div>
+            <div> every sip</div>
+          </motion.div>
+        </motion.div>
+        <motion.form onSubmit={formik.handleSubmit}>
           <div className="upper-section">
-            <div className="logo">
+            <motion.div className="logo" variants={svgVarients} initial="hidden" animate="visible">
               <img src={logo} alt="logo" width="180" height="100" />
-            </div>
-            <div className="heading-1">
+            </motion.div>
+            <motion.div className="heading-1" variants={buttonVariants} whileHover="hover" initial="btnHidden" animate="btnVisible">
               <p>Wellcome Back</p>
-            </div>
+            </motion.div>
           </div>
-          <div className="heading-2">
+          <motion.div className="heading-2" variants={buttonVariants} whileHover="hover" initial="btnHidden" animate="btnVisible">
             <p>Login To Manage Your Account</p>
-          </div>
+          </motion.div>
           <motion.input
             type="text"
             name="username"
@@ -78,8 +163,11 @@ function LoginForm() {
             onBlur={formik.handleBlur}
             placeholder="Enter Name Here"
             className={formik.touched.username && formik.errors.username ? "error-input" : ""}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
+            variants={buttonVariants}
+            whileHover="hover"
+            initial="btnHidden"
+            animate="btnVisible"
+            whileTap="tap"
           />
           {formik.touched.username && formik.errors.username ? (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.5 }} className="error">
@@ -98,8 +186,11 @@ function LoginForm() {
             onBlur={formik.handleBlur}
             placeholder="Enter Password Here"
             className={formik.touched.password && formik.errors.password ? "error-input" : ""}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
+            variants={buttonVariants}
+            whileHover="hover"
+            initial="btnHidden"
+            animate="btnVisible"
+            whileTap="tap"
           />
           {formik.touched.password && formik.errors.password ? (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.5 }} className="error">
@@ -108,11 +199,11 @@ function LoginForm() {
           ) : null}
 
           <br />
-          <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} type="submit" disabled={formik.isSubmitting}>
+          <motion.button variants={buttonVariants} whileHover="hover" initial="btnHidden" animate="btnVisible" type="submit" disabled={formik.isSubmitting}>
             Submit
           </motion.button>
         </motion.form>
-      </div>
+      </motion.div>
     </div>
   );
 }
