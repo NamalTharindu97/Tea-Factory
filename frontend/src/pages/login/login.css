@@ -78,8 +78,9 @@ input {
   padding: 10px 80px;
   border-radius: 15px;
   border: 2px solid var(--white);
-  /* background-color: rgba(255, 255, 255, 0.6); */
   background-color: var(--lightGray1);
+  font-weight: 600;
+  font-family: var(--thinFont);
 }
 input:focus {
   outline: none;

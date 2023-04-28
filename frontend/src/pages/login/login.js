@@ -8,6 +8,8 @@ import * as Yup from "yup";
 import "./login.css";
 import logo from "../../asserts/EmployeAs/Img/logo.png";
 import { containerVarients, svgVarients, buttonVariants, textVarients, buttonVariants2 } from "./login-motion";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -50,6 +52,16 @@ function LoginForm() {
         }
       } catch (error) {
         console.log(error.response.data.message);
+        toast.error("Incorrect", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
       }
       setSubmitting(false);
     },
@@ -95,7 +107,7 @@ function LoginForm() {
             whileTap="tap"
           />
           {formik.touched.username && formik.errors.username ? (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.5 }} className="error">
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.8 }} transition={{ duration: 1.5 }} className="error">
               {formik.errors.username}
             </motion.div>
           ) : null}
@@ -118,7 +130,7 @@ function LoginForm() {
             whileTap="tap"
           />
           {formik.touched.password && formik.errors.password ? (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.5 }} className="error">
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.8 }} transition={{ duration: 1.5 }} className="error">
               {formik.errors.password}
             </motion.div>
           ) : null}
@@ -129,6 +141,7 @@ function LoginForm() {
           </motion.button>
         </motion.form>
       </motion.div>
+      <ToastContainer position="bottom-center" autoClose={1000} limit={1} hideProgressBar newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="dark" />
     </div>
   );
 }
