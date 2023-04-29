@@ -1,7 +1,8 @@
 .payroll {
-  background-color: aqua;
-  display: flex;
   flex: 2;
+  display: flex;
   justify-content: space-between;
   padding: 10px;
+  background-color: var(--white);
+  border-radius: 25px;
 }

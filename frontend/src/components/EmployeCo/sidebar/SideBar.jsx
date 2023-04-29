@@ -12,45 +12,42 @@ export const SideBar = () => {
           <p className="title">MAIN</p>
           <li>
             <DashboardIcon className="icon" />
-            <span>User</span>
+            <span>DashBoard</span>
           </li>
-          <p className="title">LIST</p>
+          <p className="title">DATA</p>
           <li>
             <DashboardIcon className="icon" />
-            <span>User</span>
-          </li>
-          <li>
-            <DashboardIcon className="icon" />
-            <span>Products</span>
+            <span>Manage Team</span>
           </li>
           <li>
             <DashboardIcon className="icon" />
-            <span>Orders</span>
+            <span>Employee Info</span>
           </li>
           <li>
             <DashboardIcon className="icon" />
-            <span>Delivery</span>
+            <span>Payroll Summary</span>
           </li>
-          <p className="title">USEFUL</p>
+          <p className="title">PAGES</p>
           <li>
             <DashboardIcon className="icon" />
-            <span>Status</span>
-          </li>
-          <li>
-            <DashboardIcon className="icon" />
-            <span>Notification</span>
+            <span>Profile Form</span>
           </li>
           <li>
             <DashboardIcon className="icon" />
-            <span>System Health</span>
+            <span>Payroll Entry</span>
+          </li>
+          <p className="title">CHARTS</p>
+          <li>
+            <DashboardIcon className="icon" />
+            <span>Bar Chart</span>
           </li>
           <li>
             <DashboardIcon className="icon" />
-            <span>Logs</span>
+            <span>Line Chart</span>
           </li>
           <li>
             <DashboardIcon className="icon" />
-            <span>Settings</span>
+            <span>Pie Chart</span>
           </li>
           <p className="title">USER</p>
           <li>
