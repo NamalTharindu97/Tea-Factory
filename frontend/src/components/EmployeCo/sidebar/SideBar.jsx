@@ -7,7 +7,6 @@ export const SideBar = () => {
       <div className="top">
         <span className="admin-logo">Admin Panal</span>
       </div>
-      <hr />
       <div className="center">
         <ul>
           <p className="title">MAIN</p>

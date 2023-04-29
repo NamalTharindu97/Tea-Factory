@@ -81,19 +81,20 @@ function LoginForm() {
             <div> every sip</div>
           </motion.div>
         </motion.div>
-        <motion.form onSubmit={formik.handleSubmit}>
+        <motion.form className="login-form" onSubmit={formik.handleSubmit}>
           <div className="upper-section">
             <motion.div className="logo" variants={svgVarients} initial="hidden" animate="visible">
               <img src={logo} alt="logo" width="180" height="100" />
             </motion.div>
             <motion.div className="heading-1" variants={buttonVariants} whileHover="hover" initial="btnHidden" animate="btnVisible">
-              <p>Wellcome Back</p>
+              <p className="login-p-tag">Wellcome Back</p>
             </motion.div>
           </div>
           <motion.div className="heading-2" variants={buttonVariants} whileHover="hover" initial="btnHidden" animate="btnVisible">
-            <p>Login To Manage Your Account</p>
+            <p className="login-p-tag">Login To Manage Your Account</p>
           </motion.div>
           <motion.input
+            id="login-input"
             type="text"
             name="username"
             value={formik.values.username}
@@ -117,6 +118,7 @@ function LoginForm() {
 
           {/* Password */}
           <motion.input
+            id="login-input"
             type="password"
             name="password"
             value={formik.values.password}
@@ -137,7 +139,7 @@ function LoginForm() {
           ) : null}
 
           <br />
-          <motion.button variants={buttonVariants2} whileHover="hover" initial="btnHidden" animate="btnVisible" type="submit" disabled={formik.isSubmitting}>
+          <motion.button className="login-btn" variants={buttonVariants2} whileHover="hover" initial="btnHidden" animate="btnVisible" type="submit" disabled={formik.isSubmitting}>
             Login <LoginSharpIcon className="LoginSharpIcon" style={{ fontSize: "16px" }} />
           </motion.button>
         </motion.form>
