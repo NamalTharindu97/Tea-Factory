@@ -47,20 +47,30 @@
   --Castoro: "Castoro Titling", sans-serif;
 }
 .empAdminPanal {
+  background-color: var(--gray2);
   .home-container {
     flex: 6;
 
     .widgets {
       display: flex;
       padding: 20px;
+      padding-top: 0px;
       gap: 20px;
     }
 
     .middle {
       display: flex;
       padding: 20px;
+      padding-top: 0px;
       gap: 20px;
       height: 250px;
+    }
+    .low {
+      display: flex;
+      padding: 20px;
+      padding-top: 0;
+      gap: 20px;
+      height: 190px;
     }
   }
 }

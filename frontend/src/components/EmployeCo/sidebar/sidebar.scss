@@ -52,9 +52,12 @@
 
 .SideBar {
   flex: 1;
-  border-right: 0.5px solid var(--lightGray1);
-  background-color: var(--white);
-  min-height: 100vh;
+  // border-right: 0.5px solid var(--lightGray1);
+  // background-color: var(--white);
+  background-image: var(--grayGradient);
+  min-height: 90vh;
+  border-radius: 25px;
+  margin: 10px;
 
   .top {
     height: 50px;
@@ -72,6 +75,7 @@
 
   .center {
     padding-left: 10px;
+    padding-right: 10px;
     ul {
       list-style: none;
       padding: 0;
@@ -79,8 +83,8 @@
       .title {
         font-size: 10px;
         font-weight: bold;
-        color: var(--gray);
-        margin-top: 15px;
+        color: var(--lightGray2);
+        margin-top: 30px;
         margin-bottom: 5px;
       }
       li {
@@ -88,9 +92,10 @@
         align-items: center;
         padding: 5px;
         cursor: pointer;
+        border-radius: 12px;
 
         &:hover {
-          background-color: #ece8ff;
+          background-color: var(--darkBlue);
         }
 
         .icon {
@@ -101,7 +106,7 @@
         span {
           font-size: 13px;
           font-weight: 600;
-          color: var(--black);
+          color: var(--lightGray2);
           margin-left: 10px;
         }
       }

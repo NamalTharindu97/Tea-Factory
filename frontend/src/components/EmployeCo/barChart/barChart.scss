@@ -1,9 +1,8 @@
-.widget {
-  display: flex;
+.barChart {
   flex: 1;
+  display: flex;
   justify-content: space-between;
   padding: 10px;
-  height: 100px;
   background-color: var(--white);
   border-radius: 25px;
 }
