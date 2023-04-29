@@ -10,6 +10,7 @@ import logo from "../../asserts/EmployeAs/Img/logo.png";
 import { containerVarients, svgVarients, buttonVariants, textVarients, buttonVariants2 } from "./login-motion";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import LoginSharpIcon from "@mui/icons-material/LoginSharp";
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -137,7 +138,7 @@ function LoginForm() {
 
           <br />
           <motion.button variants={buttonVariants2} whileHover="hover" initial="btnHidden" animate="btnVisible" type="submit" disabled={formik.isSubmitting}>
-            Submit
+            Login <LoginSharpIcon className="LoginSharpIcon" style={{ fontSize: "16px" }} />
           </motion.button>
         </motion.form>
       </motion.div>

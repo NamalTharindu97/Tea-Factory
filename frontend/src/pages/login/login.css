@@ -87,6 +87,9 @@ input:focus {
   border: 2px solid var(--blue);
 }
 button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: var(--DarkGreen1);
   font-family: var(--mediumFont);
   color: var(--white);
@@ -132,4 +135,8 @@ input::placeholder {
   font-size: 30px;
   line-height: 1.5;
   opacity: 0.7;
+}
+
+.LoginSharpIcon {
+  padding-left: 10px;
 }
