@@ -3,6 +3,8 @@ import "./empPanal.scss";
 import { SideBar } from "../../../components/EmployeCo/sidebar/SideBar";
 import { NavBar } from "../../../components/EmployeCo/navBar/NavBar";
 import { Widget } from "../../../components/EmployeCo/widgets/Widget";
+import { Recent } from "../../../components/EmployeCo/recentSalary/Recent";
+import { Payroll } from "../../../components/EmployeCo/payrollChart/Payroll";
 
 export default function empAdminPanal() {
   return (
@@ -15,6 +17,10 @@ export default function empAdminPanal() {
           <Widget />
           <Widget />
           <Widget />
+        </div>
+        <div className="middle">
+          <Payroll />
+          <Recent />
         </div>
       </div>
     </div>
