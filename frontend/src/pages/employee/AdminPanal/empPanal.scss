@@ -49,5 +49,11 @@
 .empAdminPanal {
   .home-container {
     flex: 6;
+
+    .widgets {
+      display: flex;
+      padding: 20px;
+      gap: 20px;
+    }
   }
 }
