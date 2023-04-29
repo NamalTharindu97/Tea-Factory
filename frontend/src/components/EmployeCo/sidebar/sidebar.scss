@@ -98,6 +98,34 @@
           font-size: 18px;
           color: var(--LightGreen1);
         }
+
+        span {
+          font-size: 13px;
+          font-weight: 600;
+          color: var(--black);
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+
+  .bottom {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    .colorOption {
+      width: 20px;
+      height: 20px;
+      border-radius: 5px;
+      border: 1px solid var(--VividSpringGreen);
+      cursor: pointer;
+      margin: 5px;
+
+      &:nth-child(1) {
+        background-color: var(--white);
+      }
+      &:nth-child(2) {
+        background-color: var(--black);
       }
     }
   }

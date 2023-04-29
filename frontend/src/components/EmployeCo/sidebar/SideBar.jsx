@@ -62,13 +62,12 @@ export const SideBar = () => {
             <DashboardIcon className="icon" />
             <span>Log Out</span>
           </li>
-          <li>
-            <DashboardIcon className="icon" />
-            <span>Color Option</span>
-          </li>
         </ul>
       </div>
-      <div className="bottom">color option</div>
+      <div className="bottom">
+        <div className="colorOption"></div>
+        <div className="colorOption"></div>
+      </div>
     </div>
   );
 };
