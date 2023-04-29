@@ -1,6 +1,12 @@
 import React from "react";
-import "./empPanal.css";
+import "./empPanal.scss";
+import { SideBar } from "../../../components/EmployeCo/sidebar/SideBar";
 
 export default function empAdminPanal() {
-  return <div className="empAdminPanal">empAdminPanal</div>;
+  return (
+    <div className="empAdminPanal">
+      <SideBar />
+      <div className="home-container">home</div>
+    </div>
+  );
 }
