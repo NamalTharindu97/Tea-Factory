@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "./pages/login/login";
-import EmployeeAdminPanal from "./pages/employee/empAdminPanal";
+import EmployeeAdminPanal from "./pages/employee/AdminPanal/empAdminPanal";
 import InventoryAdminPanal from "./pages/inventory/inventoryAdminPanal";
 import SupplierAdminPanal from "./pages/supplier/supplierAdminPanal";
 import ProductionAdminPanal from "./pages/production/productionAdminPanal";
