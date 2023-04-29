@@ -81,6 +81,6 @@ body {
 }
 .empAdminPanal {
   display: flex;
-  height: 1000vh;
+  height: 100vh;
   background-image: var(--grayGradient);
 }
