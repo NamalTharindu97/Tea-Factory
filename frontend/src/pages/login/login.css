@@ -46,7 +46,7 @@
   align-items: center;
   margin-bottom: 50px;
 }
-form {
+.login-form {
   display: flex;
   flex-direction: column;
   /* align-items: center; */
@@ -59,18 +59,11 @@ form {
   border-top-right-radius: 25px;
   border-bottom-right-radius: 25px;
 }
-p {
+.login-p-tag {
   margin: 1px;
 }
-label {
-  /* margin-bottom: 5px; */
-  font-weight: 600;
-  color: var(--transparentBlack7);
-  font-size: var(--largeFontSize);
-  font-family: var(--semiBoldFont);
-}
 
-input {
+#login-input {
   padding: 10px 80px;
   border-radius: 15px;
   border: 2px solid var(--white);
@@ -78,11 +71,11 @@ input {
   font-weight: 600;
   font-family: var(--thinFont);
 }
-input:focus {
+#login-input:focus {
   outline: none;
   border: 2px solid var(--blue);
 }
-button {
+.login-btn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -105,13 +98,13 @@ button {
   font-weight: 600;
   margin-left: 15px;
 }
-.error-input {
+#login-input.error-input {
   padding: 10px 80px;
   border-radius: 25px;
   border: 2px solid red;
 }
 
-input::placeholder {
+#login-input::placeholder {
   color: var(--gray);
   font-size: 14px;
   font-family: var(--regularFont);
