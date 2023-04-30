@@ -54,6 +54,12 @@
   --blackFont: "Poppins Black", sans-serif;
   --Castoro: "Castoro Titling", sans-serif;
 }
+.profile-page {
+  display: flex;
+  .profile-container {
+    flex: 6;
+  }
+}
 .profile {
   .head-tag-1 {
     font-family: var(--Castoro);
@@ -76,11 +82,11 @@
     margin-top: 10px;
     label {
       color: var(--white2);
+      font-size: 13px;
       text-shadow: 0px 0px 8px rgb(255, 255, 255);
     }
     .menu {
-      background-color: #000000;
-      color: white;
+      font-size: 10px;
     }
     .profile-btn {
       width: 300px;

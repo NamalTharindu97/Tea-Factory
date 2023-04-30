@@ -61,6 +61,8 @@
   border-radius: 20px;
   margin-top: 20px;
   margin: 20px 20px;
+  background: transparent;
+  box-shadow: 0px 0px 12px rgb(255, 255, 255);
 
   .wrapper {
     display: flex;
@@ -80,7 +82,7 @@
     .search-input {
       border: none;
       outline: none;
-      background: transparent;
+      background: transparent; //for background color change according to page background color
       &::placeholder {
         font-size: 12px;
       }
