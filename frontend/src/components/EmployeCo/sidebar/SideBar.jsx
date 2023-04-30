@@ -11,10 +11,13 @@ export const SideBar = () => {
       <div className="center">
         <ul>
           <p className="title">MAIN</p>
-          <li>
-            <DashboardIcon className="icon" />
-            <span>DashBoard</span>
-          </li>
+          {/* DashBoard  link */}
+          <Link to="/EmployeeAdminPanal">
+            <li>
+              <DashboardIcon className="icon" />
+              <span>DashBoard</span>
+            </li>
+          </Link>
           <p className="title">DATA</p>
           {/* manage team link */}
           <Link to="/EmployeeAdminPanal/ManageTeam">

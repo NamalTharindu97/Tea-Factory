@@ -82,10 +82,10 @@ body {
 .empAdminPanal {
   display: flex;
   height: 100vh;
-  background-image: var(--white2);
+  background-image: var(--grayGradient);
 }
-.profile {
+.profile-page {
   display: flex;
-  height: 120vh;
+  height: 100vh;
   background-image: var(--grayGradient);
 }
