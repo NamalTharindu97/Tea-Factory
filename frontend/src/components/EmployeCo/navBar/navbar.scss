@@ -74,7 +74,7 @@
     .search {
       display: flex;
       align-items: center;
-      border: 1px solid var(--darkBlue);
+      border: 0.5px solid var(--gray);
       padding: 3px;
       border-radius: 15px;
     }
@@ -83,6 +83,8 @@
       border: none;
       outline: none;
       background: transparent; //for background color change according to page background color
+      font-family: var(--thinFont);
+      font-weight: 500;
       &::placeholder {
         font-size: 12px;
       }
