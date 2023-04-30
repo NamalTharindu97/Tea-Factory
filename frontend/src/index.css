@@ -89,3 +89,9 @@ body {
   height: 100vh;
   background-image: var(--grayGradient);
 }
+
+.EmployeeInfo {
+  display: flex;
+  height: 100vh;
+  background-image: var(--grayGradient);
+}
