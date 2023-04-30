@@ -15,6 +15,7 @@ import Radio from "@mui/material/Radio";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./profile.scss";
+import { green } from "@mui/material/colors";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required("Required"),
@@ -31,6 +32,11 @@ const roles = ["HR Manager", "Inventory Manager", "Supplier Manager", "Productio
 const theme = createMuiTheme({
   typography: {
     fontFamily: "Poppins, sans-serif",
+  },
+  palette: {
+    primary: {
+      main: green["A400"],
+    },
   },
 });
 
@@ -91,7 +97,10 @@ export const Profile = () => {
     <div className="profile">
       <ThemeProvider theme={theme}>
         <form className="profile-form" onSubmit={formik.handleSubmit}>
+          <p className="head-tag-1">create user</p>
+          <p className="head-tag-2">Create a New User Profile</p>
           <TextField
+            color="primary"
             fullWidth
             label="Name"
             name="name"
@@ -99,6 +108,7 @@ export const Profile = () => {
             onChange={formik.handleChange}
             error={formik.touched.name && Boolean(formik.errors.name)}
             helperText={formik.touched.name && formik.errors.name}
+            sx={{ marginBottom: "1rem" }}
           />
           <TextField
             fullWidth
@@ -108,6 +118,7 @@ export const Profile = () => {
             onChange={formik.handleChange}
             error={formik.touched.email && Boolean(formik.errors.email)}
             helperText={formik.touched.email && formik.errors.email}
+            sx={{ marginBottom: "1rem" }}
           />
           <TextField
             fullWidth
@@ -117,8 +128,9 @@ export const Profile = () => {
             onChange={formik.handleChange}
             error={formik.touched.phone && Boolean(formik.errors.phone)}
             helperText={formik.touched.phone && formik.errors.phone}
+            sx={{ marginBottom: "1rem" }}
           />
-          <FormControl component="fieldset">
+          <FormControl component="fieldset" sx={{ marginBottom: "1rem" }}>
             <RadioGroup row name="gender" value={formik.values.gender} onChange={formik.handleChange}>
               <FormControlLabel value="male" control={<Radio />} label="Male" />
               <FormControlLabel value="female" control={<Radio />} label="Female" />
@@ -132,12 +144,13 @@ export const Profile = () => {
             onChange={formik.handleChange}
             error={formik.touched.age && Boolean(formik.errors.age)}
             helperText={formik.touched.age && formik.errors.age}
+            sx={{ marginBottom: "1rem" }}
           />
-          <FormControl fullWidth>
+          <FormControl fullWidth sx={{ marginBottom: "1rem" }}>
             <InputLabel id="role-label">Role</InputLabel>
-            <Select labelId="role-label" name="role" value={formik.values.role} onChange={formik.handleChange} error={formik.touched.role && Boolean(formik.errors.role)}>
+            <Select labelId="role-label" label="Role" name="role" value={formik.values.role} onChange={formik.handleChange} error={formik.touched.role && Boolean(formik.errors.role)}>
               {roles.map((role) => (
-                <MenuItem key={role} value={role}>
+                <MenuItem className="menu" key={role} value={role}>
                   {role}
                 </MenuItem>
               ))}
@@ -152,8 +165,9 @@ export const Profile = () => {
             onChange={formik.handleChange}
             error={formik.touched.password && Boolean(formik.errors.password)}
             helperText={formik.touched.password && formik.errors.password}
+            sx={{ marginBottom: "1rem" }}
           />
-          <Button color="primary" variant="contained" fullWidth type="submit" style={{ width: "300px" }}>
+          <Button color="primary" variant="contained" fullWidth type="submit" className="profile-btn" sx={{ marginBottom: "1rem" }}>
             Submit
           </Button>
           <ToastContainer position="top-center" autoClose={3000} limit={1} hideProgressBar newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="dark" />
