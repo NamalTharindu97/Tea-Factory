@@ -26,7 +26,7 @@ function LoginForm() {
     }),
     onSubmit: async (values, { setSubmitting }) => {
       try {
-        const response = await axios.post("http://localhost:5000/api/v1/tea-factory/employees/login", {
+        const response = await axios.post("/employees/login", {
           name: values.username,
           password: values.password,
         });
