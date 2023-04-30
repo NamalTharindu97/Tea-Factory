@@ -86,6 +86,6 @@ body {
 }
 .profile {
   display: flex;
-  height: 100vh;
+  height: 120vh;
   background-image: var(--grayGradient);
 }
