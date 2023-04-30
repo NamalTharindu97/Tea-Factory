@@ -6,22 +6,29 @@ import "./employeeInfo.scss";
 import axios from "axios";
 
 const columns = [
-  { field: "id", headerName: "ID", width: 100 },
-  { field: "name", headerName: "Name", width: 200 },
-  { field: "email", headerName: "Email", width: 200 },
-  { field: "phone", headerName: "Phone", width: 200 },
-  { field: "gender", headerName: "Gender", width: 200 },
-  { field: "age", headerName: "Age", width: 200 },
-  { field: "role", headerName: "Role", width: 200 },
+  { field: "name", headerName: "Name", width: 220, headerClassName: "custom-header", cellClassName: "custom-cell" },
+  { field: "email", headerName: "Email", width: 250, headerClassName: "custom-header", cellClassName: "custom-cell" },
+  { field: "phone", headerName: "Phone", width: 150, headerClassName: "custom-header", cellClassName: "custom-cell" },
+  { field: "gender", headerName: "Gender", width: 100, headerClassName: "custom-header", cellClassName: "custom-cell" },
+  { field: "age", headerName: "Age", width: 100, headerClassName: "custom-header", cellClassName: "custom-cell" },
+  { field: "role", headerName: "Role", width: 180, headerClassName: "custom-header", cellClassName: "custom-cell" },
   {
-    field: "createdAt",
-    headerName: "Created At",
-    width: 200,
+    field: "update",
+    headerName: "Update",
+    sortable: false,
+    width: 100,
+    headerClassName: "custom-header",
+    cellClassName: "custom-cell",
+    renderCell: () => <button className="update-button">Update</button>,
   },
   {
-    field: "updatedAt",
-    headerName: "Updated At",
-    width: 200,
+    field: "delete",
+    headerName: "Delete",
+    sortable: false,
+    width: 100,
+    headerClassName: "custom-header",
+    cellClassName: "custom-cell",
+    renderCell: () => <button className="delete-button">Delete</button>,
   },
 ];
 
@@ -46,7 +53,7 @@ export const EmployeeInfo = () => {
       <div className="info-container">
         <NavBar />
         <div className="data-grid">
-          <DataGrid rows={empData} columns={columns} paginationModel={{ page: 0, pageSize: 25 }} />
+          <DataGrid rows={empData} columns={columns} paginationModel={{ page: 0, pageSize: 25 }} hideFooterPagination hideFooterSelectedRowCount className="grid" />
         </div>
       </div>
     </div>
