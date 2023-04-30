@@ -5,6 +5,9 @@ import EmployeeAdminPanal from "./pages/employee/AdminPanal/empAdminPanal";
 import InventoryAdminPanal from "./pages/inventory/inventoryAdminPanal";
 import SupplierAdminPanal from "./pages/supplier/supplierAdminPanal";
 import ProductionAdminPanal from "./pages/production/productionAdminPanal";
+import { Profile } from "./pages/employee/ProfileForm/Profile";
+import ManageTeam from "./pages/employee/ManageTeam/ManageTeam";
+import { EmployeeInfo } from "./pages/employee/EmployeeInfo/EmployeeInfo";
 
 function App() {
   return (
@@ -15,6 +18,9 @@ function App() {
         <Route path="/InventoryAdminPanal" element={<InventoryAdminPanal />} />
         <Route path="/SupplierAdminPanal" element={<SupplierAdminPanal />} />
         <Route path="/ProductionAdminPanal" element={<ProductionAdminPanal />} />
+        <Route path="/EmployeeAdminPanal/Profile" element={<Profile />} />
+        <Route path="/EmployeeAdminPanal/ManageTeam" element={<ManageTeam />} />
+        <Route path="/EmployeeAdminPanal/EmployeeInfo" element={<EmployeeInfo />} />
       </Routes>
     </Router>
   );

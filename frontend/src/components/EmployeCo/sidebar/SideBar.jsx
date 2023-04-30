@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./sidebar.scss";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 
@@ -15,23 +16,32 @@ export const SideBar = () => {
             <span>DashBoard</span>
           </li>
           <p className="title">DATA</p>
-          <li>
-            <DashboardIcon className="icon" />
-            <span>Manage Team</span>
-          </li>
-          <li>
-            <DashboardIcon className="icon" />
-            <span>Employee Info</span>
-          </li>
+          {/* manage team link */}
+          <Link to="/EmployeeAdminPanal/ManageTeam">
+            <li>
+              <DashboardIcon className="icon" />
+              <span>Manage Team</span>
+            </li>
+          </Link>
+          {/* employee info link */}
+          <Link to="/EmployeeAdminPanal/EmployeeInfo">
+            <li>
+              <DashboardIcon className="icon" />
+              <span>Employee Info</span>
+            </li>
+          </Link>
           <li>
             <DashboardIcon className="icon" />
             <span>Payroll Summary</span>
           </li>
           <p className="title">PAGES</p>
-          <li>
-            <DashboardIcon className="icon" />
-            <span>Profile Form</span>
-          </li>
+          {/* profile page link */}
+          <Link to="/EmployeeAdminPanal/Profile">
+            <li>
+              <DashboardIcon className="icon" />
+              <span>Profile Form</span>
+            </li>
+          </Link>
           <li>
             <DashboardIcon className="icon" />
             <span>Payroll Entry</span>
