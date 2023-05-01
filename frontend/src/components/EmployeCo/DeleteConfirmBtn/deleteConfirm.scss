@@ -31,8 +31,6 @@
   --transparent: transparent;
   --transparentBlack1: rgba(0, 0, 0, 0.1);
   --transparentBlack7: rgba(0, 0, 0, 0.7);
-  --box-shadow: 0px 0px 12px rgb(255, 255, 255);
-  --text-shadow: 0px 0px 8px rgb(255, 255, 255);
 
   /* Font Sizes */
   --smallFontSize: 0.75rem;
@@ -52,60 +50,42 @@
   --blackFont: "Poppins Black", sans-serif;
   --Castoro: "Castoro Titling", sans-serif;
 }
-
-/* Set the width and height of the scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-
-/* Set the background color of the scrollbar track */
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-/* Set the color of the scrollbar thumb */
-::-webkit-scrollbar-thumb {
-  background: #888;
-}
-
-/* Change the color of the scrollbar thumb on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
-body {
-  margin: 0;
-  font-family: var(--thinFont);
-}
-.login {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--white2);
-}
-.empAdminPanal {
-  display: flex;
-  height: 100vh;
-  background-image: var(--grayGradient);
-}
-.profile-page {
-  display: flex;
-  height: 100vh;
-  background-image: var(--grayGradient);
-}
-
-.EmployeeInfo {
-  display: flex;
-  height: 100vh;
-  background-image: var(--grayGradient2);
-}
-
-.ProUpdateForm {
-  display: flex;
-  height: 100vh;
-  background-image: var(--grayGradient);
+.dialog {
 }
 .Delete-btn {
-  font-family: var(--Castoro);
+}
+
+.my-dialog-title {
+  color: var(--black);
+  font-size: 20px;
+  padding: 10px 20px;
+  font-family: var(--thinFont);
+  font-weight: 600;
+  text-shadow: var(--text-shadow);
+}
+.context {
+  font-family: var(--thinFont);
+  font-size: 15px;
+  text-shadow: var(--text-shadow);
+}
+
+.delete-button {
+  background-color: var(--red);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  text-shadow: 0px 0px 8px rgb(255, 255, 255);
+  cursor: pointer;
+  &:hover {
+    box-shadow: 0px 0px 12px rgb(255, 255, 255);
+  }
+}
+
+.cancel-btn {
+  color: var(--white);
+  text-shadow: var(--text-shadow);
+  &:hover {
+    box-shadow: 0px 0px 12px rgb(255, 255, 255);
+  }
 }
