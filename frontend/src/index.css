@@ -25,11 +25,14 @@
   --black: #000000;
   --grayGradient: linear-gradient(to bottom, #eaeaea, #aaaaaa, #6e6e6e, #373737, #000000);
   --grayGradient2: linear-gradient(to bottom, #bbbdc1, #8a8a8d, #5b5a5b, #2f2e2f, #000000);
+  --grayGradientUp: linear-gradient(to top, #eaeaea, #aaaaaa, #6e6e6e, #373737, #000000);
 
   /* TRANSPARENT COLORS */
   --transparent: transparent;
   --transparentBlack1: rgba(0, 0, 0, 0.1);
   --transparentBlack7: rgba(0, 0, 0, 0.7);
+  --box-shadow: 0px 0px 12px rgb(255, 255, 255);
+  --text-shadow: 0px 0px 8px rgb(255, 255, 255);
 
   /* Font Sizes */
   --smallFontSize: 0.75rem;
@@ -102,4 +105,7 @@ body {
   display: flex;
   height: 100vh;
   background-image: var(--grayGradient);
+}
+.Delete-btn {
+  font-family: var(--Castoro);
 }

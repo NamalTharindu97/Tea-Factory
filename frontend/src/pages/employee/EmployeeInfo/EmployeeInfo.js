@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { SideBar } from "../../../components/EmployeCo/sidebar/SideBar";
 import { NavBar } from "../../../components/EmployeCo/navBar/NavBar";
+import { DeleteConfirmBtn } from "../../../components/EmployeCo/DeleteConfirmBtn/DeleteConfirmBtn";
 import { DataGrid } from "@mui/x-data-grid";
 import "./employeeInfo.scss";
 import axios from "axios";
@@ -37,11 +38,7 @@ export const EmployeeInfo = () => {
       width: 100,
       headerClassName: "custom-header",
       cellClassName: "custom-cell",
-      renderCell: (params) => (
-        <button className="delete-button" onClick={() => handleDelete(params)}>
-          Delete
-        </button>
-      ),
+      renderCell: (params) => <DeleteConfirmBtn id={params.id} />,
     },
   ];
 
@@ -61,20 +58,6 @@ export const EmployeeInfo = () => {
     const rowId = params.id; // get the MongoDB _id field
     const employee = empData.find((emp) => emp.id === rowId);
     navigate(`/EmployeeAdminPanal/EmployeeInfo/Employee/${rowId}`, { state: { employee } });
-  };
-
-  const handleDelete = async (params) => {
-    const rowId = params.id; // get the MongoDB _id field
-    try {
-      const response = await axios.delete(`/employees/${rowId}`);
-      if (!response) {
-        console.log("not response from delete btn");
-      } else {
-        window.location.reload();
-      }
-    } catch (error) {
-      console.log(error);
-    }
   };
 
   return (

@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 :root {
   /* COLORS */
   --primary: #27ae60;
@@ -6,6 +7,7 @@
   --VividSpringGreen: #00ffa8;
   --LightGreen1: #16ff00;
   --LightGreen2: #b4ff9f;
+  --LightGreen3: #00e676;
   --DarkGreen1: #095709;
   --DarkGreen2: #077807;
   --red: #ff1717;
@@ -22,6 +24,8 @@
   --white: #ffffff;
   --black: #000000;
   --grayGradient: linear-gradient(to bottom, #eaeaea, #aaaaaa, #6e6e6e, #373737, #000000);
+  --grayGradient2: linear-gradient(to bottom, #bbbdc1, #8a8a8d, #5b5a5b, #2f2e2f, #000000);
+  --grayGradientUp: linear-gradient(to top, #eaeaea, #aaaaaa, #6e6e6e, #373737, #000000);
 
   /* TRANSPARENT COLORS */
   --transparent: transparent;
@@ -46,56 +50,42 @@
   --blackFont: "Poppins Black", sans-serif;
   --Castoro: "Castoro Titling", sans-serif;
 }
+.dialog {
+}
+.Delete-btn {
+}
 
-.info-container {
-  flex: 6;
-  .data-grid {
-    height: 600px;
-    color: white;
-    width: "99%";
-    .grid {
-      font-weight: 500;
-      font-size: 16px;
-      font-family: var(--thinFont);
+.my-dialog-title {
+  color: var(--black);
+  font-size: 20px;
+  padding: 10px 20px;
+  font-family: var(--thinFont);
+  font-weight: 600;
+  text-shadow: var(--text-shadow);
+}
+.context {
+  font-family: var(--thinFont);
+  font-size: 15px;
+  text-shadow: var(--text-shadow);
+}
 
-      .update-button {
-        background-color: var(--LightGreen1);
-        color: white;
-        border: none;
-        padding: 5px 10px;
-        border-radius: 4px;
-        text-shadow: 0px 0px 8px rgb(255, 255, 255);
-        cursor: pointer;
-        &:hover {
-          box-shadow: 0px 0px 12px rgb(255, 255, 255);
-        }
-      }
+.delete-button {
+  background-color: var(--red);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  text-shadow: 0px 0px 8px rgb(255, 255, 255);
+  cursor: pointer;
+  &:hover {
+    box-shadow: 0px 0px 12px rgb(255, 255, 255);
+  }
+}
 
-      .delete-button {
-        background-color: var(--red);
-        color: white;
-        border: none;
-        padding: 6px 12px;
-        border-radius: 4px;
-        text-shadow: 0px 0px 8px rgb(255, 255, 255);
-        cursor: pointer;
-        &:hover {
-          box-shadow: 0px 0px 12px rgb(255, 255, 255);
-        }
-      }
-
-      .custom-header {
-        color: var(--black);
-        font-size: 16px;
-        font-weight: 800;
-        font-family: var(--Castoro);
-        text-shadow: 0px 0px 8px rgb(255, 255, 255);
-      }
-
-      .custom-cell {
-        color: var(--lightGray2);
-        text-shadow: 0px 0px 8px rgb(255, 255, 255);
-      }
-    }
+.cancel-btn {
+  color: var(--white);
+  text-shadow: var(--text-shadow);
+  &:hover {
+    box-shadow: 0px 0px 12px rgb(255, 255, 255);
   }
 }
