@@ -42,6 +42,13 @@ const theme = createMuiTheme({
     },
   },
 });
+const inputBaseStyles = {
+  marginBottom: "1rem",
+  "& .MuiInputBase-root": {
+    height: "45px", // set the height here
+    color: "whitesmoke",
+  },
+};
 
 export const Profile = () => {
   const formik = useFormik({
@@ -116,12 +123,7 @@ export const Profile = () => {
                 onChange={formik.handleChange}
                 error={formik.touched.name && Boolean(formik.errors.name)}
                 helperText={formik.touched.name && formik.errors.name}
-                sx={{
-                  marginBottom: "1rem",
-                  "& .MuiInputBase-root": {
-                    height: "45px", // set the height here
-                  },
-                }}
+                sx={inputBaseStyles}
               />
               <TextField
                 fullWidth
@@ -131,12 +133,7 @@ export const Profile = () => {
                 onChange={formik.handleChange}
                 error={formik.touched.email && Boolean(formik.errors.email)}
                 helperText={formik.touched.email && formik.errors.email}
-                sx={{
-                  marginBottom: "1rem",
-                  "& .MuiInputBase-root": {
-                    height: "45px", // set the height here
-                  },
-                }}
+                sx={inputBaseStyles}
               />
               <TextField
                 fullWidth
@@ -146,12 +143,7 @@ export const Profile = () => {
                 onChange={formik.handleChange}
                 error={formik.touched.phone && Boolean(formik.errors.phone)}
                 helperText={formik.touched.phone && formik.errors.phone}
-                sx={{
-                  marginBottom: "1rem",
-                  "& .MuiInputBase-root": {
-                    height: "45px", // set the height here
-                  },
-                }}
+                sx={inputBaseStyles}
               />
               <FormControl
                 component="fieldset"
@@ -172,22 +164,9 @@ export const Profile = () => {
                 onChange={formik.handleChange}
                 error={formik.touched.age && Boolean(formik.errors.age)}
                 helperText={formik.touched.age && formik.errors.age}
-                sx={{
-                  marginBottom: "1rem",
-                  "& .MuiInputBase-root": {
-                    height: "45px", // set the height here
-                  },
-                }}
+                sx={inputBaseStyles}
               />
-              <FormControl
-                fullWidth
-                sx={{
-                  marginBottom: "1rem",
-                  "& .MuiInputBase-root": {
-                    height: "45px", // set the height here
-                  },
-                }}
-              >
+              <FormControl fullWidth sx={inputBaseStyles}>
                 <InputLabel id="role-label">Role</InputLabel>
                 <Select labelId="role-label" label="Role" name="role" value={formik.values.role} onChange={formik.handleChange} error={formik.touched.role && Boolean(formik.errors.role)}>
                   {roles.map((role) => (
@@ -206,15 +185,10 @@ export const Profile = () => {
                 onChange={formik.handleChange}
                 error={formik.touched.password && Boolean(formik.errors.password)}
                 helperText={formik.touched.password && formik.errors.password}
-                sx={{
-                  marginBottom: "1rem",
-                  "& .MuiInputBase-root": {
-                    height: "45px", // set the height here
-                  },
-                }}
+                sx={inputBaseStyles}
               />
               <Button color="primary" variant="contained" fullWidth type="submit" className="profile-btn" sx={{ marginBottom: "1rem" }}>
-                Submit
+                CREATE USER
               </Button>
               <ToastContainer position="top-center" autoClose={3000} limit={1} hideProgressBar newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="dark" />
             </form>

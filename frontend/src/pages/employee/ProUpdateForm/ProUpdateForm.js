@@ -19,7 +19,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { green } from "@mui/material/colors";
 import { SideBar } from "../../../components/EmployeCo/sidebar/SideBar";
 import { NavBar } from "../../../components/EmployeCo/navBar/NavBar";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required("Required"),
@@ -44,10 +44,19 @@ const theme = createMuiTheme({
   },
 });
 
+const inputBaseStyles = {
+  marginBottom: "1rem",
+  "& .MuiInputBase-root": {
+    height: "45px", // set the height here
+    color: "whitesmoke",
+  },
+};
+
 export const ProUpdateForm = () => {
   const { id } = useParams();
   const location = useLocation();
   const employee = location.state.employee;
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -57,7 +66,6 @@ export const ProUpdateForm = () => {
       gender: employee.gender,
       age: employee.age,
       role: employee.role,
-      password: employee.password,
     },
     validationSchema: validationSchema,
     onSubmit: async (values, { resetForm }) => {
@@ -69,7 +77,6 @@ export const ProUpdateForm = () => {
           gender: values.gender,
           age: values.age,
           role: values.role,
-          password: values.password,
         });
         if (!response) {
           console.log("employee not Updated");
@@ -84,6 +91,7 @@ export const ProUpdateForm = () => {
             progress: undefined,
             theme: "dark",
           });
+          navigate("/EmployeeAdminPanal/EmployeeInfo");
           resetForm(); //react formik method
         }
       } catch (error) {
@@ -120,12 +128,7 @@ export const ProUpdateForm = () => {
                 onChange={formik.handleChange}
                 error={formik.touched.name && Boolean(formik.errors.name)}
                 helperText={formik.touched.name && formik.errors.name}
-                sx={{
-                  marginBottom: "1rem",
-                  "& .MuiInputBase-root": {
-                    height: "45px", // set the height here
-                  },
-                }}
+                sx={inputBaseStyles}
               />
               <TextField
                 fullWidth
@@ -135,12 +138,7 @@ export const ProUpdateForm = () => {
                 onChange={formik.handleChange}
                 error={formik.touched.email && Boolean(formik.errors.email)}
                 helperText={formik.touched.email && formik.errors.email}
-                sx={{
-                  marginBottom: "1rem",
-                  "& .MuiInputBase-root": {
-                    height: "45px", // set the height here
-                  },
-                }}
+                sx={inputBaseStyles}
               />
               <TextField
                 fullWidth
@@ -150,12 +148,7 @@ export const ProUpdateForm = () => {
                 onChange={formik.handleChange}
                 error={formik.touched.phone && Boolean(formik.errors.phone)}
                 helperText={formik.touched.phone && formik.errors.phone}
-                sx={{
-                  marginBottom: "1rem",
-                  "& .MuiInputBase-root": {
-                    height: "45px", // set the height here
-                  },
-                }}
+                sx={inputBaseStyles}
               />
               <FormControl
                 component="fieldset"
@@ -176,22 +169,9 @@ export const ProUpdateForm = () => {
                 onChange={formik.handleChange}
                 error={formik.touched.age && Boolean(formik.errors.age)}
                 helperText={formik.touched.age && formik.errors.age}
-                sx={{
-                  marginBottom: "1rem",
-                  "& .MuiInputBase-root": {
-                    height: "45px", // set the height here
-                  },
-                }}
+                sx={inputBaseStyles}
               />
-              <FormControl
-                fullWidth
-                sx={{
-                  marginBottom: "1rem",
-                  "& .MuiInputBase-root": {
-                    height: "45px", // set the height here
-                  },
-                }}
-              >
+              <FormControl fullWidth sx={inputBaseStyles}>
                 <InputLabel id="role-label">Role</InputLabel>
                 <Select labelId="role-label" label="Role" name="role" value={formik.values.role} onChange={formik.handleChange} error={formik.touched.role && Boolean(formik.errors.role)}>
                   {roles.map((role) => (
@@ -201,24 +181,9 @@ export const ProUpdateForm = () => {
                   ))}
                 </Select>
               </FormControl>
-              <TextField
-                fullWidth
-                type="password"
-                label="Password"
-                name="password"
-                value={formik.values.password}
-                onChange={formik.handleChange}
-                error={formik.touched.password && Boolean(formik.errors.password)}
-                helperText={formik.touched.password && formik.errors.password}
-                sx={{
-                  marginBottom: "1rem",
-                  "& .MuiInputBase-root": {
-                    height: "45px", // set the height here
-                  },
-                }}
-              />
+
               <Button color="primary" variant="contained" fullWidth type="submit" className="profile-btn" sx={{ marginBottom: "1rem" }}>
-                Submit
+                UPDATE
               </Button>
               <ToastContainer position="top-center" autoClose={3000} limit={1} hideProgressBar newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="dark" />
             </form>
