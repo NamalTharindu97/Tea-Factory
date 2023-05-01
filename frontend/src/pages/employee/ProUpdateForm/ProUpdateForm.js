@@ -28,7 +28,6 @@ const validationSchema = Yup.object().shape({
   age: Yup.number().required("Required"),
   role: Yup.string().required("Required"),
   gender: Yup.string().required("Required"),
-  password: Yup.string().max(20, "Must be 20 characters or less").required("Required"),
 });
 
 const roles = ["HR Manager", "Inventory Manager", "Supplier Manager", "Production Manager"];
@@ -68,7 +67,7 @@ export const ProUpdateForm = () => {
       role: employee.role,
     },
     validationSchema: validationSchema,
-    onSubmit: async (values, { resetForm }) => {
+    onSubmit: async (values) => {
       try {
         const response = await axios.put(`/employees/${id}`, {
           name: values.name,
@@ -91,8 +90,10 @@ export const ProUpdateForm = () => {
             progress: undefined,
             theme: "dark",
           });
-          navigate("/EmployeeAdminPanal/EmployeeInfo");
-          resetForm(); //react formik method
+
+          setTimeout(() => {
+            navigate("/EmployeeAdminPanal/EmployeeInfo");
+          }, 2000);
         }
       } catch (error) {
         console.log(error);
