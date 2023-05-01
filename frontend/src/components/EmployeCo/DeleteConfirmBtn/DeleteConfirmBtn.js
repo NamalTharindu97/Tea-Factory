@@ -28,28 +28,28 @@ export const DeleteConfirmBtn = ({ id }) => {
 
     setIsDialogOpen(false);
   };
+
+  const styles = {
+    paper: {
+      backgroundImage: "linear-gradient(to top, #eaeaea, #aaaaaa, #6e6e6e, #373737, #000000)",
+      boxShadow: "0px 3px 5px rgba(0, 0, 0, 0.5)",
+      borderRadius: 25,
+      padding: 20,
+    },
+  };
+
   return (
     <div className="Delete-btn">
       <button className="delete-button" onClick={handleDeleteButtonClick}>
         Delete
       </button>
-      <Dialog
-        className="dialog"
-        open={isDialogOpen}
-        onClose={handleDialogClose}
-        PaperProps={{
-          style: {
-            backgroundImage: "linear-gradient(to bottom, #eaeaea, #aaaaaa, #6e6e6e, #373737, #000000)",
-            boxShadow: "0px 3px 5px rgba(0, 0, 0, 0.5)",
-          },
-        }}
-      >
+      <Dialog className="dialog" open={isDialogOpen} onClose={handleDialogClose} PaperProps={{ style: styles.paper }}>
         <DialogTitle className="my-dialog-title">Are You Sure You Want To Delete This Employee?</DialogTitle>
         <DialogContent className="context">This Operation Can't be Undo</DialogContent>
         <DialogActions>
-          <Button className="cancel-btn" onClick={handleDialogClose}>
+          <button className="cancel-btn" onClick={handleDialogClose}>
             Cancel
-          </Button>
+          </button>
           <button className="delete-button" onClick={() => handleDeleteConfirm(id)}>
             Yes, Delete
           </button>
