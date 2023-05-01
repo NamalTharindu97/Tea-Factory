@@ -109,3 +109,9 @@ body {
 .Delete-btn {
   font-family: var(--Castoro);
 }
+
+.BarPage {
+  display: flex;
+  height: 100vh;
+  background-image: var(--grayGradient);
+}
