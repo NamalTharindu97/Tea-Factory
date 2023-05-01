@@ -5,6 +5,24 @@ import { DataGrid } from "@mui/x-data-grid";
 import "./employeeInfo.scss";
 import axios from "axios";
 
+const handleUpdate = (params) => {
+  // const rowId = params.id; // get the MongoDB _id field
+};
+
+const handleDelete = async (params) => {
+  const rowId = params.id; // get the MongoDB _id field
+  try {
+    const response = await axios.delete(`/employees/${rowId}`);
+    if (!response) {
+      console.log("not response from delete btn");
+    } else {
+      window.location.reload();
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const columns = [
   { field: "name", headerName: "Name", width: 220, headerClassName: "custom-header", cellClassName: "custom-cell" },
   { field: "email", headerName: "Email", width: 250, headerClassName: "custom-header", cellClassName: "custom-cell" },
@@ -19,7 +37,11 @@ const columns = [
     width: 100,
     headerClassName: "custom-header",
     cellClassName: "custom-cell",
-    renderCell: () => <button className="update-button">Update</button>,
+    renderCell: (params) => (
+      <button className="update-button" onClick={() => handleUpdate(params)}>
+        Update
+      </button>
+    ),
   },
   {
     field: "delete",
@@ -28,7 +50,11 @@ const columns = [
     width: 100,
     headerClassName: "custom-header",
     cellClassName: "custom-cell",
-    renderCell: () => <button className="delete-button">Delete</button>,
+    renderCell: (params) => (
+      <button className="delete-button" onClick={() => handleDelete(params)}>
+        Delete
+      </button>
+    ),
   },
 ];
 
