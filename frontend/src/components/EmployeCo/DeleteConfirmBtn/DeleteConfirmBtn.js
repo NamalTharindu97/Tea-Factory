@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
+import { Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
 import axios from "axios";
 import "./deleteConfirm.scss";
 

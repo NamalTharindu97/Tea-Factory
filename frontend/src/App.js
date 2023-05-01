@@ -9,6 +9,7 @@ import { Profile } from "./pages/employee/ProfileForm/Profile";
 import ManageTeam from "./pages/employee/ManageTeam/ManageTeam";
 import { EmployeeInfo } from "./pages/employee/EmployeeInfo/EmployeeInfo";
 import { ProUpdateForm } from "./pages/employee/ProUpdateForm/ProUpdateForm";
+import { BarPage } from "./pages/employee/BarPage/BarPage";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/EmployeeAdminPanal/ManageTeam" element={<ManageTeam />} />
         <Route path="/EmployeeAdminPanal/EmployeeInfo" element={<EmployeeInfo />} />
         <Route path="/EmployeeAdminPanal/EmployeeInfo/Employee/:id" element={<ProUpdateForm />} />
+        <Route path="/EmployeeAdminPanal/BarPage" element={<BarPage />} />
       </Routes>
     </Router>
   );

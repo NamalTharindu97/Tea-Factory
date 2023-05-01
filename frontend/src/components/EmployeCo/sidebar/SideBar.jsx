@@ -60,10 +60,12 @@ export const SideBar = () => {
             <span>Payroll Entry</span>
           </li>
           <p className="title">CHARTS</p>
-          <li>
-            <LeaderboardOutlinedIcon className="icon" />
-            <span>Bar Chart</span>
-          </li>
+          <Link to="/EmployeeAdminPanal/BarPage">
+            <li>
+              <LeaderboardOutlinedIcon className="icon" />
+              <span>Bar Chart</span>
+            </li>
+          </Link>
           <li>
             <StackedLineChartOutlinedIcon className="icon" />
             <span>Line Chart</span>
