@@ -4,29 +4,46 @@ import { NavBar } from "../../../components/EmployeCo/navBar/NavBar";
 import { DataGrid } from "@mui/x-data-grid";
 import "./employeeInfo.scss";
 import axios from "axios";
-
-const columns = [
-  { field: "id", headerName: "ID", width: 100 },
-  { field: "name", headerName: "Name", width: 200 },
-  { field: "email", headerName: "Email", width: 200 },
-  { field: "phone", headerName: "Phone", width: 200 },
-  { field: "gender", headerName: "Gender", width: 200 },
-  { field: "age", headerName: "Age", width: 200 },
-  { field: "role", headerName: "Role", width: 200 },
-  {
-    field: "createdAt",
-    headerName: "Created At",
-    width: 200,
-  },
-  {
-    field: "updatedAt",
-    headerName: "Updated At",
-    width: 200,
-  },
-];
+import { useNavigate } from "react-router-dom";
 
 export const EmployeeInfo = () => {
   const [empData, setEmpData] = useState([]);
+  const navigate = useNavigate();
+
+  const columns = [
+    { field: "name", headerName: "Name", width: 220, headerClassName: "custom-header", cellClassName: "custom-cell" },
+    { field: "email", headerName: "Email", width: 250, headerClassName: "custom-header", cellClassName: "custom-cell" },
+    { field: "phone", headerName: "Phone", width: 150, headerClassName: "custom-header", cellClassName: "custom-cell" },
+    { field: "gender", headerName: "Gender", width: 100, headerClassName: "custom-header", cellClassName: "custom-cell" },
+    { field: "age", headerName: "Age", width: 100, headerClassName: "custom-header", cellClassName: "custom-cell" },
+    { field: "role", headerName: "Role", width: 180, headerClassName: "custom-header", cellClassName: "custom-cell" },
+    {
+      field: "update",
+      headerName: "Update",
+      sortable: false,
+      width: 100,
+      headerClassName: "custom-header",
+      cellClassName: "custom-cell",
+      renderCell: (params) => (
+        <button className="update-button" onClick={() => handleUpdate(params)}>
+          Update
+        </button>
+      ),
+    },
+    {
+      field: "delete",
+      headerName: "Delete",
+      sortable: false,
+      width: 100,
+      headerClassName: "custom-header",
+      cellClassName: "custom-cell",
+      renderCell: (params) => (
+        <button className="delete-button" onClick={() => handleDelete(params)}>
+          Delete
+        </button>
+      ),
+    },
+  ];
 
   useEffect(() => {
     const getEmployee = async () => {
@@ -40,13 +57,33 @@ export const EmployeeInfo = () => {
     getEmployee();
   }, []);
 
+  const handleUpdate = (params) => {
+    const rowId = params.id; // get the MongoDB _id field
+    const employee = empData.find((emp) => emp.id === rowId);
+    navigate(`/EmployeeAdminPanal/EmployeeInfo/Employee/${rowId}`, { state: { employee } });
+  };
+
+  const handleDelete = async (params) => {
+    const rowId = params.id; // get the MongoDB _id field
+    try {
+      const response = await axios.delete(`/employees/${rowId}`);
+      if (!response) {
+        console.log("not response from delete btn");
+      } else {
+        window.location.reload();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="EmployeeInfo">
       <SideBar />
       <div className="info-container">
         <NavBar />
         <div className="data-grid">
-          <DataGrid rows={empData} columns={columns} paginationModel={{ page: 0, pageSize: 25 }} />
+          <DataGrid rows={empData} columns={columns} paginationModel={{ page: 0, pageSize: 25 }} hideFooterPagination hideFooterSelectedRowCount className="grid" />
         </div>
       </div>
     </div>

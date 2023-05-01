@@ -1,0 +1,42 @@
+.profile-contariner {
+  flex: 6;
+}
+.profile {
+  .head-tag-1 {
+    font-family: var(--Castoro);
+    font-weight: 600;
+    font-size: 25px;
+    padding: 0;
+    margin: 0;
+    text-shadow: 0px 0px 8px rgb(255, 255, 255);
+  }
+  .head-tag-2 {
+    font-size: 15px;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 25px;
+    color: #00e676;
+    text-shadow: 0px 0px 8px rgb(255, 255, 255);
+  }
+  .profile-form {
+    margin: 20px 20px;
+    margin-top: 10px;
+    label {
+      color: var(--white2);
+      font-size: 13px;
+      text-shadow: 0px 0px 8px rgb(255, 255, 255);
+    }
+    .menu {
+      font-size: 10px;
+    }
+    .profile-btn {
+      width: 300px;
+      color: var(--white2);
+      text-shadow: 0px 0px 8px rgb(255, 255, 255);
+
+      &:hover {
+        box-shadow: 0px 0px 12px rgb(255, 255, 255);
+      }
+    }
+  }
+}

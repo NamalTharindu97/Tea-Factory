@@ -1,4 +1,5 @@
 import React from "react";
+import "./proUpdateForm.scss";
 import axios from "axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -15,10 +16,10 @@ import { Typography } from "@mui/material";
 import Radio from "@mui/material/Radio";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "./profile.scss";
 import { green } from "@mui/material/colors";
 import { SideBar } from "../../../components/EmployeCo/sidebar/SideBar";
 import { NavBar } from "../../../components/EmployeCo/navBar/NavBar";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required("Required"),
@@ -27,7 +28,6 @@ const validationSchema = Yup.object().shape({
   age: Yup.number().required("Required"),
   role: Yup.string().required("Required"),
   gender: Yup.string().required("Required"),
-  password: Yup.string().max(20, "Must be 20 characters or less").required("Required"),
 });
 
 const roles = ["HR Manager", "Inventory Manager", "Supplier Manager", "Production Manager"];
@@ -42,6 +42,7 @@ const theme = createMuiTheme({
     },
   },
 });
+
 const inputBaseStyles = {
   marginBottom: "1rem",
   "& .MuiInputBase-root": {
@@ -50,33 +51,36 @@ const inputBaseStyles = {
   },
 };
 
-export const Profile = () => {
+export const ProUpdateForm = () => {
+  const { id } = useParams();
+  const location = useLocation();
+  const employee = location.state.employee;
+  const navigate = useNavigate();
+
   const formik = useFormik({
     initialValues: {
-      name: "",
-      email: "",
-      phone: "",
-      gender: "male",
-      age: "",
-      role: "",
-      password: "",
+      name: employee.name,
+      email: employee.email,
+      phone: employee.phone,
+      gender: employee.gender,
+      age: employee.age,
+      role: employee.role,
     },
     validationSchema: validationSchema,
-    onSubmit: async (values, { resetForm }) => {
+    onSubmit: async (values) => {
       try {
-        const response = await axios.post("/employees/", {
+        const response = await axios.put(`/employees/${id}`, {
           name: values.name,
           email: values.email,
           phone: values.phone,
           gender: values.gender,
           age: values.age,
           role: values.role,
-          password: values.password,
         });
         if (!response) {
-          console.log("employee not created");
+          console.log("employee not Updated");
         } else {
-          toast.success("Employee Created!", {
+          toast.success("Employee Update Success!", {
             position: "top-center",
             autoClose: 3000,
             hideProgressBar: true,
@@ -86,7 +90,10 @@ export const Profile = () => {
             progress: undefined,
             theme: "dark",
           });
-          resetForm(); //react formik method
+
+          setTimeout(() => {
+            navigate("/EmployeeAdminPanal/EmployeeInfo");
+          }, 2000);
         }
       } catch (error) {
         console.log(error);
@@ -103,17 +110,16 @@ export const Profile = () => {
       }
     },
   });
-
   return (
-    <div className="profile-page">
+    <div className="ProUpdateForm">
       <SideBar />
-      <div className="profile-container">
+      <div className="profile-contariner">
         <NavBar />
         <div className="profile">
           <ThemeProvider theme={theme}>
             <form className="profile-form" onSubmit={formik.handleSubmit}>
-              <p className="head-tag-1">create user</p>
-              <p className="head-tag-2">Create a New User Profile</p>
+              <p className="head-tag-1">update user</p>
+              <p className="head-tag-2">Update Your User Profile</p>
               <TextField
                 color="primary"
                 fullWidth
@@ -176,19 +182,9 @@ export const Profile = () => {
                   ))}
                 </Select>
               </FormControl>
-              <TextField
-                fullWidth
-                type="password"
-                label="Password"
-                name="password"
-                value={formik.values.password}
-                onChange={formik.handleChange}
-                error={formik.touched.password && Boolean(formik.errors.password)}
-                helperText={formik.touched.password && formik.errors.password}
-                sx={inputBaseStyles}
-              />
+
               <Button color="primary" variant="contained" fullWidth type="submit" className="profile-btn" sx={{ marginBottom: "1rem" }}>
-                CREATE USER
+                UPDATE
               </Button>
               <ToastContainer position="top-center" autoClose={3000} limit={1} hideProgressBar newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="dark" />
             </form>
