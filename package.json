@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/NamalTharindu97/Tea-Factory/issues"
   },
-  "homepage": "https://github.com/NamalTharindu97/Tea-Factory#readme"
+  "homepage": "https://github.com/NamalTharindu97/Tea-Factory#readme",
+  "dependencies": {
+    "concurrently": "^8.0.1"
+  }
 }
