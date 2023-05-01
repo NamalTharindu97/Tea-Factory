@@ -49,6 +49,12 @@
 
 .info-container {
   flex: 6;
+  .spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+  }
   .data-grid {
     height: 600px;
     color: white;

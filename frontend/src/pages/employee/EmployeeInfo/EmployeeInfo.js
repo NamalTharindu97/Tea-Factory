@@ -3,13 +3,25 @@ import { SideBar } from "../../../components/EmployeCo/sidebar/SideBar";
 import { NavBar } from "../../../components/EmployeCo/navBar/NavBar";
 import { DeleteConfirmBtn } from "../../../components/EmployeCo/DeleteConfirmBtn/DeleteConfirmBtn";
 import { DataGrid } from "@mui/x-data-grid";
+import { CircularProgress, createTheme } from "@mui/material";
 import "./employeeInfo.scss";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { green } from "@mui/material/colors";
+import { ThemeProvider } from "@emotion/react";
 
 export const EmployeeInfo = () => {
   const [empData, setEmpData] = useState([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: green["A400"],
+      },
+    },
+  });
 
   const columns = [
     { field: "name", headerName: "Name", width: 220, headerClassName: "custom-header", cellClassName: "custom-cell" },
@@ -47,6 +59,7 @@ export const EmployeeInfo = () => {
       try {
         const response = await axios.get("/employees/");
         setEmpData(response.data.map((emp) => ({ ...emp, id: emp._id })));
+        setLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -65,8 +78,18 @@ export const EmployeeInfo = () => {
       <SideBar />
       <div className="info-container">
         <NavBar />
-        <div className="data-grid">
-          <DataGrid rows={empData} columns={columns} paginationModel={{ page: 0, pageSize: 25 }} hideFooterPagination hideFooterSelectedRowCount className="grid" />
+        <div>
+          {loading ? (
+            <div className="spinner">
+              <ThemeProvider theme={theme}>
+                <CircularProgress color="primary" />
+              </ThemeProvider>
+            </div>
+          ) : (
+            <div className="data-grid">
+              <DataGrid rows={empData} columns={columns} paginationModel={{ page: 0, pageSize: 25 }} hideFooterPagination hideFooterSelectedRowCount className="grid" />
+            </div>
+          )}
         </div>
       </div>
     </div>
