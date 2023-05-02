@@ -70,10 +70,12 @@ export const SideBar = () => {
             <StackedLineChartOutlinedIcon className="icon" />
             <span>Line Chart</span>
           </li>
-          <li>
-            <DonutSmallOutlinedIcon className="icon" />
-            <span>Pie Chart</span>
-          </li>
+          <Link to="/EmployeeAdminPanal/PiePage">
+            <li>
+              <DonutSmallOutlinedIcon className="icon" />
+              <span>Pie Chart</span>
+            </li>
+          </Link>
           <p className="title">USER</p>
           <li>
             <AccountCircleOutlinedIcon className="icon" />

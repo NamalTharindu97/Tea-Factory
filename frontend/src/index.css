@@ -115,3 +115,9 @@ body {
   height: 100vh;
   background-image: var(--grayGradient);
 }
+
+.PiePage {
+  display: flex;
+  height: 100vh;
+  background-image: var(--grayGradient);
+}
