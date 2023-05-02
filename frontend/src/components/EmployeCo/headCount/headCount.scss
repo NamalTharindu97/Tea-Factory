@@ -1,9 +1,27 @@
 .headCount {
   flex: 1;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+
   padding: 10px;
   background: transparent;
   box-shadow: 0px 0px 12px rgb(255, 255, 255);
   border-radius: 25px;
+}
+
+.head-count-probar {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  height: 120px;
+  width: 120px;
+}
+.count-heading-1 {
+  color: var(--white2);
+  font-family: var(--thinFont);
+  font-weight: 400;
+  font-size: 13px;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 20px;
 }
