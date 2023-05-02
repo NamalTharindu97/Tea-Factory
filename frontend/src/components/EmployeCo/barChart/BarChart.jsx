@@ -16,23 +16,25 @@ const data = {
   ],
 };
 
-export const BarChart = ({ height, width }) => {
+export const BarChart = () => {
   return (
-    <div className="barChart" style={{ height, width }}>
-      <Bar
-        data={data}
-        options={{
-          title: {
-            display: true,
-            text: "Sales by Month",
-            fontSize: 20,
-          },
-          legend: {
-            display: true,
-            position: "right",
-          },
-        }}
-      />
+    <div className="barChart">
+      <div className="inner-bar-component">
+        <Bar
+          data={data}
+          options={{
+            title: {
+              display: true,
+              text: "Sales by Month",
+              fontSize: 20,
+            },
+            legend: {
+              display: true,
+              position: "right",
+            },
+          }}
+        />
+      </div>
     </div>
   );
 };
