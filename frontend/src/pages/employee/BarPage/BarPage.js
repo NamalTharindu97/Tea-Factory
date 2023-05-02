@@ -11,7 +11,7 @@ export const BarPage = () => {
       <div className="bar-container">
         <NavBar />
         <div className="bar">
-          <BarChart height={550} width={1250} />
+          <BarChart />
         </div>
       </div>
     </div>

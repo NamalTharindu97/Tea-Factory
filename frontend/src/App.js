@@ -11,6 +11,7 @@ import { EmployeeInfo } from "./pages/employee/EmployeeInfo/EmployeeInfo";
 import { ProUpdateForm } from "./pages/employee/ProUpdateForm/ProUpdateForm";
 import { BarPage } from "./pages/employee/BarPage/BarPage";
 import { PiePage } from "./pages/employee/PiePage/PiePage";
+import { PayrollPage } from "./pages/employee/PayrollPage/PayrollPage";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/EmployeeAdminPanal/EmployeeInfo/Employee/:id" element={<ProUpdateForm />} />
         <Route path="/EmployeeAdminPanal/BarPage" element={<BarPage />} />
         <Route path="/EmployeeAdminPanal/PiePage" element={<PiePage />} />
+        <Route path="/EmployeeAdminPanal/PayrollPage" element={<PayrollPage />} />
       </Routes>
     </Router>
   );

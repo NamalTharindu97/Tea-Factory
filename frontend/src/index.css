@@ -121,3 +121,9 @@ body {
   height: 100vh;
   background-image: var(--grayGradient);
 }
+
+.PayrollPage {
+  display: flex;
+  height: 100vh;
+  background-image: var(--grayGradient);
+}
