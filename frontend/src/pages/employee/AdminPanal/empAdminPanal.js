@@ -23,12 +23,12 @@ export default function empAdminPanal() {
         </div>
         <div className="middle">
           <Payroll />
-          <Recent />
+          <PieChart />
         </div>
         <div className="low">
           <HeadCount />
           <BarChart />
-          <PieChart />
+          <Recent />
         </div>
       </div>
     </div>
