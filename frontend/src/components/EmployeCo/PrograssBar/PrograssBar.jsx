@@ -7,12 +7,10 @@ import "./prograssBar.scss";
 import { easeBounceInOut } from "d3-ease";
 import AnimatedProgressProvider from "./AnimatedProgressProvider";
 
-const count = 12;
-
-export const PrograssBar = () => {
+export const PrograssBar = ({ count }) => {
   return (
     <div className="PrograssBar">
-      <AnimatedProgressProvider valueStart={0} valueEnd={count} duration={5} easingFunction={easeBounceInOut} repeat>
+      <AnimatedProgressProvider valueStart={0} valueEnd={count} duration={5} delay={5} easingFunction={easeBounceInOut} repeat>
         {(value) => (
           <CircularProgressbar
             value={value}

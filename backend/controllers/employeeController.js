@@ -113,6 +113,18 @@ const loginEmployee = asyncHandler(async (req, res) => {
     throw new Error("email or password not valid");
   }
 });
+//@desc GET  count  Employee
+//@Route GET /api/v1/tea-factory/employees/count
+//@access public
+const getEmpCount = asyncHandler(async (req, res) => {
+  const count = await Employe.countDocuments();
+  if (!count) {
+    res.status(404);
+    throw new Error("Count Not Found");
+  }
+
+  res.status(200).json({ count });
+});
 
 //@desc GET  current  Employee
 //@Route GET /api/v1/tea-factory/employees/current
@@ -129,4 +141,5 @@ module.exports = {
   deleteEmployee,
   loginEmployee,
   currentEmployee,
+  getEmpCount,
 };
