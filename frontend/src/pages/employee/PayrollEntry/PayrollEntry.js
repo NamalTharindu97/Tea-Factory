@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { SideBar } from "../../../components/EmployeCo/sidebar/SideBar";
 import { NavBar } from "../../../components/EmployeCo/navBar/NavBar";
-import "./payrollEntry.scss";
+import { useFormik } from "formik";
+import * as yup from "yup";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { createMuiTheme, ThemeProvider } from "@mui/material/styles";
 import { green } from "@mui/material/colors";
-import { useFormik } from "formik";
-import * as yup from "yup";
+import "./payrollEntry.scss";
+import { PaySheet } from "../../../components/EmployeCo/PaySheet/PaySheet";
 
 export const PayrollEntry = () => {
+  const [formData, setFormData] = useState(null);
+
   const validationSchema = yup.object().shape({
     employeeName: yup.string().required("Employee name is required"),
     employeeId: yup.string().required("Employee ID is required"),
@@ -35,6 +38,7 @@ export const PayrollEntry = () => {
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       console.log(values);
+      setFormData(values);
     },
   });
 
@@ -60,6 +64,7 @@ export const PayrollEntry = () => {
       margin: 0,
     },
   };
+
   return (
     <div className="PayrollEntry">
       <SideBar />
@@ -135,7 +140,7 @@ export const PayrollEntry = () => {
                   />
                   <TextField
                     id="filled-basic"
-                    label="Federal Tax"
+                    label="Federal Tax Rate"
                     variant="filled"
                     type="number"
                     name="federalTax"
@@ -148,7 +153,7 @@ export const PayrollEntry = () => {
                   />
                   <TextField
                     id="filled-basic"
-                    label="State Tax"
+                    label="State Tax Rate"
                     variant="filled"
                     type="number"
                     name="stateTax"
@@ -161,7 +166,7 @@ export const PayrollEntry = () => {
                   />
                   <TextField
                     id="filled-basic"
-                    label="Medicare"
+                    label="Medicare Rate"
                     variant="filled"
                     type="number"
                     name="medicare"
@@ -179,7 +184,7 @@ export const PayrollEntry = () => {
               </ThemeProvider>
             </div>
           </div>
-          <div className="pay-sheet">right</div>
+          <div className="pay-sheet">{formData && <PaySheet formData={formData} />}</div>
         </div>
       </div>
     </div>
