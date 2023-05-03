@@ -56,10 +56,12 @@ export const SideBar = () => {
               <span>Profile Form</span>
             </li>
           </Link>
-          <li>
-            <PaidOutlinedIcon className="icon" />
-            <span>Payroll Entry</span>
-          </li>
+          <Link to="/EmployeeAdminPanal/PayrollEntry">
+            <li>
+              <PaidOutlinedIcon className="icon" />
+              <span>Payroll Entry</span>
+            </li>
+          </Link>
           <p className="title">CHARTS</p>
           <Link to="/EmployeeAdminPanal/BarPage">
             <li>

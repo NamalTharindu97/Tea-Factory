@@ -127,3 +127,10 @@ body {
   height: 100vh;
   background-image: var(--grayGradient);
 }
+
+.PayrollEntry {
+  display: flex;
+  height: 100vh;
+  font-family: var(--thinFont);
+  background-image: var(--grayGradient);
+}

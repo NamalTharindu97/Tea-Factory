@@ -58,9 +58,11 @@
   display: flex;
   .profile-container {
     flex: 6;
+    overflow: auto;
   }
 }
 .profile {
+  overflow: auto;
   .head-tag-1 {
     font-family: var(--Castoro);
     font-weight: 600;
