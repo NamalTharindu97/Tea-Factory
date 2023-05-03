@@ -1,0 +1,12 @@
+.PaySheet {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--thinFont);
+  margin: 30px;
+
+  .sheet {
+    display: flex;
+    flex-direction: column;
+  }
+}
