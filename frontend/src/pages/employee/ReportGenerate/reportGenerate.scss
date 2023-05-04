@@ -72,15 +72,15 @@
 
     .report-upper {
       flex: 1;
-      background-color: #008066;
     }
     .report-middle {
       flex: 2;
-      background-color: #16ff00;
+      select[multiple] {
+        margin: 0;
+      }
     }
     .report-lower {
       flex: 10;
-      background-color: #373737;
     }
   }
 }
