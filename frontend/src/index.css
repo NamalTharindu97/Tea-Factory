@@ -149,9 +149,15 @@ body {
   display: flex;
   height: 100vh;
   font-family: var(--thinFont);
-  background-image: var(--grayGradient);
+  background-image: var(--grayGradient2);
 }
 .PayRollUpdateForm {
+  display: flex;
+  height: 100vh;
+  font-family: var(--thinFont);
+  background-image: var(--grayGradient);
+}
+.ReportGenerate {
   display: flex;
   height: 100vh;
   font-family: var(--thinFont);
