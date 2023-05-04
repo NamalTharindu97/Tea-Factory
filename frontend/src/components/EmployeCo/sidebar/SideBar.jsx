@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import "./sidebar.scss";
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import GroupAddOutlinedIcon from "@mui/icons-material/GroupAddOutlined";
 import FeedOutlinedIcon from "@mui/icons-material/FeedOutlined";
 import PaidOutlinedIcon from "@mui/icons-material/PaidOutlined";
 import PersonSearchOutlinedIcon from "@mui/icons-material/PersonSearchOutlined";
@@ -11,6 +10,7 @@ import StackedLineChartOutlinedIcon from "@mui/icons-material/StackedLineChartOu
 import DonutSmallOutlinedIcon from "@mui/icons-material/DonutSmallOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
+import FilterNoneRoundedIcon from "@mui/icons-material/FilterNoneRounded";
 
 export const SideBar = () => {
   return (
@@ -30,10 +30,10 @@ export const SideBar = () => {
           </Link>
           <p className="title">DATA</p>
           {/* manage team link */}
-          <Link to="/EmployeeAdminPanal/ManageTeam">
+          <Link to="/EmployeeAdminPanal/ReportGenerate">
             <li>
-              <GroupAddOutlinedIcon className="icon" />
-              <span>Manage Team</span>
+              <FilterNoneRoundedIcon className="icon" />
+              <span>Report Generate</span>
             </li>
           </Link>
           {/* employee info link */}
