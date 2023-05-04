@@ -14,6 +14,7 @@ app.use(cors());
 app.use(express.json());
 app.use("/api/v1/tea-factory/employees", require("../backend/routes/employeeRoutes"));
 app.use("/api/v1/tea-factory/payrolls", require("../backend/routes/payrollRoutes"));
+app.use("/api/v1/tea-factory/productions", require("../backend/routes/productionRoutes"));
 app.use(errorHandler);
 app.use(validateToken);
 
