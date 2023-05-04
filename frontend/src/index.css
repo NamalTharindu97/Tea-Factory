@@ -71,7 +71,7 @@
 
 /* Set the background color of the scrollbar track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: transparent;
 }
 
 /* Set the color of the scrollbar thumb */

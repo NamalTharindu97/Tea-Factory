@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useMemo, useState } from "react";
+import "./dataFilter.scss";
 
 export const DataFilter = ({ gender, age, roleName }) => {
   const [empData, setEmpData] = useState([]);
@@ -13,8 +14,9 @@ export const DataFilter = ({ gender, age, roleName }) => {
         console.log(error);
       }
     };
+
     getEmployee();
-  }, []);
+  }, [gender, age, roleName]);
 
   const filteredData = useMemo(() => {
     let filteredData = empData;
@@ -22,7 +24,11 @@ export const DataFilter = ({ gender, age, roleName }) => {
       filteredData = filteredData.filter((item) => item.age <= age);
     }
     if (gender && gender.length > 0) {
-      filteredData = filteredData.filter((item) => gender.includes(item.gender));
+      if (Array.isArray(gender)) {
+        filteredData = filteredData.filter((item) => gender.includes(item.gender));
+      } else {
+        filteredData = filteredData.filter((item) => item.gender === gender);
+      }
     }
     if (roleName && roleName.length > 0) {
       filteredData = filteredData.filter((item) => roleName.some((role) => item.role === role));
@@ -30,21 +36,20 @@ export const DataFilter = ({ gender, age, roleName }) => {
     return filteredData;
   }, [empData, age, gender, roleName]);
 
-  // Check if at least one of the props is defined
-  if (!gender && !age && (!roleName || roleName.length === 0)) {
+  if ((!gender || gender.length === 0) && !age && (!roleName || roleName.length === 0)) {
     return null;
   }
 
   return (
-    <div>
+    <div className="cards-container">
       {filteredData.map((item) => (
-        <div key={item.id}>
-          <p>Name: {item.name}</p>
-          <p>Email: {item.email}</p>
-          <p>Phone: {item.phone}</p>
-          <p>Gender: {item.gender}</p>
-          <p>Age: {item.age}</p>
-          <p>Role: {item.role}</p>
+        <div key={item.id} className="card">
+          <p className="head-tag-card">{item.name}</p>
+          <p className="card-item">Email: {item.email}</p>
+          <p className="card-item">Phone: {item.phone}</p>
+          <p className="card-item">Gender: {item.gender}</p>
+          <p className="card-item">Age: {item.age}</p>
+          <p className="card-item">Role: {item.role}</p>
         </div>
       ))}
     </div>

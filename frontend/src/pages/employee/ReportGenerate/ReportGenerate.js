@@ -30,17 +30,20 @@ function getStyles(role, roleName, theme = {}) {
     fontWeight: roleName.indexOf(role) === -1 ? theme.typography?.fontWeightRegular : theme.typography?.fontWeightMedium,
   };
 }
+const genders = ["male", "female"];
+
+function getGenderStyles(genderType, gender, theme = {}) {
+  return {
+    fontWeight: gender.indexOf(genderType) === -1 ? theme.typography?.fontWeightRegular : theme.typography?.fontWeightMedium,
+  };
+}
 
 export const ReportGenerate = () => {
-  const [gender, setGender] = React.useState("");
+  const [gender, setGender] = React.useState([]);
   const [age, setAge] = React.useState("");
   const [roleName, setRoleName] = React.useState([]);
 
   const theme = useTheme();
-
-  const handleChangeGender = (event) => {
-    setGender(event.target.value);
-  };
 
   const handleChangeAge = (event) => {
     setAge(event.target.value);
@@ -51,6 +54,16 @@ export const ReportGenerate = () => {
       target: { value },
     } = event;
     setRoleName(
+      // On autofill we get a stringified value.
+      typeof value === "string" ? value.split(",") : value
+    );
+  };
+
+  const handleChangeGender = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setGender(
       // On autofill we get a stringified value.
       typeof value === "string" ? value.split(",") : value
     );
@@ -68,13 +81,31 @@ export const ReportGenerate = () => {
               <p className="report-head2">Generate Employee Demographics Report Here</p>
             </div>
             <div className="report-middle">
-              <FormControl style={{ width: 100 }}>
-                <InputLabel id="demo-simple-select-label" style={{ width: "80px" }} className="custom-label">
+              <FormControl sx={{ m: 0, width: 200, marginBottom: 0 }}>
+                <InputLabel id="demo-multiple-chip-label" className="custom-label">
                   Gender
                 </InputLabel>
-                <Select labelId="demo-simple-select-label" id="demo-simple-select" value={gender} label="Gender" onChange={handleChangeGender}>
-                  <MenuItem value="male">Male</MenuItem>
-                  <MenuItem value="female">Female</MenuItem>
+                <Select
+                  labelId="demo-multiple-chip-label"
+                  id="demo-multiple-chip"
+                  multiple
+                  value={gender}
+                  onChange={handleChangeGender}
+                  input={<OutlinedInput id="select-multiple-chip" label="Gender" />}
+                  renderValue={(selected) => (
+                    <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5, paddingBottom: 0, marginBottom: -4 }}>
+                      {selected.map((value) => (
+                        <Chip key={value} label={value} />
+                      ))}
+                    </Box>
+                  )}
+                  MenuProps={MenuProps}
+                >
+                  {genders.map((name) => (
+                    <MenuItem key={name} value={name} style={getGenderStyles(name, gender, theme)}>
+                      {name}
+                    </MenuItem>
+                  ))}
                 </Select>
               </FormControl>
 
