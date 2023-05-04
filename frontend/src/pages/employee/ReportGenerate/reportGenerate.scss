@@ -67,7 +67,6 @@
     height: 80vh;
     border-radius: 20px;
     padding: 20px;
-    overflow: auto;
     box-shadow: var(--box-shadow);
 
     .report-upper {
@@ -104,6 +103,7 @@
     }
     .report-lower {
       flex: 8;
+      overflow: auto;
     }
   }
 }

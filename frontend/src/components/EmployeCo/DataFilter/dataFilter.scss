@@ -1,0 +1,30 @@
+.cards-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.card {
+  width: 200px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  .card-item {
+    color: var(--white);
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 12px;
+  }
+  .head-tag-card {
+    font-size: 20px;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 30px;
+    font-weight: 600;
+    text-shadow: var(--text-shadow);
+  }
+}
