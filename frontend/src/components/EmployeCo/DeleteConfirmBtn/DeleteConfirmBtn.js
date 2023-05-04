@@ -3,7 +3,7 @@ import { Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material
 import axios from "axios";
 import "./deleteConfirm.scss";
 
-export const DeleteConfirmBtn = ({ id }) => {
+export const DeleteConfirmBtn = ({ id, type }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const handleDeleteButtonClick = () => {
@@ -15,17 +15,29 @@ export const DeleteConfirmBtn = ({ id }) => {
   };
 
   const handleDeleteConfirm = async () => {
-    try {
-      const response = await axios.delete(`/employees/${id}`);
-      if (!response) {
-        console.log("not response from delete btn");
-      } else {
-        window.location.reload();
+    if (type === "payroll") {
+      try {
+        const response = await axios.delete(`/payrolls/${id}`);
+        if (!response) {
+          console.log("not response from delete btn");
+        } else {
+          window.location.reload();
+        }
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
+    } else {
+      try {
+        const response = await axios.delete(`/employees/${id}`);
+        if (!response) {
+          console.log("not response from delete btn");
+        } else {
+          window.location.reload();
+        }
+      } catch (error) {
+        console.log(error);
+      }
     }
-
     setIsDialogOpen(false);
   };
 

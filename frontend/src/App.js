@@ -13,6 +13,8 @@ import { BarPage } from "./pages/employee/BarPage/BarPage";
 import { PiePage } from "./pages/employee/PiePage/PiePage";
 import { PayrollPage } from "./pages/employee/PayrollPage/PayrollPage";
 import { PayrollEntry } from "./pages/employee/PayrollEntry/PayrollEntry";
+import { PayrollSummery } from "./pages/employee/PayrollSummery/PayrollSummery";
+import { PayRollUpdateForm } from "./pages/employee/PayRollUpdateForm/PayRollUpdateForm";
 
 function App() {
   return (
@@ -31,6 +33,8 @@ function App() {
         <Route path="/EmployeeAdminPanal/PiePage" element={<PiePage />} />
         <Route path="/EmployeeAdminPanal/PayrollPage" element={<PayrollPage />} />
         <Route path="/EmployeeAdminPanal/PayrollEntry" element={<PayrollEntry />} />
+        <Route path="/EmployeeAdminPanal/PayrollSummery" element={<PayrollSummery />} />
+        <Route path="/EmployeeAdminPanal/PayrollSummery/PayRollUpdateForm/:id" element={<PayRollUpdateForm />} />
       </Routes>
     </Router>
   );
