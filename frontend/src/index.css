@@ -151,3 +151,9 @@ body {
   font-family: var(--thinFont);
   background-image: var(--grayGradient);
 }
+.PayRollUpdateForm {
+  display: flex;
+  height: 100vh;
+  font-family: var(--thinFont);
+  background-image: var(--grayGradient);
+}
