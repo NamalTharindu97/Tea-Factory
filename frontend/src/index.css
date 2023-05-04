@@ -144,3 +144,10 @@ body {
   font-family: var(--thinFont);
   background-image: var(--grayGradient);
 }
+
+.PayrollSummery {
+  display: flex;
+  height: 100vh;
+  font-family: var(--thinFont);
+  background-image: var(--grayGradient);
+}

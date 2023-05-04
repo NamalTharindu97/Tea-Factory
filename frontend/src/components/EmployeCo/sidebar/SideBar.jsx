@@ -43,11 +43,12 @@ export const SideBar = () => {
               <span>Employee Info</span>
             </li>
           </Link>
-
-          <li>
-            <RequestQuoteOutlinedIcon className="icon" />
-            <span>Payroll Summary</span>
-          </li>
+          <Link to="/EmployeeAdminPanal/PayrollSummery">
+            <li>
+              <RequestQuoteOutlinedIcon className="icon" />
+              <span>Payroll Summary</span>
+            </li>
+          </Link>
           <p className="title">PAGES</p>
           {/* profile page link */}
           <Link to="/EmployeeAdminPanal/Profile">
