@@ -72,15 +72,38 @@
 
     .report-upper {
       flex: 1;
+      .report-head {
+        margin: 0;
+        padding: 0;
+        font-family: var(--Castoro);
+        font-weight: 600;
+        font-size: 25px;
+        padding: 0;
+        margin: 0;
+        text-shadow: 0px 0px 8px rgb(255, 255, 255);
+      }
+      .report-head2 {
+        margin: 0;
+        padding: 0;
+        font-size: 15px;
+        padding: 0;
+        margin: 0;
+        margin-bottom: 25px;
+        color: #00e676;
+        text-shadow: 0px 0px 1px rgb(255, 255, 255);
+      }
     }
     .report-middle {
       flex: 2;
-      select[multiple] {
-        margin: 0;
+      .custom-label {
+        color: var(--white);
+        font-weight: 600;
+        font-family: var(--thinFont);
+        text-shadow: var(--text-shadow);
       }
     }
     .report-lower {
-      flex: 10;
+      flex: 8;
     }
   }
 }

@@ -10,6 +10,7 @@ import Chip from "@mui/material/Chip";
 import "./reportGenerate.scss";
 import { ThemeProvider, useTheme } from "@emotion/react";
 import { Box } from "@mui/material";
+import { DataFilter } from "../../../components/EmployeCo/DataFilter/DataFilter";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -22,19 +23,20 @@ const MenuProps = {
   },
 };
 
-const names = ["HR Manager", "Inventory Manager", "Suplier Manager", "Production Manager"];
+const roles = ["HR Manager", "Inventory Manager", "Suplier Manager", "Production Manager"];
 
-function getStyles(name, personName, theme = {}) {
+function getStyles(role, roleName, theme = {}) {
   return {
-    fontWeight: personName.indexOf(name) === -1 ? theme.typography?.fontWeightRegular : theme.typography?.fontWeightMedium,
+    fontWeight: roleName.indexOf(role) === -1 ? theme.typography?.fontWeightRegular : theme.typography?.fontWeightMedium,
   };
 }
 
 export const ReportGenerate = () => {
   const [gender, setGender] = React.useState("");
   const [age, setAge] = React.useState("");
+  const [roleName, setRoleName] = React.useState([]);
+
   const theme = useTheme();
-  const [personName, setPersonName] = React.useState([]);
 
   const handleChangeGender = (event) => {
     setGender(event.target.value);
@@ -48,7 +50,7 @@ export const ReportGenerate = () => {
     const {
       target: { value },
     } = event;
-    setPersonName(
+    setRoleName(
       // On autofill we get a stringified value.
       typeof value === "string" ? value.split(",") : value
     );
@@ -62,11 +64,12 @@ export const ReportGenerate = () => {
           <NavBar />
           <div className="report-container">
             <div className="report-upper">
-              <p>Filter data</p>
+              <p className="report-head">Filter data</p>
+              <p className="report-head2">Generate Employee Demographics Report Here</p>
             </div>
             <div className="report-middle">
               <FormControl style={{ width: 100 }}>
-                <InputLabel id="demo-simple-select-label" style={{ width: "80px" }}>
+                <InputLabel id="demo-simple-select-label" style={{ width: "80px" }} className="custom-label">
                   Gender
                 </InputLabel>
                 <Select labelId="demo-simple-select-label" id="demo-simple-select" value={gender} label="Gender" onChange={handleChangeGender}>
@@ -75,10 +78,11 @@ export const ReportGenerate = () => {
                 </Select>
               </FormControl>
 
-              <FormControl style={{ width: 150 }}>
-                <InputLabel id="demo-simple-select-label">Age</InputLabel>
-                <Select labelId="demo-simple-select-label" id="demo-simple-select" value={age} label="Age" onChange={handleChangeAge}>
-                  <MenuItem value={10}>Ten</MenuItem>
+              <FormControl style={{ width: 150, marginLeft: 10, marginRight: 10 }}>
+                <InputLabel id="demo-simple-select-label" className="custom-label">
+                  Under Age
+                </InputLabel>
+                <Select labelId="demo-simple-select-label" id="demo-simple-select" value={age} label="Under Age" onChange={handleChangeAge}>
                   <MenuItem value={20}>Twenty</MenuItem>
                   <MenuItem value={30}>Thirty</MenuItem>
                   <MenuItem value={40}>Forty</MenuItem>
@@ -86,17 +90,19 @@ export const ReportGenerate = () => {
               </FormControl>
 
               {/* multi select start here */}
-              <FormControl sx={{ m: 0, width: 600 }}>
-                <InputLabel id="demo-multiple-chip-label">Role</InputLabel>
+              <FormControl sx={{ m: 0, width: 600, marginBottom: 0 }}>
+                <InputLabel id="demo-multiple-chip-label" className="custom-label">
+                  Role
+                </InputLabel>
                 <Select
                   labelId="demo-multiple-chip-label"
                   id="demo-multiple-chip"
                   multiple
-                  value={personName}
+                  value={roleName}
                   onChange={handleChange}
-                  input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
+                  input={<OutlinedInput id="select-multiple-chip" label="Role" />}
                   renderValue={(selected) => (
-                    <Box sx={{ display: "flex", flexWrap: "nowrap", gap: 0.5 }}>
+                    <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5, paddingBottom: 0, marginBottom: -4 }}>
                       {selected.map((value) => (
                         <Chip key={value} label={value} />
                       ))}
@@ -104,15 +110,17 @@ export const ReportGenerate = () => {
                   )}
                   MenuProps={MenuProps}
                 >
-                  {names.map((name) => (
-                    <MenuItem key={name} value={name} style={getStyles(name, personName, theme)}>
+                  {roles.map((name) => (
+                    <MenuItem key={name} value={name} style={getStyles(name, roleName, theme)}>
                       {name}
                     </MenuItem>
                   ))}
                 </Select>
               </FormControl>
             </div>
-            <div className="report-lower">lower</div>
+            <div className="report-lower">
+              <DataFilter gender={gender} age={age} roleName={roleName} />
+            </div>
           </div>
         </div>
       </div>
