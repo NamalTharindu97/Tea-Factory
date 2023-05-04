@@ -10,6 +10,7 @@ import Chip from "@mui/material/Chip";
 import "./reportGenerate.scss";
 import { ThemeProvider, useTheme } from "@emotion/react";
 import { Box } from "@mui/material";
+import { DataFilter } from "../../../components/EmployeCo/DataFilter/DataFilter";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -33,8 +34,9 @@ function getStyles(role, roleName, theme = {}) {
 export const ReportGenerate = () => {
   const [gender, setGender] = React.useState("");
   const [age, setAge] = React.useState("");
-  const theme = useTheme();
   const [roleName, setRoleName] = React.useState([]);
+
+  const theme = useTheme();
 
   const handleChangeGender = (event) => {
     setGender(event.target.value);
@@ -81,7 +83,6 @@ export const ReportGenerate = () => {
                   Under Age
                 </InputLabel>
                 <Select labelId="demo-simple-select-label" id="demo-simple-select" value={age} label="Under Age" onChange={handleChangeAge}>
-                  <MenuItem value={10}>Ten</MenuItem>
                   <MenuItem value={20}>Twenty</MenuItem>
                   <MenuItem value={30}>Thirty</MenuItem>
                   <MenuItem value={40}>Forty</MenuItem>
@@ -117,7 +118,9 @@ export const ReportGenerate = () => {
                 </Select>
               </FormControl>
             </div>
-            <div className="report-lower">lower</div>
+            <div className="report-lower">
+              <DataFilter gender={gender} age={age} roleName={roleName} />
+            </div>
           </div>
         </div>
       </div>
