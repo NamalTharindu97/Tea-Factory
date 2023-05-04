@@ -1,5 +1,23 @@
 import axios from "axios";
 import "./paysheet.scss";
+import Button from "@mui/material/Button";
+import SendIcon from "@mui/icons-material/Send";
+import logo from "../../../asserts/EmployeAs/Img/logo.png";
+import { createMuiTheme, ThemeProvider } from "@mui/material/styles";
+import { green } from "@mui/material/colors";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+const theme = createMuiTheme({
+  typography: {
+    fontFamily: "Poppins, sans-serif",
+  },
+  palette: {
+    primary: {
+      main: green["A400"],
+    },
+  },
+});
 
 export const PaySheet = ({ formData }) => {
   const basicSalary = parseFloat(formData.basicSalary);
@@ -48,6 +66,16 @@ export const PaySheet = ({ formData }) => {
       })
       .then((response) => {
         console.log(response);
+        toast.success("PaySlip Created!", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
       })
       .catch((error) => {
         console.log(error);
@@ -57,39 +85,71 @@ export const PaySheet = ({ formData }) => {
   return (
     <div className="PaySheet">
       <div className="sheet">
-        <h2>Pay Sheet</h2>
-        <br />
-        {formData.employeeName}
-        <br />
-        {formData.employeeId}
-        <br />
-        {basicSalary.toFixed(2)}
-        <br />
-        {overtime.toFixed(2)}
-        <br />
-        {bonus.toFixed(2)}
-        <br />
-        *********
-        <br />
-        {totalEarnings.toFixed(2)}
-        <br />
-        <br />
-        {federalTax.toFixed(2)}
-        <br />
-        <br />
-        {stateTax.toFixed(2)}
-        <br />
-        <br />
-        {medicare.toFixed(2)}
-        <br />
-        <br />
-        {totalDeduction.toFixed(2)}
-        <br />
-        <br />
-        {netPay.toFixed(2)}
-        <br />
-        <br />
-        <button onClick={handleSubmit}>Submit</button>
+        <div className="sheet-upper">
+          <p className="slip-heading-1">Employee Salary Slip</p>
+          <img src={logo} alt="logo" width="110" height="60" />
+        </div>
+
+        <div className="slip-item">
+          <div className="slip-item-label">Company Name:</div>
+          <div className="slip-item-value">Ambrosia Tea Co (Pvt) Ltd</div>
+        </div>
+        <div className="slip-item">
+          <div className="slip-item-label">Employee Name:</div>
+          <div className="slip-item-value">{formData.employeeName}</div>
+        </div>
+        <div className="slip-item">
+          <div className="slip-item-label">Employee ID:</div>
+          <div className="slip-item-value">{formData.employeeId}</div>
+        </div>
+        <div className="slip-item">
+          <div className="slip-item-label">Pay Date:</div>
+          <div className="slip-item-value">{new Date().toLocaleDateString()}</div>
+        </div>
+        <p className="basic-tag earings">Earnings</p>
+        <div className="slip-item">
+          <div className="slip-item-label">Basic Salary:</div>
+          <div className="slip-item-value">{basicSalary.toFixed(2)}</div>
+        </div>
+        <div className="slip-item">
+          <div className="slip-item-label">Overtime:</div>
+          <div className="slip-item-value">{overtime.toFixed(2)}</div>
+        </div>
+        <div className="slip-item">
+          <div className="slip-item-label">Bonus:</div>
+          <div className="slip-item-value">{bonus.toFixed(2)}</div>
+        </div>
+        <div className="slip-item">
+          <div className="slip-item-label">Total Earnings:</div>
+          <div className="slip-item-value">{totalEarnings.toFixed(2)}</div>
+        </div>
+        <p className="basic-tag deductions">Deduction</p>
+        <div className="slip-item">
+          <div className="slip-item-label">Federal Tax:</div>
+          <div className="slip-item-value">{federalTax.toFixed(2)}</div>
+        </div>
+        <div className="slip-item">
+          <div className="slip-item-label">State Tax:</div>
+          <div className="slip-item-value">{stateTax.toFixed(2)}</div>
+        </div>
+        <div className="slip-item">
+          <div className="slip-item-label">Medicare:</div>
+          <div className="slip-item-value">{medicare.toFixed(2)}</div>
+        </div>
+        <div className="slip-item">
+          <div className="slip-item-label">Total Deduction:</div>
+          <div className="slip-item-value">{totalDeduction.toFixed(2)}</div>
+        </div>
+        <div className="slip-item net-pay">
+          <div className="slip-item-label">Net Pay:</div>
+          <div className="slip-item-value">{netPay.toFixed(2)}</div>
+        </div>
+        <ThemeProvider theme={theme}>
+          <Button variant="contained" endIcon={<SendIcon />} onClick={handleSubmit} className="profile-btn">
+            Send
+          </Button>
+        </ThemeProvider>
+        <ToastContainer position="top-center" autoClose={3000} limit={1} hideProgressBar newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="dark" />
       </div>
     </div>
   );
