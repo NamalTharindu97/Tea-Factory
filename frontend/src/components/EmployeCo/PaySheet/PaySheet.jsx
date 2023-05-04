@@ -7,6 +7,7 @@ import { createMuiTheme, ThemeProvider } from "@mui/material/styles";
 import { green } from "@mui/material/colors";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 const theme = createMuiTheme({
   typography: {
@@ -19,7 +20,9 @@ const theme = createMuiTheme({
   },
 });
 
-export const PaySheet = ({ formData }) => {
+export const PaySheet = ({ formData, id, type }) => {
+  const navigate = useNavigate();
+
   const basicSalary = parseFloat(formData.basicSalary);
   const overtime = parseFloat(formData.overtime);
   const bonus = parseFloat(formData.bonus);
@@ -50,36 +53,70 @@ export const PaySheet = ({ formData }) => {
   }
 
   const handleSubmit = () => {
-    axios
-      .post("/payrolls/", {
-        empName: empName,
-        empId: empId,
-        basicSalary: basicSalary,
-        overtime: overtime,
-        bonus: bonus,
-        totoalEarnings: totalEarnings,
-        fedaralTax: federalTax,
-        stateTax: stateTax,
-        medicare: medicare,
-        totalDeduction: totalDeduction,
-        netPay: netPay,
-      })
-      .then((response) => {
-        console.log(response);
-        toast.success("PaySlip Created!", {
-          position: "top-center",
-          autoClose: 3000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
+    if (type === "update") {
+      axios
+        .put(`/payrolls/${id}`, {
+          empName: empName,
+          empId: empId,
+          basicSalary: basicSalary,
+          overtime: overtime,
+          bonus: bonus,
+          totoalEarnings: totalEarnings,
+          fedaralTax: federalTax,
+          stateTax: stateTax,
+          medicare: medicare,
+          totalDeduction: totalDeduction,
+          netPay: netPay,
+        })
+        .then((response) => {
+          console.log(response);
+          toast.success("PaySlip Updated!", {
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
+          navigate("/EmployeeAdminPanal/PayrollSummery");
+        })
+        .catch((error) => {
+          console.log(error);
         });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    } else {
+      axios
+        .post("/payrolls/", {
+          empName: empName,
+          empId: empId,
+          basicSalary: basicSalary,
+          overtime: overtime,
+          bonus: bonus,
+          totoalEarnings: totalEarnings,
+          fedaralTax: federalTax,
+          stateTax: stateTax,
+          medicare: medicare,
+          totalDeduction: totalDeduction,
+          netPay: netPay,
+        })
+        .then((response) => {
+          console.log(response);
+          toast.success("PaySlip Created!", {
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   };
 
   return (
