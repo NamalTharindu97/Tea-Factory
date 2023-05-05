@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -17,6 +17,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./profile.scss";
 import { green } from "@mui/material/colors";
+import IconButton from "@mui/material/IconButton";
+import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import { SideBar } from "../../../components/EmployeCo/sidebar/SideBar";
 import { NavBar } from "../../../components/EmployeCo/navBar/NavBar";
 
@@ -51,6 +53,8 @@ const inputBaseStyles = {
 };
 
 export const Profile = () => {
+  const [file, setFile] = useState("");
+
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -63,12 +67,34 @@ export const Profile = () => {
     },
     validationSchema: validationSchema,
     onSubmit: async (values, { resetForm }) => {
+      if (!file) {
+        toast.error("Please upload an image", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+        return;
+      }
+      const data = new FormData();
+      data.append("file", file);
+      data.append("upload_preset", "upload");
+
       try {
+        const uploadRes = await axios.post("https://api.cloudinary.com/v1_1/namal97/image/upload", data);
+        const { url } = uploadRes.data;
+        const imageUrl = url ? url : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
+
         const response = await axios.post("/employees/", {
           name: values.name,
           email: values.email,
           phone: values.phone,
           gender: values.gender,
+          img: imageUrl,
           age: values.age,
           role: values.role,
           password: values.password,
@@ -114,6 +140,7 @@ export const Profile = () => {
             <form className="profile-form" onSubmit={formik.handleSubmit}>
               <p className="head-tag-1">create user</p>
               <p className="head-tag-2">Create a New User Profile</p>
+
               <TextField
                 color="primary"
                 fullWidth
@@ -125,6 +152,7 @@ export const Profile = () => {
                 helperText={formik.touched.name && formik.errors.name}
                 sx={inputBaseStyles}
               />
+
               <TextField
                 fullWidth
                 label="Email"
@@ -135,6 +163,7 @@ export const Profile = () => {
                 helperText={formik.touched.email && formik.errors.email}
                 sx={inputBaseStyles}
               />
+
               <TextField
                 fullWidth
                 label="Phone"
@@ -156,6 +185,12 @@ export const Profile = () => {
                   <FormControlLabel value="female" control={<Radio sx={{ fontSize: "13px" }} />} label={<Typography sx={{ fontSize: "13px" }}>Female</Typography>} />
                 </RadioGroup>
               </FormControl>
+
+              <IconButton color="primary" aria-label="upload picture" component="label" sx={inputBaseStyles}>
+                <input hidden accept="image/*" type="file" id="file" onChange={(e) => setFile(e.target.files[0])} />
+                <PhotoCamera />
+              </IconButton>
+
               <TextField
                 fullWidth
                 label="Age"
@@ -166,6 +201,7 @@ export const Profile = () => {
                 helperText={formik.touched.age && formik.errors.age}
                 sx={inputBaseStyles}
               />
+
               <FormControl fullWidth sx={inputBaseStyles}>
                 <InputLabel id="role-label">Role</InputLabel>
                 <Select labelId="role-label" label="Role" name="role" value={formik.values.role} onChange={formik.handleChange} error={formik.touched.role && Boolean(formik.errors.role)}>
@@ -176,6 +212,7 @@ export const Profile = () => {
                   ))}
                 </Select>
               </FormControl>
+
               <TextField
                 fullWidth
                 type="password"
@@ -187,6 +224,7 @@ export const Profile = () => {
                 helperText={formik.touched.password && formik.errors.password}
                 sx={inputBaseStyles}
               />
+
               <Button color="primary" variant="contained" fullWidth type="submit" className="profile-btn" sx={{ marginBottom: "1rem" }}>
                 CREATE USER
               </Button>

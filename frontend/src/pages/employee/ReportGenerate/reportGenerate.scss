@@ -71,6 +71,8 @@
 
     .report-upper {
       flex: 1;
+      display: flex;
+      justify-content: space-between;
       .report-head {
         margin: 0;
         padding: 0;
@@ -90,6 +92,26 @@
         margin-bottom: 25px;
         color: #00e676;
         text-shadow: 0px 0px 1px rgb(255, 255, 255);
+      }
+      .btn-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 130px;
+        .btn-tag {
+          margin: 0;
+          padding: 0;
+          display: flex;
+          flex-direction: row;
+          border-radius: 5px;
+          padding: 2px;
+          cursor: pointer;
+
+          &:hover {
+            text-shadow: var(--text-shadow);
+            color: var(--white);
+          }
+        }
       }
     }
     .report-middle {

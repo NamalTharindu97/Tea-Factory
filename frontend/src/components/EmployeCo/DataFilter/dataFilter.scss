@@ -6,12 +6,33 @@
 }
 
 .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 200px;
   padding: 10px;
   border: 1px solid #ccc;
   margin-bottom: 20px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-  border-radius: 5px;
+  border-radius: 20px;
+
+  .photo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+
+    .card-photo {
+      display: block;
+      height: auto;
+      max-width: 100%;
+      border-radius: 50%;
+    }
+  }
+
   .card-item {
     color: var(--white);
     font-size: 14px;
@@ -25,6 +46,8 @@
     padding: 0;
     margin-bottom: 30px;
     font-weight: 600;
+    color: var(--black);
     text-shadow: var(--text-shadow);
+    align-self: center;
   }
 }
