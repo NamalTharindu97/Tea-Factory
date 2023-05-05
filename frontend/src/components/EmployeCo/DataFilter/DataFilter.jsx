@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useMemo, useState } from "react";
+import logo from "../../../asserts/EmployeAs/Img/logo-crop.png";
 import "./dataFilter.scss";
 
 export const DataFilter = ({ gender, age, roleName }) => {
@@ -43,13 +44,18 @@ export const DataFilter = ({ gender, age, roleName }) => {
   return (
     <div className="cards-container">
       {filteredData.map((item) => (
-        <div key={item.id} className="card">
+        <div className="card">
+          <div className="photo-container">
+            <img src={logo} alt="logo" width="60" height="50" className="card-photo" />
+          </div>
+          <div></div>
           <p className="head-tag-card">{item.name}</p>
           <p className="card-item">Email: {item.email}</p>
           <p className="card-item">Phone: {item.phone}</p>
           <p className="card-item">Gender: {item.gender}</p>
           <p className="card-item">Age: {item.age}</p>
           <p className="card-item">Role: {item.role}</p>
+          <p className="card-item">Join: {new Date(item.createdAt).toLocaleDateString()}</p>
         </div>
       ))}
     </div>

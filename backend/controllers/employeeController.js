@@ -27,11 +27,14 @@ const getSingleEmployee = asyncHandler(async (req, res) => {
 //@Route POST /api/v1/tea-factory/employees
 //@access public
 const createEmployee = asyncHandler(async (req, res) => {
-  const { name, email, phone, gender, age, role, password } = req.body;
+  const { name, email, phone, gender, age, role, password, img } = req.body;
   if (!name || !email || !phone || !gender || !age || !role || !password) {
     res.status(400);
     throw new Error("all fields are mandotory");
   }
+  // Set default image if `img` field is not present
+  const imageUrl = img ? img : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
+
   const userAvailable = await Employe.findOne({ name });
   if (userAvailable) {
     res.status(400);
@@ -44,6 +47,7 @@ const createEmployee = asyncHandler(async (req, res) => {
     email,
     phone,
     gender,
+    img: imageUrl,
     age,
     role,
     password: hashPassword,
@@ -102,6 +106,7 @@ const loginEmployee = asyncHandler(async (req, res) => {
           email: user.email,
           id: user.id,
           role: user.role,
+          img: user.img,
         },
       },
       process.env.ACCESS_TOKEN_SECRET,
