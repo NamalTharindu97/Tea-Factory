@@ -1,4 +1,6 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import { Link } from "react-router-dom";
+import axios from "axios";
 import "./sidebar.scss";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import FeedOutlinedIcon from "@mui/icons-material/FeedOutlined";
@@ -11,12 +13,36 @@ import DonutSmallOutlinedIcon from "@mui/icons-material/DonutSmallOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import FilterNoneRoundedIcon from "@mui/icons-material/FilterNoneRounded";
+import { useEffect, useState } from "react";
 
 export const SideBar = () => {
+  const [user, setUser] = useState([]);
+
+  useEffect(() => {
+    const fetchCurrentEmployee = async () => {
+      const token = window.localStorage.getItem("accessToken"); // Get the authentication token from localStorage
+
+      const headers = {
+        authorization: `Bearer ${token}`,
+      };
+
+      try {
+        const response = await axios.get("/employees/current", { headers });
+        setUser(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchCurrentEmployee();
+  }, []);
+  console.log(user);
   return (
     <div className="SideBar">
       <div className="top">
-        <span className="admin-logo">Admin Panal</span>
+        <div className="item">
+          <img className="avatar" src={user.img} alt="photo" />
+          <span className="admin-logo">{user.name}</span>
+        </div>
       </div>
       <div className="center">
         <ul>

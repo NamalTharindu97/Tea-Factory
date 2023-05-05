@@ -31,6 +31,9 @@ function LoginForm() {
           password: values.password,
         });
         const accessToken = response.data.accessToken;
+        //for set current user
+        localStorage.setItem("accessToken", accessToken);
+
         const decodedToken = jwt_decode(accessToken);
         if (decodedToken.user.role === "HR Manager") {
           navigate("/EmployeeAdminPanal");
