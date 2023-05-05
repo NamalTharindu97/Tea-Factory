@@ -10,7 +10,9 @@ import Chip from "@mui/material/Chip";
 import "./reportGenerate.scss";
 import { ThemeProvider, useTheme } from "@emotion/react";
 import { Box } from "@mui/material";
+import RefreshIcon from "@mui/icons-material/Refresh";
 import { DataFilter } from "../../../components/EmployeCo/DataFilter/DataFilter";
+import SaveAsIcon from "@mui/icons-material/SaveAs";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -69,6 +71,10 @@ export const ReportGenerate = () => {
     );
   };
 
+  const windowRefresh = () => {
+    window.location.reload(true);
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <div className="ReportGenerate">
@@ -77,8 +83,22 @@ export const ReportGenerate = () => {
           <NavBar />
           <div className="report-container">
             <div className="report-upper">
-              <p className="report-head">Filter data</p>
-              <p className="report-head2">Generate Employee Demographics Report Here</p>
+              <div className="upper-left">
+                <p className="report-head">Filter data</p>
+                <p className="report-head2">Generate Employee Demographics Report Here</p>
+              </div>
+              <div className="upper-right">
+                <div className="btn-container">
+                  <p className="btn-tag reset" onClick={windowRefresh}>
+                    <RefreshIcon style={{ width: 15, height: 15, marginTop: 1, color: "#00e676" }} />
+                    Reset
+                  </p>
+                  <p className="btn-tag save">
+                    <SaveAsIcon style={{ width: 14, height: 14, marginTop: 1, color: "#00e676" }} />
+                    Save
+                  </p>
+                </div>
+              </div>
             </div>
             <div className="report-middle">
               <FormControl sx={{ m: 0, width: 200, marginBottom: 0 }}>

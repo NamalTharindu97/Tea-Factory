@@ -67,6 +67,19 @@ export const Profile = () => {
     },
     validationSchema: validationSchema,
     onSubmit: async (values, { resetForm }) => {
+      if (!file) {
+        toast.error("Please upload an image", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+        return;
+      }
       const data = new FormData();
       data.append("file", file);
       data.append("upload_preset", "upload");
@@ -74,13 +87,14 @@ export const Profile = () => {
       try {
         const uploadRes = await axios.post("https://api.cloudinary.com/v1_1/namal97/image/upload", data);
         const { url } = uploadRes.data;
+        const imageUrl = url ? url : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
 
         const response = await axios.post("/employees/", {
           name: values.name,
           email: values.email,
           phone: values.phone,
           gender: values.gender,
-          img: url,
+          img: imageUrl,
           age: values.age,
           role: values.role,
           password: values.password,

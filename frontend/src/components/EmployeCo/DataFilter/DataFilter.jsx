@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useEffect, useMemo, useState } from "react";
-import logo from "../../../asserts/EmployeAs/Img/logo-crop.png";
 import "./dataFilter.scss";
 
 export const DataFilter = ({ gender, age, roleName }) => {
@@ -46,7 +45,7 @@ export const DataFilter = ({ gender, age, roleName }) => {
       {filteredData.map((item) => (
         <div className="card">
           <div className="photo-container">
-            <img src={logo} alt="logo" width="60" height="50" className="card-photo" />
+            <img src={item.img} alt="logo" width="60" height="50" className="card-photo" />
           </div>
           <div></div>
           <p className="head-tag-card">{item.name}</p>

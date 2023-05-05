@@ -29,6 +29,7 @@
       display: block;
       height: auto;
       max-width: 100%;
+      border-radius: 50%;
     }
   }
 
@@ -45,6 +46,7 @@
     padding: 0;
     margin-bottom: 30px;
     font-weight: 600;
+    color: var(--black);
     text-shadow: var(--text-shadow);
     align-self: center;
   }
