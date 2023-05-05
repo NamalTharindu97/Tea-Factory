@@ -39,9 +39,6 @@ export const NavBar = () => {
           <div className="item">
             <FormatListBulletedOutlinedIcon className="icon" />
           </div>
-          <div className="item">
-            <img className="avatar" src="http://res.cloudinary.com/namal97/image/upload/v1683287900/upload/ubgto0puvsp46js8onlj.jpg" alt="photo" />
-          </div>
         </div>
       </div>
     </div>
