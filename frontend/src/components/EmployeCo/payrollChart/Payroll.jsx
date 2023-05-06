@@ -23,7 +23,7 @@ export const Payroll = () => {
   });
 
   const data = {
-    labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September"],
+    labels: ["Jan", "Feb", "Mar", "April", "May", "June", "July", "Aug", "Sep"],
     datasets: [
       {
         label: "Total Net Pay by Month",

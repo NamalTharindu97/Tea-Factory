@@ -35,7 +35,7 @@ export const SideBar = () => {
     };
     fetchCurrentEmployee();
   }, []);
-  console.log(user);
+
   return (
     <div className="SideBar">
       <div className="top">

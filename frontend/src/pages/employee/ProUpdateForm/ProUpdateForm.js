@@ -11,7 +11,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import { createMuiTheme, ThemeProvider } from "@mui/material/styles";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Typography } from "@mui/material";
 import Radio from "@mui/material/Radio";
 import { ToastContainer, toast } from "react-toastify";
@@ -32,7 +32,7 @@ const validationSchema = Yup.object().shape({
 
 const roles = ["HR Manager", "Inventory Manager", "Supplier Manager", "Production Manager"];
 
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     fontFamily: "Poppins, sans-serif",
   },

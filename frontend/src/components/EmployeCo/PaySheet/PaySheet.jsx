@@ -3,13 +3,13 @@ import "./paysheet.scss";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
 import logo from "../../../asserts/EmployeAs/Img/logo.png";
-import { createMuiTheme, ThemeProvider } from "@mui/material/styles";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { green } from "@mui/material/colors";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     fontFamily: "Poppins, sans-serif",
   },
