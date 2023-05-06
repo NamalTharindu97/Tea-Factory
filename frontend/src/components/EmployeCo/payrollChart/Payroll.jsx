@@ -1,33 +1,51 @@
 import "./payroll.scss";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
-
-const data = {
-  labels: ["January", "February", "March", "April", "May", "June", "July"],
-  datasets: [
-    {
-      label: "My First Dataset",
-      data: [65, 59, 80, 81, 56, 55, 40],
-      fill: true,
-      borderColor: "rgb(75, 192, 192)",
-      tension: 0.1,
-    },
-  ],
-};
-
-const options = {
-  scales: {
-    yAxes: [
-      {
-        ticks: {
-          beginAtZero: true,
-        },
-      },
-    ],
-  },
-};
+import axios from "axios";
 
 export const Payroll = () => {
+  const [totalNetPay, setTotalNetPay] = useState([]);
+
+  useEffect(() => {
+    const fetchMonthlyCounts = async () => {
+      const { data } = await axios.get("/payrolls/totalNetPay");
+      setTotalNetPay(data);
+    };
+
+    fetchMonthlyCounts();
+  }, []);
+
+  const countsByMonth = Array(9).fill(0);
+
+  totalNetPay.forEach((item) => {
+    const monthIndex = item._id - 1;
+    countsByMonth[monthIndex] = item.totalNetPay;
+  });
+
+  const data = {
+    labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September"],
+    datasets: [
+      {
+        label: "Total Net Pay by Month",
+        data: countsByMonth,
+        fill: true,
+        borderColor: "rgb(75, 192, 192)",
+        tension: 0.1,
+      },
+    ],
+  };
+
+  const options = {
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            beginAtZero: true,
+          },
+        },
+      ],
+    },
+  };
   return (
     <div className="payroll">
       <Line data={data} options={options} width={1000} height={300} />
