@@ -14,7 +14,6 @@ export const BarChart = () => {
 
     fetchMonthlyCounts();
   }, []);
-  console.log(monthlyCounts);
 
   // Create an array of counts for each month
   const countsByMonth = Array(6).fill(0);
@@ -24,7 +23,7 @@ export const BarChart = () => {
   });
 
   const data = {
-    labels: ["January", "February", "March", "April", "May", "June"],
+    labels: ["Jan", "Feb", "Mar", "April", "May", "June"],
     datasets: [
       {
         label: "Employee Count by Month",

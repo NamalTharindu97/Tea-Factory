@@ -2,7 +2,7 @@ import React from "react";
 import "./payrollForm.scss";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { createMuiTheme, ThemeProvider } from "@mui/material/styles";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { green } from "@mui/material/colors";
 import { useFormik } from "formik";
 import * as yup from "yup";
@@ -36,7 +36,7 @@ export const PayrollForm = () => {
     },
   });
 
-  const theme = createMuiTheme({
+  const theme = createTheme({
     typography: {
       fontFamily: "Poppins, sans-serif",
     },
