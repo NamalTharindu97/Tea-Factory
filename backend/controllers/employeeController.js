@@ -151,6 +151,31 @@ const getEmployeeCount = asyncHandler(async (req, res) => {
   res.status(200).json({ maleCount: maleCount, femaleCount: femaleCount });
 });
 
+//@desc GET  current  Employee count
+//@Route GET /api/v1/tea-factory/employees/count
+//@access public
+const getMonthlyEmployeeCount = asyncHandler(async (req, res) => {
+  const monthlyCount = await Employe.aggregate([
+    // group the employees
+    {
+      $group: {
+        _id: { $month: "$createdAt" },
+        //  number of employees created
+        count: { $sum: 1 },
+      },
+    },
+    {
+      // as the month number (1 to 12)
+      $sort: { _id: 1 },
+    },
+  ]);
+  if (!monthlyCount) {
+    res.status(404);
+    throw new Error("monthly list not parsing");
+  }
+  res.status(200).json(monthlyCount);
+});
+
 module.exports = {
   getEmployee,
   getSingleEmployee,
@@ -161,4 +186,5 @@ module.exports = {
   currentEmployee,
   getEmpCount,
   getEmployeeCount,
+  getMonthlyEmployeeCount,
 };
