@@ -138,6 +138,19 @@ const currentEmployee = asyncHandler(async (req, res) => {
   res.status(200).json(req.user);
 });
 
+//@desc GET  current  Employee count
+//@Route GET /api/v1/tea-factory/employees/count
+//@access public
+const getEmployeeCount = asyncHandler(async (req, res) => {
+  const maleCount = await Employe.countDocuments({ gender: "male" });
+  const femaleCount = await Employe.countDocuments({ gender: "female" });
+  if (!maleCount || !femaleCount) {
+    res.status(404);
+    throw new Error("count was not parsing");
+  }
+  res.status(200).json({ maleCount: maleCount, femaleCount: femaleCount });
+});
+
 module.exports = {
   getEmployee,
   getSingleEmployee,
@@ -147,4 +160,5 @@ module.exports = {
   loginEmployee,
   currentEmployee,
   getEmpCount,
+  getEmployeeCount,
 };
