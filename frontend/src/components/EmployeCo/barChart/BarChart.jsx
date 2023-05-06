@@ -47,7 +47,7 @@ export const BarChart = () => {
               display: true,
               text: "Employee Count by Month",
               fontSize: 30,
-              color: "white", // Add this line to set the label color
+              color: "#ffffff !important",
             },
             legend: {
               display: true,

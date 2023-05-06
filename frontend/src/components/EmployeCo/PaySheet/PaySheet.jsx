@@ -58,15 +58,15 @@ export const PaySheet = ({ formData, id, type }) => {
         .put(`/payrolls/${id}`, {
           empName: empName,
           empId: empId,
-          basicSalary: basicSalary,
-          overtime: overtime,
-          bonus: bonus,
-          totoalEarnings: totalEarnings,
-          fedaralTax: federalTax,
-          stateTax: stateTax,
-          medicare: medicare,
-          totalDeduction: totalDeduction,
-          netPay: netPay,
+          basicSalary: basicSalary.toFixed(2),
+          overtime: overtime.toFixed(2),
+          bonus: bonus.toFixed(2),
+          totoalEarnings: totalEarnings.toFixed(2),
+          fedaralTax: federalTax.toFixed(2),
+          stateTax: stateTax.toFixed(2),
+          medicare: medicare.toFixed(2),
+          totalDeduction: totalDeduction.toFixed(2),
+          netPay: netPay.toFixed(2),
         })
         .then((response) => {
           console.log(response);
@@ -90,15 +90,15 @@ export const PaySheet = ({ formData, id, type }) => {
         .post("/payrolls/", {
           empName: empName,
           empId: empId,
-          basicSalary: basicSalary,
-          overtime: overtime,
-          bonus: bonus,
-          totoalEarnings: totalEarnings,
-          fedaralTax: federalTax,
-          stateTax: stateTax,
-          medicare: medicare,
-          totalDeduction: totalDeduction,
-          netPay: netPay,
+          basicSalary: basicSalary.toFixed(2),
+          overtime: overtime.toFixed(2),
+          bonus: bonus.toFixed(2),
+          totoalEarnings: totalEarnings.toFixed(2),
+          fedaralTax: federalTax.toFixed(2),
+          stateTax: stateTax.toFixed(2),
+          medicare: medicare.toFixed(2),
+          totalDeduction: totalDeduction.toFixed(2),
+          netPay: netPay.toFixed(2),
         })
         .then((response) => {
           console.log(response);

@@ -84,4 +84,39 @@ const deletePayroll = asyncHandler(async (req, res) => {
   res.status(200).json(deletePayroll);
 });
 
-module.exports = { getPayroll, getSinglePayroll, createPayroll, updatePayroll, deletePayroll };
+//@desc GET  getMonthlyEmployeeNetPay
+//@Route GET /api/v1/tea-factory/payrolls:id
+//@access public
+const getMonthlyEmployeeNetPay = asyncHandler(async (req, res) => {
+  const monthlyNetPay = await Payroll.aggregate([
+    // match documents by createdAt field
+    {
+      $match: {
+        createdAt: {
+          $gte: new Date(new Date().getFullYear(), 0, 1),
+          $lte: new Date(new Date().getFullYear(), 11, 31),
+        },
+      },
+    },
+    // group the employees by month and sum their net pay
+    {
+      $group: {
+        _id: { $month: "$createdAt" },
+        totalNetPay: { $sum: "$netPay" },
+      },
+    },
+    {
+      // sort the documents by month
+      $sort: { _id: 1 },
+    },
+  ]);
+
+  if (!monthlyNetPay) {
+    res.status(404);
+    throw new Error("Monthly net pay not found");
+  }
+
+  res.status(200).json(monthlyNetPay);
+});
+
+module.exports = { getPayroll, getSinglePayroll, createPayroll, updatePayroll, deletePayroll, getMonthlyEmployeeNetPay };
