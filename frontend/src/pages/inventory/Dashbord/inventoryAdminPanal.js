@@ -8,7 +8,8 @@ export default function inventoryAdminPanal() {
     <div className="App">
       <div className="AppGlass">
         <Sidebar />
-        Dashbord
+        <MainDashbord/>
+        
       </div>
     </div>
   );

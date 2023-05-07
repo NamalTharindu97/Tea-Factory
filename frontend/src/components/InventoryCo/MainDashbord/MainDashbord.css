@@ -4,6 +4,10 @@
     justify-content: space-evenly;
 }
 
+.MainDash h1{
+    padding-top: 30px;
+}
+
 @media screen and (max-width: 1200px){
     .MainDash{
         justify-content: flex-start;

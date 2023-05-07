@@ -1,88 +1,110 @@
-import { 
-    UilEstate,
-    UilClipboardAlt,
-    UilUsersAlt,
-    UilPackage,
-    UilChart,
-    UilUsdSquare,
-    // UilSignOutAlt,
- } from '@iconscout/react-unicons';
+import {
+  UilEstate,
+  UilClipboardAlt,
+  UilUsersAlt,
+  UilPackage,
+  UilChart,
+  //UilUsdSquare,
+  UilTrees,
+  UilBox,
+  UilTear, 
+  // UilSignOutAlt,
+} from "@iconscout/react-unicons";
+import React, { useState, useEffect } from "react";
 
- //Sidebar data
- export const SidebarData = [
-    {
-        icon: UilEstate,
-        heading: "Dashbord",
-        path: "/InventoryAdminPanal",
-    },
-    {
-        icon: UilClipboardAlt,
-        heading: "View Inventory",
-        path: "/viewInventory",
-    },
-    {
-        icon: UilUsersAlt,
-        heading: "Add Inventory",
-        path: "/addInventory",
-    },
-    {
-        icon: UilPackage,
-        heading: "Products",
-    },
-    {
-        icon: UilChart,
-        heading: "Analytics",
-    },
- ]
+function FetchCardData() {
+  const [data, setData] = useState([]);
+  const [totalQuantity, setTotalQuantity] = useState(0);
 
- //Cards Data
- export const CardsData = [
-    {
-        title: "Tea Leaf",
-        color:{
-            backGround: "linear-gradient(to bottom,#00802b, #00cc33 )",
-            boxShadow: "0px 10px 20px 0px #e0c6f5",
-        },
-        barValue: 70,
-        value: "25,970",
-        png: UilUsdSquare,
-        series: [
-            {
-                name: "Sales",
-                data: [31, 40, 28, 51, 42, 109, 100],
-            },
-        ],
+  useEffect(() => {
+    fetch("http://localhost:5000/api/v1/tea-factory/inventory/")
+      .then((response) => response.json())
+      .then((data) => setData(data));
+  }, []);
+
+  useEffect(() => {
+    setTotalQuantity(data.reduce((total, item) => total + item.quantity, 0));
+  }, [data]);
+}
+
+//Sidebar data
+export const SidebarData = [
+  {
+    icon: UilEstate,
+    heading: "Dashbord",
+    path: "/InventoryAdminPanal",
+  },
+  {
+    icon: UilClipboardAlt,
+    heading: "View Inventory",
+    path: "/viewInventory",
+  },
+  {
+    icon: UilUsersAlt,
+    heading: "Add Inventory",
+    path: "/addInventory",
+  },
+  {
+    icon: UilPackage,
+    heading: "Products",
+  },
+  {
+    icon: UilChart,
+    heading: "Analytics",
+  },
+];
+
+//Cards Data
+export const CardsData = [
+  {
+    title: "Tea Leaf",
+    color: {
+      backGround: "linear-gradient(to bottom,#00802b, #00cc33 )",
+      boxShadow: "0px 10px 20px 0px rgba(0, 128, 43, 0.5)",
     },
-    {
-        title: "Revenue",
-        color:{
-            backGround: "linear-gradient(180deg, #FF919D 0%, #FC929D 100%)",
-            boxShadow: "0px 10px 20px 0px #FDC0C7",
-        },
-        barValue: 80,
-        value: "14,270",
-        png: UilUsdSquare,
-        series: [
-            {
-                name: "Revenue",
-                data: [10, 100, 50, 70, 80, 30, 40],
-            },
-        ],
+    barValue: 70,
+    value: "3500",
+    png: UilTrees,
+    unit: "KG",
+    series: [
+      {
+        name: "Sales",
+        data: [31, 40, 28, 51, 42, 109, 100],
+      },
+    ],
+  },
+  {
+    title: "Finish Goods",
+    color: {
+      backGround: "linear-gradient(180deg, #006A4E 0%, #1CAC78 100%)",
+      boxShadow: "0px 10px 20px 0px rgba(0, 106, 78, 0.5)",
     },
-    {
-        title: "Expense",
-        color:{
-            backGround: "linear-gradient(rgb(248, 212, 154) -146.42%, rgba(255 202 113) -46.42%)",
-            boxShadow: "0px 10px 20px 0px #F9D59B",
-        },
-        barValue: 60,
-        value: "4,270",
-        png: UilUsdSquare,
-        series: [
-            {
-                name: "Expenses",
-                data: [10, 25, 15, 30, 12, 15, 20],
-            },
-        ],
+    barValue: 80,
+    value: "9500",
+    png: UilBox,
+    unit: "Packs",
+    series: [
+      {
+        name: "Revenue",
+        data: [10, 100, 50, 70, 80, 30, 40],
+      },
+    ],
+  },
+  {
+    title: "Consumables",
+    color: {
+      backGround: "linear-gradient(#FEBE10 0%, #FFD700 100%)",
+      boxShadow: "0px 10px 20px 0px rgba(254, 190, 16, 0.5)",
     },
- ]
+    barValue: 60,
+    value: "4,270",
+    png: UilTear ,
+    unit: "L",
+    series: [
+      {
+        name: "Expenses",
+        data: [10, 25, 15, 30, 12, 15, 20],
+      },
+    ],
+  },
+];
