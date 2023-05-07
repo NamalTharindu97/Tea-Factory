@@ -9,6 +9,19 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { green } from "@mui/material/colors";
 import { ThemeProvider } from "@emotion/react";
+import { motion } from "framer-motion";
+
+const scaleVariantForm = {
+  initial: { scale: 0 },
+  animate: {
+    scale: 1,
+    transition: {
+      duration: 1.2,
+      delay: 0.5,
+      type: "tween",
+    },
+  },
+};
 
 export const EmployeeInfo = () => {
   const [empData, setEmpData] = useState([]);
@@ -86,9 +99,9 @@ export const EmployeeInfo = () => {
               </ThemeProvider>
             </div>
           ) : (
-            <div className="data-grid">
+            <motion.div className="data-grid" variants={scaleVariantForm} initial="initial" animate="animate">
               <DataGrid rows={empData} columns={columns} paginationModel={{ page: 0, pageSize: 25 }} hideFooterPagination hideFooterSelectedRowCount className="grid" />
-            </div>
+            </motion.div>
           )}
         </div>
       </div>

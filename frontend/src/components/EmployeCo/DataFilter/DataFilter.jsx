@@ -4,6 +4,19 @@ import SaveAsIcon from "@mui/icons-material/SaveAs";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import "./dataFilter.scss";
 import { generatePDF } from "../GeneratePdf/generatePDF";
+import { motion } from "framer-motion";
+
+const scaleVariantCard = {
+  initial: { scale: 0 },
+  animate: {
+    scale: 1,
+    transition: {
+      duration: 1.3,
+      delay: 0.2,
+      type: "tween",
+    },
+  },
+};
 
 export const DataFilter = ({ gender, age, roleName }) => {
   const [empData, setEmpData] = useState([]);
@@ -69,7 +82,7 @@ export const DataFilter = ({ gender, age, roleName }) => {
         <div className="filter-lower-class">
           <div className="cards-container">
             {filteredData.map((item) => (
-              <div className="card">
+              <motion.div className="card" variants={scaleVariantCard} initial="initial" animate="animate">
                 <div className="photo-container">
                   <img src={item.img} alt="logo" width="60" height="50" className="card-photo" />
                 </div>
@@ -81,7 +94,7 @@ export const DataFilter = ({ gender, age, roleName }) => {
                 <p className="card-item">Age: {item.age}</p>
                 <p className="card-item">Role: {item.role}</p>
                 <p className="card-item">Join: {new Date(item.createdAt).toLocaleDateString()}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

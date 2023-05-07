@@ -9,6 +9,19 @@ import { useNavigate } from "react-router-dom";
 import { green } from "@mui/material/colors";
 import { ThemeProvider } from "@emotion/react";
 import "./payrollSummery.scss";
+import { motion } from "framer-motion";
+
+const scaleVariantForm = {
+  initial: { scale: 0 },
+  animate: {
+    scale: 1,
+    transition: {
+      duration: 1.2,
+      delay: 0.5,
+      type: "tween",
+    },
+  },
+};
 
 export const PayrollSummery = () => {
   const [payrollData, setPayrollData] = useState([]);
@@ -86,9 +99,9 @@ export const PayrollSummery = () => {
               </ThemeProvider>
             </div>
           ) : (
-            <div className="data-grid">
+            <motion.div className="data-grid" variants={scaleVariantForm} initial="initial" animate="animate">
               <DataGrid rows={payrollData} columns={columns} paginationModel={{ page: 0, pageSize: 25 }} hideFooterPagination hideFooterSelectedRowCount className="grid" />
-            </div>
+            </motion.div>
           )}
         </div>
       </div>
