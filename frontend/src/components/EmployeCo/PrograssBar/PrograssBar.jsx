@@ -29,10 +29,12 @@ export const PrograssBar = ({ count }) => {
             value={value}
             maxValue={20}
             text={`${Math.round(value)}`}
+            strokeWidth={5}
             styles={{
               path: {
                 // Path color
                 stroke: "#00e676",
+                textShadow: " 0px 0px 8px rgb(255, 255, 255)",
                 // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
                 strokeLinecap: "round",
                 // Customize transition animation

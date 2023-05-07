@@ -16,10 +16,10 @@ export default function empAdminPanal() {
       <div className="home-container">
         <NavBar />
         <div className="widgets">
-          <Widget />
-          <Widget />
-          <Widget />
-          <Widget />
+          <Widget type="netPay" />
+          <Widget type="1" />
+          <Widget type="2" />
+          <Widget type="3" />
         </div>
         <div className="middle">
           <Payroll />
