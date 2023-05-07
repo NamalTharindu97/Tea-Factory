@@ -8,10 +8,25 @@ import FullscreenExitOutlinedIcon from "@mui/icons-material/FullscreenExitOutlin
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined";
+import { motion } from "framer-motion";
+
+const navBarVarients = {
+  initial: {
+    y: -250,
+  },
+  animate: {
+    y: 0,
+    transition: {
+      delay: 0.2,
+      type: "spring",
+      stiffness: "120",
+    },
+  },
+};
 
 export const NavBar = () => {
   return (
-    <div className="navbar">
+    <motion.div className="navbar" variants={navBarVarients} initial="initial" animate="animate">
       <div className="wrapper">
         <div className="search">
           <input className="search-input" type="text" placeholder="Search..." />
@@ -39,11 +54,8 @@ export const NavBar = () => {
           <div className="item">
             <FormatListBulletedOutlinedIcon className="icon" />
           </div>
-          <div className="item">
-            <img className="avatar" src="https://images.pexels.com/photos/15364482/pexels-photo-15364482.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="photo" />
-          </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };

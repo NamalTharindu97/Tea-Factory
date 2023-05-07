@@ -27,11 +27,14 @@ const getSingleEmployee = asyncHandler(async (req, res) => {
 //@Route POST /api/v1/tea-factory/employees
 //@access public
 const createEmployee = asyncHandler(async (req, res) => {
-  const { name, email, phone, gender, age, role, password } = req.body;
+  const { name, email, phone, gender, age, role, password, img } = req.body;
   if (!name || !email || !phone || !gender || !age || !role || !password) {
     res.status(400);
     throw new Error("all fields are mandotory");
   }
+  // Set default image if `img` field is not present
+  const imageUrl = img ? img : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
+
   const userAvailable = await Employe.findOne({ name });
   if (userAvailable) {
     res.status(400);
@@ -44,6 +47,7 @@ const createEmployee = asyncHandler(async (req, res) => {
     email,
     phone,
     gender,
+    img: imageUrl,
     age,
     role,
     password: hashPassword,
@@ -102,10 +106,11 @@ const loginEmployee = asyncHandler(async (req, res) => {
           email: user.email,
           id: user.id,
           role: user.role,
+          img: user.img,
         },
       },
       process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: "15m" }
+      { expiresIn: "180m" }
     );
     res.status(200).json({ accessToken });
   } else {
@@ -113,12 +118,94 @@ const loginEmployee = asyncHandler(async (req, res) => {
     throw new Error("email or password not valid");
   }
 });
+//@desc GET  count  Employee
+//@Route GET /api/v1/tea-factory/employees/count
+//@access public
+const getEmpCount = asyncHandler(async (req, res) => {
+  const count = await Employe.countDocuments();
+  if (!count) {
+    res.status(404);
+    throw new Error("Count Not Found");
+  }
+
+  res.status(200).json({ count });
+});
 
 //@desc GET  current  Employee
 //@Route GET /api/v1/tea-factory/employees/current
 //@access public
 const currentEmployee = asyncHandler(async (req, res) => {
   res.status(200).json(req.user);
+});
+
+//@desc GET  current  Employee count
+//@Route GET /api/v1/tea-factory/employees/count
+//@access public
+const getEmployeeCount = asyncHandler(async (req, res) => {
+  const maleCount = await Employe.countDocuments({ gender: "male" });
+  const femaleCount = await Employe.countDocuments({ gender: "female" });
+  if (!maleCount || !femaleCount) {
+    res.status(404);
+    throw new Error("count was not parsing");
+  }
+  res.status(200).json({ maleCount: maleCount, femaleCount: femaleCount });
+});
+
+//@desc GET  current  Employee count
+//@Route GET /api/v1/tea-factory/employees/count
+//@access public
+const getMonthlyEmployeeCount = asyncHandler(async (req, res) => {
+  const monthlyCount = await Employe.aggregate([
+    // group the employees
+    {
+      $group: {
+        _id: { $month: "$createdAt" },
+        //  number of employees created
+        count: { $sum: 1 },
+      },
+    },
+    {
+      // as the month number (1 to 12)
+      $sort: { _id: 1 },
+    },
+  ]);
+  if (!monthlyCount) {
+    res.status(404);
+    throw new Error("monthly list not parsing");
+  }
+  res.status(200).json(monthlyCount);
+});
+
+const getMonthlyEmployeeNetPay = asyncHandler(async (req, res) => {
+  const monthlyNetPay = await Employe.aggregate([
+    // match documents by createdAt field
+    {
+      $match: {
+        createdAt: {
+          $gte: new Date(new Date().getFullYear(), 0, 1),
+          $lte: new Date(new Date().getFullYear(), 11, 31),
+        },
+      },
+    },
+    // group the employees by month and sum their net pay
+    {
+      $group: {
+        _id: { $month: "$createdAt" },
+        totalNetPay: { $sum: "$netPay" },
+      },
+    },
+    {
+      // sort the documents by month
+      $sort: { _id: 1 },
+    },
+  ]);
+
+  if (!monthlyNetPay) {
+    res.status(404);
+    throw new Error("Monthly net pay not found");
+  }
+
+  res.status(200).json(monthlyNetPay);
 });
 
 module.exports = {
@@ -129,4 +216,7 @@ module.exports = {
   deleteEmployee,
   loginEmployee,
   currentEmployee,
+  getEmpCount,
+  getEmployeeCount,
+  getMonthlyEmployeeCount,
 };

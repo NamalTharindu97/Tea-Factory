@@ -1,0 +1,96 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+:root {
+  /* COLORS */
+  --primary: #27ae60;
+  --transparentPrimray: rgba(227, 120, 75, 0.4);
+  --DarkSpringGreen: #008066;
+  --VividSpringGreen: #00ffa8;
+  --LightGreen1: #16ff00;
+  --LightGreen2: #b4ff9f;
+  --LightGreen3: #00e676;
+  --DarkGreen1: #095709;
+  --DarkGreen2: #077807;
+  --red: #ff1717;
+  --blue: #0064c0;
+  --darkBlue: #111a2c;
+  --darkGray: #525c67;
+  --darkGray2: #757d85;
+  --gray: #898b9a;
+  --gray2: #bbbdc1;
+  --gray3: #cfd0d7;
+  --lightGray1: #dddddd;
+  --lightGray2: #f5f5f8;
+  --white2: #fbfbfb;
+  --white: #ffffff;
+  --black: #000000;
+  --grayGradient: linear-gradient(to bottom, #eaeaea, #aaaaaa, #6e6e6e, #373737, #000000);
+  --grayGradient2: linear-gradient(to bottom, #bbbdc1, #8a8a8d, #5b5a5b, #2f2e2f, #000000);
+  --grayGradientUp: linear-gradient(to top, #eaeaea, #aaaaaa, #6e6e6e, #373737, #000000);
+
+  /* TRANSPARENT COLORS */
+  --transparent: transparent;
+  --transparentBlack1: rgba(0, 0, 0, 0.1);
+  --transparentBlack7: rgba(0, 0, 0, 0.7);
+
+  /* Font Sizes */
+  --smallFontSize: 0.75rem;
+  --mediumFontSize: 1rem;
+  --largeFontSize: 1.5rem;
+  --extraLargeFontSize: 2rem;
+
+  /* Font Weights */
+  --thinFont: "Poppins Thin", sans-serif;
+  --extraLightFont: "Poppins ExtraLight", sans-serif;
+  --lightFont: "Poppins Light", sans-serif;
+  --regularFont: "Poppins Regular", sans-serif;
+  --mediumFont: "Poppins Medium", sans-serif;
+  --semiBoldFont: "Poppins SemiBold", sans-serif;
+  --boldFont: "Poppins Bold", sans-serif;
+  --extraBoldFont: "Poppins ExtraBold", sans-serif;
+  --blackFont: "Poppins Black", sans-serif;
+  --Castoro: "Castoro Titling", sans-serif;
+}
+.dialog {
+}
+.Delete-btn {
+}
+
+.my-dialog-title {
+  color: var(--white);
+  font-size: 20px;
+  padding: 10px 20px;
+  font-family: var(--thinFont);
+  font-weight: 600;
+  text-shadow: var(--text-shadow);
+}
+.context {
+  font-family: var(--thinFont);
+  font-size: 15px;
+  text-shadow: var(--text-shadow);
+}
+
+.delete-button {
+  background-color: var(--red);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  text-shadow: 0px 0px 8px rgb(255, 255, 255);
+  cursor: pointer;
+  &:hover {
+    box-shadow: 0px 0px 12px rgb(255, 255, 255);
+  }
+}
+
+.cancel-btn {
+  background-color: var(--LightGreen1);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  text-shadow: 0px 0px 8px rgb(255, 255, 255);
+  cursor: pointer;
+  &:hover {
+    box-shadow: 0px 0px 12px rgb(255, 255, 255);
+  }
+}

@@ -1,0 +1,24 @@
+*************************
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: green["A400"],
+      },
+    },
+  });
+****************************
+        <div>
+          {loading ? (
+            <div className="spinner">
+              <ThemeProvider theme={theme}>
+                <CircularProgress color="primary" />
+              </ThemeProvider>
+            </div>
+          ) : (
+            <div className="data-grid">
+              <DataGrid rows={empData} columns={columns} paginationModel={{ page: 0, pageSize: 25 }} hideFooterPagination hideFooterSelectedRowCount className="grid" />
+            </div>
+          )}
+        </div>
+    *****************************
+            setLoading(false); //add this to after operation
