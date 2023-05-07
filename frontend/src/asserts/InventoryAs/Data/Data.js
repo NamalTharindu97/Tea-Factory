@@ -63,7 +63,7 @@ export const CardsData = [
       boxShadow: "0px 10px 20px 0px rgba(0, 128, 43, 0.5)",
     },
     barValue: 70,
-    value: "3500",
+    value: "3500 KG",
     png: UilTrees,
     unit: "KG",
     series: [
@@ -80,7 +80,7 @@ export const CardsData = [
       boxShadow: "0px 10px 20px 0px rgba(0, 106, 78, 0.5)",
     },
     barValue: 80,
-    value: "9500",
+    value: "9500 Pkg",
     png: UilBox,
     unit: "Packs",
     series: [
@@ -97,7 +97,7 @@ export const CardsData = [
       boxShadow: "0px 10px 20px 0px rgba(254, 190, 16, 0.5)",
     },
     barValue: 60,
-    value: "4,270",
+    value: "4,270 L",
     png: UilTear ,
     unit: "L",
     series: [

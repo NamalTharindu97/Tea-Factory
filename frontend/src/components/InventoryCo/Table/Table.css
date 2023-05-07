@@ -12,6 +12,9 @@
 .Table td, th{
     border: none!important;
 }
+.MuiTableRow-head {
+    background-color: #2f852054;
+  }
 
 .Table:first-child{
     border-radius: 0.7rem!important;
