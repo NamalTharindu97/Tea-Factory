@@ -1,7 +1,7 @@
 import {
   UilEstate,
   UilClipboardAlt,
-  UilUsersAlt,
+  UilClipboard,
   UilPackage,
   UilChart,
   //UilUsdSquare,
@@ -40,7 +40,7 @@ export const SidebarData = [
     path: "/viewInventory",
   },
   {
-    icon: UilUsersAlt,
+    icon: UilClipboard ,
     heading: "Add Inventory",
     path: "/addInventory",
   },
@@ -51,6 +51,7 @@ export const SidebarData = [
   {
     icon: UilChart,
     heading: "Analytics",
+    path: "/analyzeInventory"
   },
 ];
 

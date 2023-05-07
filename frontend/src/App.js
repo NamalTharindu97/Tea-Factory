@@ -7,6 +7,7 @@ import SupplierAdminPanal from "./pages/supplier/supplierAdminPanal";
 import ProductionAdminPanal from "./pages/production/productionAdminPanal";
 import AddInventory from "./pages/inventory/AddInventory/AddInventory"
 import ViewInventory from "./pages/inventory/ViewInventory/ViewInventory";
+import Analytics from "./pages/inventory/Analytics/Analytics";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/ProductionAdminPanal" element={<ProductionAdminPanal />} />
         <Route path="/addInventory" element={<AddInventory />} />
         <Route path="/viewInventory" element={<ViewInventory />} />
+        <Route path="/analyzeInventory" element={<Analytics />} />
       </Routes>
     </Router>
   );
