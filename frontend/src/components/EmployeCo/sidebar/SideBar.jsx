@@ -15,6 +15,7 @@ import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import FilterNoneRoundedIcon from "@mui/icons-material/FilterNoneRounded";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const sideBarVarients = {
   initial: {
@@ -83,6 +84,7 @@ const UlVarients = {
 
 export const SideBar = () => {
   const [user, setUser] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCurrentEmployee = async () => {
@@ -101,6 +103,18 @@ export const SideBar = () => {
     };
     fetchCurrentEmployee();
   }, []);
+
+  const logOut = () => {
+    // disable caching of protected pages after logout
+    axios.defaults.headers.common["Cache-Control"] = "no-cache, no-store, must-revalidate";
+    axios.defaults.headers.common["Pragma"] = "no-cache";
+    axios.defaults.headers.common["Expires"] = "0";
+    // clear session data or authentication tokens
+    window.localStorage.removeItem("accessToken");
+    // redirect the user to the login page
+    navigate("/");
+    window.location.reload(true);
+  };
 
   return (
     <motion.div className="SideBar" variants={sideBarVarients} initial="initial" animate="animate">
@@ -181,7 +195,8 @@ export const SideBar = () => {
             <AccountCircleOutlinedIcon className="icon" />
             <span>Profile</span>
           </motion.li>
-          <motion.li variants={linkVarients} whileHover="whileHover" transition={{ type: "spring", stiffness: 250 }}>
+
+          <motion.li variants={linkVarients} whileHover="whileHover" transition={{ type: "spring", stiffness: 250 }} onClick={logOut}>
             <LogoutOutlinedIcon className="icon" />
             <span>Log Out</span>
           </motion.li>
