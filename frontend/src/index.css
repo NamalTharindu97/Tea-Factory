@@ -36,6 +36,7 @@
   --grayGradient: linear-gradient(to bottom, #eaeaea, #aaaaaa, #6e6e6e, #373737, #000000);
   --grayGradient2: linear-gradient(to bottom, #bbbdc1, #8a8a8d, #5b5a5b, #2f2e2f, #000000);
   --grayGradientUp: linear-gradient(to top, #eaeaea, #aaaaaa, #6e6e6e, #373737, #000000);
+  --greenGradient: linear-gradient(to top, #80ff95, #72f289, #65e57d, #57d872, #48cb66);
 
   /* TRANSPARENT COLORS */
   --transparent: transparent;

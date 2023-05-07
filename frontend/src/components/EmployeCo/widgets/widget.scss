@@ -31,6 +31,7 @@
       left: 0;
       text-shadow: var(--text-shadow);
       font-weight: 600;
+      font-family: var(--Castoro);
     }
   }
 
@@ -46,9 +47,13 @@
       position: absolute;
       top: 0;
       right: 0;
-      color: var(--white);
-      font-weight: 600;
-      text-shadow: var(--text-shadow);
+      color: var(--darkblue);
+      font-size: 15px;
+      font-family: var(--Castoro);
+      font-weight: 500;
+      color: var(--darkblue);
+      text-shadow: 1px 3px 0 #969696, 1px 13px 5px #aba8a8;
+      color: var(--darkblue);
     }
 
     .right-left-coner {

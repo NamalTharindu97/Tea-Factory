@@ -19,7 +19,7 @@ const scaleVariant = {
   },
 };
 
-export const Widget = ({ type }) => {
+export const Widget = ({ type, totalNet }) => {
   let data = 0;
 
   switch (type) {
@@ -30,13 +30,13 @@ export const Widget = ({ type }) => {
           <LocalAtmIcon
             className="icon"
             style={{
-              color: "#095709",
+              color: "#845EC2",
             }}
           />
         ),
-        percentage: 80,
-        max: 100,
-        count: 2560010.12,
+        percentage: totalNet,
+        max: 1000000,
+        count: totalNet,
         color: "#00ffa8",
       };
       break;
@@ -48,7 +48,7 @@ export const Widget = ({ type }) => {
           <PersonOutlineIcon
             className="icon"
             style={{
-              color: "#095709",
+              color: "#00C9A7",
             }}
           />
         ),
@@ -66,7 +66,7 @@ export const Widget = ({ type }) => {
           <CurrencyExchangeIcon
             className="icon"
             style={{
-              color: "#095709",
+              color: "#D23927",
             }}
           />
         ),
@@ -84,7 +84,7 @@ export const Widget = ({ type }) => {
           <GroupAddIcon
             className="icon"
             style={{
-              color: "#095709",
+              color: "#dffb56",
             }}
           />
         ),
@@ -103,28 +103,12 @@ export const Widget = ({ type }) => {
         <div className="left-top-coner">
           <CircularProgressbar
             value={data.percentage}
-            // text={`${data.percentage}%`}
             maxValue={data.max}
             strokeWidth={5}
             styles={buildStyles({
               textColor: "red",
               pathColor: data.color,
               trailColor: "#ffffff",
-              root: {
-                boxShadow: "0px 0px 8px rgb(255, 255, 255)",
-              },
-              textSize: "20px",
-              pathTransitionDuration: 0.5,
-              textShadow: "0 0 5px black",
-              path: {
-                stroke: "#16ff00",
-                strokeLinecap: "butt",
-                transition: "stroke-dashoffset 0.5s ease 0s",
-              },
-              trail: {
-                stroke: "#ffffff",
-                strokeLinecap: "butt",
-              },
             })}
           />
         </div>
