@@ -4,6 +4,19 @@ import { Pie } from "react-chartjs-2";
 // eslint-disable-next-line no-unused-vars
 import Chart from "chart.js/auto";
 import axios from "axios";
+import { motion } from "framer-motion";
+
+const scaleVariant = {
+  initial: { scale: 0 },
+  animate: {
+    scale: 1,
+    transition: {
+      duration: 0.8,
+      delay: 1,
+      type: "tween",
+    },
+  },
+};
 
 export const PieChart = () => {
   const [male, setMale] = useState();
@@ -69,10 +82,10 @@ export const PieChart = () => {
     },
   };
   return (
-    <div className="pieChart">
+    <motion.div className="pieChart" variants={scaleVariant} initial="initial" animate="animate">
       <div className="pie-component-container">
         <Pie data={data} options={options} />
       </div>
-    </div>
+    </motion.div>
   );
 };

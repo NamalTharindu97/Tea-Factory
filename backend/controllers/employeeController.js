@@ -110,7 +110,7 @@ const loginEmployee = asyncHandler(async (req, res) => {
         },
       },
       process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: "15m" }
+      { expiresIn: "180m" }
     );
     res.status(200).json({ accessToken });
   } else {
