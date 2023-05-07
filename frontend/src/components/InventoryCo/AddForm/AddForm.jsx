@@ -1,74 +1,91 @@
-import React from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
 import "./AddForm.css";
+import Forminput from "../../../components/InventoryCo/FormInput/FormInput";
+import { useState } from "react";
 
-const AddInventoryForm = () => {
-  // Define the initial form values
-  const initialValues = {
-    itemName: "",
-    itemDescription: "",
-    itemPrice: "",
-    itemQuantity: "",
-  };
-
-  // Define the form validation schema using Yup
-  const validationSchema = Yup.object({
-    itemName: Yup.string().required("Item name is required"),
-    itemDescription: Yup.string().required("Item description is required"),
-    itemPrice: Yup.number()
-      .required("Item price is required")
-      .min(0, "Item price must be a positive number"),
-    itemQuantity: Yup.number()
-      .required("Item quantity is required")
-      .integer("Item quantity must be a whole number")
-      .min(0, "Item quantity must be a positive number"),
+function App() {
+  const [values, setValues] = useState({
+    username: "",
+    email: "",
+    birthday: "",
+    password: "",
+    confirmPassword: "",
   });
 
-  // Handle form submission
-  const onSubmit = (values, { setSubmitting }) => {
-    console.log(values);
-    setSubmitting(false);
+  const inputs = [
+    {
+      id: 1,
+      name: "Name",
+      type: "text",
+      placeholder: "Name",
+      errorMessage: "Name should be 3-16 characters and shouldn't be include any special characters!",
+      label: " Name",
+      pattern: "^[A-Za-z0-9]{3,16}$",
+      required: true,
+    },
+    {
+      id: 2,
+      name: "description",
+      type: "text",
+      placeholder: "description...",
+      label: " Description",
+      required: true,
+    },
+    {
+      id: 3,
+      name: "Quantity",
+      type: "Number",
+      placeholder: "Quantity",
+      label: " Quantity",
+    },
+    {
+      id: 4,
+      name: "location",
+      type: "text",
+      placeholder: "ex : Warehouse A",
+      label: " Location",
+      required: true,
+    },
+    {
+      id: 5,
+      name: "inTime",
+      type: "Time",
+      placeholder: "inTime",
+      label: " inTime",
+      required: true,
+    },
+    {
+      id: 6,
+      name: "Supplier",
+      type: "text",
+      placeholder: "Supplier name",
+      label: " Supplier",
+      required: true,
+    },
+  ];
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const data = new FormData(e.target);
   };
 
+  const onChange = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
+
+  console.log(values);
+
   return (
-    <div>
-      <h1>Add Inventory Item</h1>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={onSubmit}
-      >
-        {({ isSubmitting }) => (
-          <Form>
-            <div>
-              <label htmlFor="itemName">Item Name:</label>
-              <Field type="text" id="itemName" name="itemName" />
-              <ErrorMessage name="itemName" component="div" className="error" />
-            </div>
-            <div>
-              <label htmlFor="itemDescription">Item Description:</label>
-              <Field type="text" id="itemDescription" name="itemDescription" />
-              <ErrorMessage name="itemDescription" component="div" className="error" />
-            </div>
-            <div>
-              <label htmlFor="itemPrice">Item Price:</label>
-              <Field type="number" id="itemPrice" name="itemPrice" />
-              <ErrorMessage name="itemPrice" component="div" className="error" />
-            </div>
-            <div>
-              <label htmlFor="itemQuantity">Item Quantity:</label>
-              <Field type="number" id="itemQuantity" name="itemQuantity" />
-              <ErrorMessage name="itemQuantity" component="div" className="error" />
-            </div>
-            <button type="submit" disabled={isSubmitting}>
-              Add Item
-            </button>
-          </Form>
-        )}
-      </Formik>
+    <div className="app">
+      
+      <form onSubmit={handleSubmit}>
+      <h2>Add Inventory</h2>
+        {inputs.map((input) => (
+          <Forminput key={input.id} {...input} value={values[input.name]} onChange={onChange} />
+        ))}
+        <button>Add</button>
+      </form>
     </div>
   );
-};
+}
 
-export default AddInventoryForm;
+export default App;

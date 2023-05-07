@@ -1,20 +1,35 @@
-label {
-    display: block;
-    margin-bottom: 0.5rem;
+.app {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
   }
   
-  input[type="text"],
-  input[type="number"] {
+  form {
+    background-color: white;
+    padding: 0 60px;
+    border-radius: 10px;
+    box-shadow: 5px 10px 10px #d9d8d8;
+  }
+  h1 {
+    color: rgb(65, 1, 65);
+    text-align: center;
+  }
+  
+  button {
     width: 100%;
-    padding: 0.5rem;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .error {
-    color: red;
-    font-size: 0.875rem;
-    margin-top: 0.25rem;
+    height: 40px;
+    padding: 10px;
+    border: none;
+    background-color: #009c2e;
+    color: white;
+    border-radius: .6rem;
+    font-weight: bold;
+    font-style: 18px;
+    cursor: pointer;
+    margin-top: 15px;
+    margin-bottom: 30px;
   }
   
