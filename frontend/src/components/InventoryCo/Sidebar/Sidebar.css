@@ -5,23 +5,25 @@
     padding-top: 4rem;
     transition: all 300ms ease;
     text-decoration: none;
-    background: #ACE1AF;
+    background: linear-gradient(to bottom, #86c088, #2E7D32);
 }
 
 .logo{
     display: flex;
-    height: 5rem;
     font-weight: bold;
     font-size: 22px;
-    gap: 1rem;
-    align-items: center;
+    align-items: left;
     justify-content: center;
-    height: 4%;
+    height: 1%;
 }
 
 .logo>img{
-    width: 3rem;
+    width: 5rem;
     height: 3rem;
+}
+
+.logo>span{
+font-size: 1.5rem;
 }
 
 /* menu */

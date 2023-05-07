@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "../../../asserts/InventoryAs/Img/logo.png";
+import Logo from "../../../asserts/EmployeAs/Img/logo.png";
 import "./Sidebar.css";
 
 import { SidebarData } from "../../../asserts/InventoryAs/Data/Data.js";
@@ -32,7 +32,7 @@ const Sidebar = () => {
         {/* logo */}
         <div className="logo">
           <img src={Logo} alt="logo" />
-          <span>TeaFactory</span>
+          <span>Ambrosia</span>
         </div>
 
         {/* menu */}
