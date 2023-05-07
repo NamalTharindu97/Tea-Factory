@@ -2,6 +2,23 @@ import { useState } from "react";
 import { Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
 import axios from "axios";
 import "./deleteConfirm.scss";
+import { motion } from "framer-motion";
+
+const navBarVariants = {
+  initial: {
+    opacity: 0,
+    y: -50,
+  },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: 0.2,
+      type: "spring",
+      stiffness: 120,
+    },
+  },
+};
 
 export const DeleteConfirmBtn = ({ id, type }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -55,18 +72,22 @@ export const DeleteConfirmBtn = ({ id, type }) => {
       <button className="delete-button" onClick={handleDeleteButtonClick}>
         Delete
       </button>
-      <Dialog className="dialog" open={isDialogOpen} onClose={handleDialogClose} PaperProps={{ style: styles.paper }}>
-        <DialogTitle className="my-dialog-title">Are You Sure You Want To Delete This Employee?</DialogTitle>
-        <DialogContent className="context">This Operation Can't be Undo</DialogContent>
-        <DialogActions>
-          <button className="cancel-btn" onClick={handleDialogClose}>
-            Cancel
-          </button>
-          <button className="delete-button" onClick={() => handleDeleteConfirm(id)}>
-            Yes, Delete
-          </button>
-        </DialogActions>
-      </Dialog>
+      <motion.div variants={navBarVariants} initial="initial" animate="animate">
+        <Dialog className="dialog" open={isDialogOpen} onClose={handleDialogClose} PaperProps={{ style: styles.paper }}>
+          <motion.div variants={navBarVariants}>
+            <DialogTitle className="my-dialog-title">Are You Sure You Want To Delete This Employee?</DialogTitle>
+            <DialogContent className="context">This Operation Can't be Undo</DialogContent>
+            <DialogActions>
+              <button className="cancel-btn" onClick={handleDialogClose}>
+                Cancel
+              </button>
+              <button className="delete-button" onClick={() => handleDeleteConfirm(id)}>
+                Yes, Delete
+              </button>
+            </DialogActions>
+          </motion.div>
+        </Dialog>
+      </motion.div>
     </div>
   );
 };

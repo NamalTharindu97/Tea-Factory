@@ -9,9 +9,37 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { green } from "@mui/material/colors";
 import "./payrollEntry.scss";
 import { PaySheet } from "../../../components/EmployeCo/PaySheet/PaySheet";
+import { motion } from "framer-motion";
+
+const scaleVariantForm = {
+  initial: { scale: 0 },
+  animate: {
+    scale: 1,
+    transition: {
+      duration: 1.2,
+      delay: 0.5,
+      type: "tween",
+    },
+  },
+};
+
+const paySheetVarient = {
+  initial: {
+    y: -800,
+  },
+  animate: {
+    y: 0,
+    transition: {
+      delay: 0.2,
+      type: "spring",
+      stiffness: "120",
+    },
+  },
+};
 
 export const PayrollEntry = () => {
   const [formData, setFormData] = useState(null);
+  const [show, setShow] = useState(false);
 
   const validationSchema = yup.object().shape({
     employeeName: yup.string().required("Employee name is required"),
@@ -39,6 +67,7 @@ export const PayrollEntry = () => {
     onSubmit: async (values) => {
       console.log(values);
       setFormData(values);
+      setShow(true);
     },
   });
 
@@ -71,7 +100,7 @@ export const PayrollEntry = () => {
       <div className="payroll-entry-container">
         <NavBar />
         <div className="middle">
-          <div className="payroll-form-outer">
+          <motion.div className="payroll-form-outer" variants={scaleVariantForm} initial="initial" animate="animate">
             <div className="Payroll-form">
               <ThemeProvider theme={theme}>
                 <form className="payroll-form-inner" onSubmit={formik.handleSubmit}>
@@ -183,8 +212,12 @@ export const PayrollEntry = () => {
                 </form>
               </ThemeProvider>
             </div>
-          </div>
-          <div className="pay-sheet">{formData && <PaySheet formData={formData} />}</div>
+          </motion.div>
+          {show && (
+            <motion.div className="pay-sheet" variants={paySheetVarient} initial="initial" animate="animate">
+              {formData && <PaySheet formData={formData} />}
+            </motion.div>
+          )}
         </div>
       </div>
     </div>

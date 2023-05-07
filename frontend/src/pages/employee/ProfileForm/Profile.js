@@ -21,6 +21,19 @@ import IconButton from "@mui/material/IconButton";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import { SideBar } from "../../../components/EmployeCo/sidebar/SideBar";
 import { NavBar } from "../../../components/EmployeCo/navBar/NavBar";
+import { motion } from "framer-motion";
+
+const scaleVariantForm = {
+  initial: { scale: 0 },
+  animate: {
+    scale: 1,
+    transition: {
+      duration: 1.2,
+      delay: 0.5,
+      type: "tween",
+    },
+  },
+};
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required("Required"),
@@ -135,7 +148,7 @@ export const Profile = () => {
       <SideBar />
       <div className="profile-container">
         <NavBar />
-        <div className="profile">
+        <motion.div className="profile" variants={scaleVariantForm} initial="initial" animate="animate">
           <ThemeProvider theme={theme}>
             <form className="profile-form" onSubmit={formik.handleSubmit}>
               <p className="head-tag-1">create user</p>
@@ -231,7 +244,7 @@ export const Profile = () => {
               <ToastContainer position="top-center" autoClose={3000} limit={1} hideProgressBar newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="dark" />
             </form>
           </ThemeProvider>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

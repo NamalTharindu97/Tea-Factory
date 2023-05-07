@@ -8,6 +8,19 @@ import { green } from "@mui/material/colors";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+
+const scaleVariantSheet = {
+  initial: { scale: 0 },
+  animate: {
+    scale: 1,
+    transition: {
+      duration: 0.5,
+      delay: 0.8,
+      type: "tween",
+    },
+  },
+};
 
 const theme = createTheme({
   typography: {
@@ -120,7 +133,7 @@ export const PaySheet = ({ formData, id, type }) => {
   };
 
   return (
-    <div className="PaySheet">
+    <motion.div className="PaySheet" variants={scaleVariantSheet} initial="initial" animate="animate">
       <div className="sheet">
         <div className="sheet-upper">
           <p className="slip-heading-1">Employee Salary Slip</p>
@@ -188,6 +201,6 @@ export const PaySheet = ({ formData, id, type }) => {
         </ThemeProvider>
         <ToastContainer position="top-center" autoClose={3000} limit={1} hideProgressBar newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="dark" />
       </div>
-    </div>
+    </motion.div>
   );
 };

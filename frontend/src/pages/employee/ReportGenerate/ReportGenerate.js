@@ -10,8 +10,20 @@ import Chip from "@mui/material/Chip";
 import "./reportGenerate.scss";
 import { ThemeProvider, useTheme } from "@emotion/react";
 import { Box } from "@mui/material";
-
 import { DataFilter } from "../../../components/EmployeCo/DataFilter/DataFilter";
+import { motion } from "framer-motion";
+
+const scaleVariantForm = {
+  initial: { scale: 0 },
+  animate: {
+    scale: 1,
+    transition: {
+      duration: 1.2,
+      delay: 0.5,
+      type: "tween",
+    },
+  },
+};
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -24,7 +36,7 @@ const MenuProps = {
   },
 };
 
-const roles = ["HR Manager", "Inventory Manager", "Suplier Manager", "Production Manager"];
+const roles = ["HR Manager", "Inventory Manager", "Supplier Manager", "Production Manager"];
 
 function getStyles(role, roleName, theme = {}) {
   return {
@@ -76,7 +88,7 @@ export const ReportGenerate = () => {
         <SideBar />
         <div className="report-generate-container">
           <NavBar />
-          <div className="report-container">
+          <motion.div className="report-container" variants={scaleVariantForm} initial="initial" animate="animate">
             <div className="report-upper">
               <div className="upper-left">
                 <p className="report-head">Filter data</p>
@@ -155,7 +167,7 @@ export const ReportGenerate = () => {
             <div className="report-lower">
               <DataFilter gender={gender} age={age} roleName={roleName} />
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </ThemeProvider>
