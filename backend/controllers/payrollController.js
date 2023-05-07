@@ -119,4 +119,23 @@ const getMonthlyEmployeeNetPay = asyncHandler(async (req, res) => {
   res.status(200).json(monthlyNetPay);
 });
 
-module.exports = { getPayroll, getSinglePayroll, createPayroll, updatePayroll, deletePayroll, getMonthlyEmployeeNetPay };
+const getYearlyEmployeeNetPay = asyncHandler(async (req, res) => {
+  const totalNetPay = await Payroll.aggregate([
+    // group all documents and calculate the sum of netPay
+    {
+      $group: {
+        _id: null,
+        totalNetPay: { $sum: "$netPay" },
+      },
+    },
+  ]);
+
+  if (!totalNetPay) {
+    res.status(404);
+    throw new Error("Net pay not found");
+  }
+
+  res.status(200).json(totalNetPay[0]);
+});
+
+module.exports = { getPayroll, getSinglePayroll, createPayroll, updatePayroll, deletePayroll, getMonthlyEmployeeNetPay, getYearlyEmployeeNetPay };
