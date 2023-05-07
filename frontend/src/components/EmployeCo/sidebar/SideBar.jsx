@@ -14,6 +14,72 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import FilterNoneRoundedIcon from "@mui/icons-material/FilterNoneRounded";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+
+const sideBarVarients = {
+  initial: {
+    x: -250,
+  },
+  animate: {
+    x: 0,
+    transition: {
+      delay: 0.85,
+      type: "spring",
+      stiffness: "120",
+    },
+  },
+};
+
+const linkVarients = {
+  animate: {
+    transition: {
+      type: "spring",
+      stiffness: 250,
+    },
+  },
+  whileHover: {
+    scale: 1.2,
+    color: "#111a2c",
+    originX: 0,
+  },
+};
+
+const shadeVarients = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1.7,
+    transition: {
+      delay: 1,
+      duration: 3,
+    },
+  },
+};
+const scaleVariantInner = {
+  initial: { scale: 0 },
+  animate: {
+    scale: 1,
+    transition: {
+      duration: 0.8,
+      delay: 1.7,
+      type: "tween",
+    },
+  },
+};
+const UlVarients = {
+  initial: {
+    x: -250,
+  },
+  animate: {
+    x: 0,
+    transition: {
+      delay: 1.3,
+      type: "spring",
+      stiffness: "120",
+    },
+  },
+};
 
 export const SideBar = () => {
   const [user, setUser] = useState([]);
@@ -37,92 +103,94 @@ export const SideBar = () => {
   }, []);
 
   return (
-    <div className="SideBar">
+    <motion.div className="SideBar" variants={sideBarVarients} initial="initial" animate="animate">
       <div className="top">
         <div className="item">
-          <img className="avatar" src={user.img} alt="photo" />
-          <span className="admin-logo">{user.name}</span>
+          <motion.img className="avatar" src={user.img} alt="photo" variants={scaleVariantInner} />
+          <motion.span className="admin-logo" variants={shadeVarients}>
+            {user.name}
+          </motion.span>
         </div>
       </div>
       <div className="center">
-        <ul>
+        <motion.ul variants={UlVarients}>
           <p className="title">MAIN</p>
           {/* DashBoard  link */}
           <Link to="/EmployeeAdminPanal">
-            <li>
+            <motion.li variants={linkVarients} whileHover="whileHover" transition={{ type: "spring", stiffness: 250 }}>
               <DashboardIcon className="icon" />
               <span>DashBoard</span>
-            </li>
+            </motion.li>
           </Link>
           <p className="title">DATA</p>
           {/* manage team link */}
           <Link to="/EmployeeAdminPanal/ReportGenerate">
-            <li>
+            <motion.li variants={linkVarients} whileHover="whileHover" transition={{ type: "spring", stiffness: 250 }}>
               <FilterNoneRoundedIcon className="icon" />
               <span>Report Generate</span>
-            </li>
+            </motion.li>
           </Link>
           {/* employee info link */}
           <Link to="/EmployeeAdminPanal/EmployeeInfo">
-            <li>
+            <motion.li variants={linkVarients} whileHover="whileHover" transition={{ type: "spring", stiffness: 250 }}>
               <FeedOutlinedIcon className="icon" />
               <span>Employee Info</span>
-            </li>
+            </motion.li>
           </Link>
           <Link to="/EmployeeAdminPanal/PayrollSummery">
-            <li>
+            <motion.li variants={linkVarients} whileHover="whileHover" transition={{ type: "spring", stiffness: 250 }}>
               <RequestQuoteOutlinedIcon className="icon" />
               <span>Payroll Summary</span>
-            </li>
+            </motion.li>
           </Link>
           <p className="title">PAGES</p>
           {/* profile page link */}
           <Link to="/EmployeeAdminPanal/Profile">
-            <li>
+            <motion.li variants={linkVarients} whileHover="whileHover" transition={{ type: "spring", stiffness: 250 }}>
               <PersonSearchOutlinedIcon className="icon" />
               <span>Profile Form</span>
-            </li>
+            </motion.li>
           </Link>
           <Link to="/EmployeeAdminPanal/PayrollEntry">
-            <li>
+            <motion.li variants={linkVarients} whileHover="whileHover" transition={{ type: "spring", stiffness: 250 }}>
               <PaidOutlinedIcon className="icon" />
               <span>Payroll Entry</span>
-            </li>
+            </motion.li>
           </Link>
           <p className="title">CHARTS</p>
           <Link to="/EmployeeAdminPanal/BarPage">
-            <li>
+            <motion.li variants={linkVarients} whileHover="whileHover" transition={{ type: "spring", stiffness: 250 }}>
               <LeaderboardOutlinedIcon className="icon" />
               <span>Bar Chart</span>
-            </li>
+            </motion.li>
           </Link>
           <Link to="/EmployeeAdminPanal/PayrollPage">
-            <li>
+            <motion.li variants={linkVarients} whileHover="whileHover" transition={{ type: "spring", stiffness: 250 }}>
               <StackedLineChartOutlinedIcon className="icon" />
               <span>Line Chart</span>
-            </li>
+            </motion.li>
           </Link>
           <Link to="/EmployeeAdminPanal/PiePage">
-            <li>
+            <motion.li variants={linkVarients} whileHover="whileHover" transition={{ type: "spring", stiffness: 250 }}>
               <DonutSmallOutlinedIcon className="icon" />
               <span>Pie Chart</span>
-            </li>
+            </motion.li>
           </Link>
           <p className="title">USER</p>
-          <li>
+          <motion.li variants={linkVarients} whileHover="whileHover" transition={{ type: "spring", stiffness: 250 }}>
             <AccountCircleOutlinedIcon className="icon" />
             <span>Profile</span>
-          </li>
-          <li>
+          </motion.li>
+          <motion.li variants={linkVarients} whileHover="whileHover" transition={{ type: "spring", stiffness: 250 }}>
             <LogoutOutlinedIcon className="icon" />
             <span>Log Out</span>
-          </li>
-        </ul>
+          </motion.li>
+        </motion.ul>
       </div>
       <div className="bottom">
         <div className="colorOption"></div>
         <div className="colorOption"></div>
       </div>
-    </div>
+    </motion.div>
   );
 };

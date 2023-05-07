@@ -2,6 +2,19 @@ import "./payroll.scss";
 import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import axios from "axios";
+import { motion } from "framer-motion";
+
+const scaleVariant = {
+  initial: { scale: 0 },
+  animate: {
+    scale: 1,
+    transition: {
+      duration: 0.8,
+      delay: 1,
+      type: "tween",
+    },
+  },
+};
 
 export const Payroll = () => {
   const [totalNetPay, setTotalNetPay] = useState([]);
@@ -47,8 +60,8 @@ export const Payroll = () => {
     },
   };
   return (
-    <div className="payroll">
+    <motion.div className="payroll" variants={scaleVariant} initial="initial" animate="animate">
       <Line data={data} options={options} width={1000} height={300} />
-    </div>
+    </motion.div>
   );
 };

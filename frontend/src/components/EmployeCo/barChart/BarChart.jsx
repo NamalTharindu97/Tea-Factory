@@ -2,6 +2,30 @@ import axios from "axios";
 import "./barChart.scss";
 import React, { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
+import { motion } from "framer-motion";
+
+const scaleVariant = {
+  initial: { scale: 0 },
+  animate: {
+    scale: 1,
+    transition: {
+      duration: 0.8,
+      delay: 1,
+      type: "tween",
+    },
+  },
+};
+const scaleVariantInner = {
+  initial: { scale: 0 },
+  animate: {
+    scale: 1,
+    transition: {
+      duration: 0.8,
+      delay: 1.7,
+      type: "tween",
+    },
+  },
+};
 
 export const BarChart = () => {
   const [monthlyCounts, setMonthlyCounts] = useState([]);
@@ -37,8 +61,8 @@ export const BarChart = () => {
   };
 
   return (
-    <div className="barChart">
-      <div className="inner-bar-component">
+    <motion.div className="barChart" variants={scaleVariant} initial="initial" animate="animate">
+      <motion.div className="inner-bar-component" variants={scaleVariantInner} initial="initial" animate="animate">
         <Bar
           data={data}
           options={{
@@ -54,7 +78,7 @@ export const BarChart = () => {
             },
           }}
         />
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };

@@ -6,10 +6,23 @@ import "./prograssBar.scss";
 // Animation
 import { easeBounceInOut } from "d3-ease";
 import AnimatedProgressProvider from "./AnimatedProgressProvider";
+import { motion } from "framer-motion";
+
+const scaleVariantInner = {
+  initial: { scale: 0 },
+  animate: {
+    scale: 1,
+    transition: {
+      duration: 0.8,
+      delay: 1.7,
+      type: "tween",
+    },
+  },
+};
 
 export const PrograssBar = ({ count }) => {
   return (
-    <div className="PrograssBar">
+    <motion.div className="PrograssBar" variants={scaleVariantInner} initial="initial" animate="animate">
       <AnimatedProgressProvider valueStart={0} valueEnd={count} duration={5} delay={5} easingFunction={easeBounceInOut} repeat>
         {(value) => (
           <CircularProgressbar
@@ -37,6 +50,6 @@ export const PrograssBar = ({ count }) => {
           />
         )}
       </AnimatedProgressProvider>
-    </div>
+    </motion.div>
   );
 };

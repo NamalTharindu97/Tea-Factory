@@ -64,10 +64,11 @@
         padding: 5px;
         cursor: pointer;
         border-radius: 12px;
+        margin-right: 15px;
 
-        &:hover {
-          background-color: var(--darkBlue);
-        }
+        // &:hover {
+        //   background-color: var(--darkBlue);
+        // }
 
         .icon {
           font-size: 18px;
