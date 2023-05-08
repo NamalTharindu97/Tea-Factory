@@ -138,4 +138,13 @@ const getYearlyEmployeeNetPay = asyncHandler(async (req, res) => {
   res.status(200).json(totalNetPay[0]);
 });
 
-module.exports = { getPayroll, getSinglePayroll, createPayroll, updatePayroll, deletePayroll, getMonthlyEmployeeNetPay, getYearlyEmployeeNetPay };
+const getPayrollCount = asyncHandler(async (req, res) => {
+  const payrollCount = await Payroll.countDocuments();
+  if (!payrollCount) {
+    res.status(404);
+    throw new Error("payroll count not parsing");
+  }
+  res.status(200).json(payrollCount);
+});
+
+module.exports = { getPayroll, getSinglePayroll, createPayroll, updatePayroll, deletePayroll, getMonthlyEmployeeNetPay, getYearlyEmployeeNetPay, getPayrollCount };
