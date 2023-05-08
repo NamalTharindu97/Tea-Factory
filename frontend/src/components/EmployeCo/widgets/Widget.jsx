@@ -19,7 +19,7 @@ const scaleVariant = {
   },
 };
 
-export const Widget = ({ type, totalNet }) => {
+export const Widget = ({ type, totalNet, payrollCount }) => {
   let data = 0;
 
   switch (type) {
@@ -43,7 +43,6 @@ export const Widget = ({ type, totalNet }) => {
     case "1":
       data = {
         title: "Count",
-        link: "View User Report",
         icon: (
           <PersonOutlineIcon
             className="icon"
@@ -58,10 +57,9 @@ export const Widget = ({ type, totalNet }) => {
         color: "#16ff00",
       };
       break;
-    case "2":
+    case "PayRollCount":
       data = {
         title: "Payroll Count",
-        link: "View User Report",
         icon: (
           <CurrencyExchangeIcon
             className="icon"
@@ -70,9 +68,9 @@ export const Widget = ({ type, totalNet }) => {
             }}
           />
         ),
-        percentage: 80,
-        max: 100,
-        count: 20,
+        percentage: payrollCount,
+        max: 50,
+        count: payrollCount,
         color: "#ff1717",
       };
       break;
