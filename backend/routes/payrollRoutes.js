@@ -9,9 +9,11 @@ const {
   getYearlyEmployeeNetPay,
   getPayrollCount,
   getTotalTax,
+  getTotalPayment,
 } = require("../controllers/payrollController");
 const router = express.Router();
 
+router.route("/count/totalPayment").get(getTotalPayment);
 router.route("/count/totalTax").get(getTotalTax);
 router.route("/count/payroll").get(getPayrollCount);
 router.route("/year/totalNetPay").get(getYearlyEmployeeNetPay);
