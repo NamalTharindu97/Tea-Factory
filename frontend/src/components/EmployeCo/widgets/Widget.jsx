@@ -38,6 +38,7 @@ export const Widget = ({ type, totalNet, payrollCount, totalTax, totalPay }) => 
         max: 1000000,
         count: totalNet,
         color: "#00ffa8",
+        currency: "Rs :  ",
       };
       break;
     case "totalTax":
@@ -55,6 +56,7 @@ export const Widget = ({ type, totalNet, payrollCount, totalTax, totalPay }) => 
         max: 1000000,
         count: totalTax,
         color: "#16ff00",
+        currency: "Rs :  ",
       };
       break;
     case "PayRollCount":
@@ -89,6 +91,7 @@ export const Widget = ({ type, totalNet, payrollCount, totalTax, totalPay }) => 
         max: 1000000,
         count: totalPay,
         color: "#000000",
+        currency: "Rs :  ",
       };
       break;
     default:
@@ -109,7 +112,10 @@ export const Widget = ({ type, totalNet, payrollCount, totalTax, totalPay }) => 
             })}
           />
         </div>
-        <div className="left-bottom-coner">{data.count}</div>
+        <div className="left-bottom-coner">
+          {data.currency}
+          {data.count}
+        </div>
       </div>
       <div className="right">
         <div className="right-top-coner">{data.title}</div>
