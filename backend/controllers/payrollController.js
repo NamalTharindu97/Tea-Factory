@@ -173,7 +173,6 @@ const getTotalTax = asyncHandler(async (req, res) => {
 //@desc GET  getTotalPayment
 //@Route GET /api/v1/tea-factory/payrolls:id
 //@access public
-
 const getTotalPayment = asyncHandler(async (req, res) => {
   const totalPay = await Payroll.aggregate([
     {
@@ -189,4 +188,40 @@ const getTotalPayment = asyncHandler(async (req, res) => {
   }
   res.status(200).json(totalPay[0]);
 });
-module.exports = { getPayroll, getSinglePayroll, createPayroll, updatePayroll, deletePayroll, getMonthlyEmployeeNetPay, getYearlyEmployeeNetPay, getPayrollCount, getTotalTax, getTotalPayment };
+
+//@desc GET  getTotalPayment
+//@Route GET /api/v1/tea-factory/payrolls:id
+//@access public
+const getLastestPayroll = asyncHandler(async (req, res) => {
+  const recentPayroll = await Payroll.find({}, { empName: 1, empId: 1, netPay: 1, createdAt: 1 }).sort({ createdAt: -1 }).limit(4);
+  if (!recentPayroll) {
+    res.status(404);
+    throw new Error("recent payroll not parsing");
+  }
+  const formattedPayroll = recentPayroll.map((payroll) => {
+    const createdAt = new Date(payroll.createdAt);
+    const date = createdAt.toLocaleDateString("en-US");
+    const time = createdAt.toLocaleTimeString("en-US", { hour12: true, hour: "numeric" });
+    return {
+      empName: payroll.empName,
+      empId: payroll.empId,
+      netPay: payroll.netPay,
+      createdAt: `${date} - ${time}`,
+    };
+  });
+  res.status(200).json(formattedPayroll);
+});
+
+module.exports = {
+  getPayroll,
+  getSinglePayroll,
+  createPayroll,
+  updatePayroll,
+  deletePayroll,
+  getMonthlyEmployeeNetPay,
+  getYearlyEmployeeNetPay,
+  getPayrollCount,
+  getTotalTax,
+  getTotalPayment,
+  getLastestPayroll,
+};
