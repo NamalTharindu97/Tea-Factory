@@ -77,7 +77,6 @@ export const Widget = ({ type, totalNet, payrollCount, totalTax }) => {
     case "3":
       data = {
         title: "Total Payment",
-        link: "View User Report",
         icon: (
           <GroupAddIcon
             className="icon"

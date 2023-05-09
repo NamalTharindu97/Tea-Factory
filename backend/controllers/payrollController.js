@@ -169,4 +169,24 @@ const getTotalTax = asyncHandler(async (req, res) => {
   }
   res.status(200).json(totalTax[0]); //sends the first item in the totalTax
 });
-module.exports = { getPayroll, getSinglePayroll, createPayroll, updatePayroll, deletePayroll, getMonthlyEmployeeNetPay, getYearlyEmployeeNetPay, getPayrollCount, getTotalTax };
+
+//@desc GET  getTotalPayment
+//@Route GET /api/v1/tea-factory/payrolls:id
+//@access public
+
+const getTotalPayment = asyncHandler(async (req, res) => {
+  const totalPay = await Payroll.aggregate([
+    {
+      $group: {
+        _id: null,
+        totalPay: { $sum: "$totoalEarnings" },
+      },
+    },
+  ]);
+  if (!totalPay) {
+    res.status(404);
+    throw new Error("total payment not parsing");
+  }
+  res.status(200).json(totalPay[0]);
+});
+module.exports = { getPayroll, getSinglePayroll, createPayroll, updatePayroll, deletePayroll, getMonthlyEmployeeNetPay, getYearlyEmployeeNetPay, getPayrollCount, getTotalTax, getTotalPayment };
