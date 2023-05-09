@@ -3,18 +3,7 @@ import { PrograssBar } from "../PrograssBar/PrograssBar";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-
-const scaleVariant = {
-  initial: { scale: 0 },
-  animate: {
-    scale: 1,
-    transition: {
-      duration: 0.8,
-      delay: 1,
-      type: "tween",
-    },
-  },
-};
+import { scaleVariant } from "../../../asserts/EmployeAs/data/FramerMotionVarients";
 
 export const HeadCount = () => {
   const [count, setCount] = useState();

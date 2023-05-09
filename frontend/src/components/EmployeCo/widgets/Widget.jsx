@@ -6,18 +6,7 @@ import LocalAtmIcon from "@mui/icons-material/LocalAtm";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import GroupAddIcon from "@mui/icons-material/GroupAdd";
-
-const scaleVariant = {
-  initial: { scale: 0 },
-  animate: {
-    scale: 1,
-    transition: {
-      duration: 0.8,
-      delay: 1,
-      type: "tween",
-    },
-  },
-};
+import { scaleVariant } from "../../../asserts/EmployeAs/data/FramerMotionVarients";
 
 export const Widget = ({ type, totalNet, payrollCount, totalTax, totalPay }) => {
   let data = 0;

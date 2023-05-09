@@ -7,18 +7,7 @@ import "./prograssBar.scss";
 import { easeBounceInOut } from "d3-ease";
 import AnimatedProgressProvider from "./AnimatedProgressProvider";
 import { motion } from "framer-motion";
-
-const scaleVariantInner = {
-  initial: { scale: 0 },
-  animate: {
-    scale: 1,
-    transition: {
-      duration: 0.8,
-      delay: 1.7,
-      type: "tween",
-    },
-  },
-};
+import { scaleVariantInner } from "../../../asserts/EmployeAs/data/FramerMotionVarients";
 
 export const PrograssBar = ({ count }) => {
   return (

@@ -9,24 +9,11 @@ import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNone
 import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined";
 import { motion } from "framer-motion";
-
-const navBarVarients = {
-  initial: {
-    y: -250,
-  },
-  animate: {
-    y: 0,
-    transition: {
-      delay: 0.2,
-      type: "spring",
-      stiffness: "120",
-    },
-  },
-};
+import { navBarVarientsOriginal } from "../../../asserts/EmployeAs/data/FramerMotionVarients";
 
 export const NavBar = () => {
   return (
-    <motion.div className="navbar" variants={navBarVarients} initial="initial" animate="animate">
+    <motion.div className="navbar" variants={navBarVarientsOriginal} initial="initial" animate="animate">
       <div className="wrapper">
         <div className="search">
           <input className="search-input" type="text" placeholder="Search..." />

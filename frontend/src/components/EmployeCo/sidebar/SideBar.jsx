@@ -16,71 +16,7 @@ import FilterNoneRoundedIcon from "@mui/icons-material/FilterNoneRounded";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-
-const sideBarVarients = {
-  initial: {
-    x: -250,
-  },
-  animate: {
-    x: 0,
-    transition: {
-      delay: 0.85,
-      type: "spring",
-      stiffness: "120",
-    },
-  },
-};
-
-const linkVarients = {
-  animate: {
-    transition: {
-      type: "spring",
-      stiffness: 250,
-    },
-  },
-  whileHover: {
-    scale: 1.2,
-    color: "#111a2c",
-    originX: 0,
-  },
-};
-
-const shadeVarients = {
-  initial: {
-    opacity: 0,
-  },
-  animate: {
-    opacity: 1.7,
-    transition: {
-      delay: 1,
-      duration: 3,
-    },
-  },
-};
-const scaleVariantInner = {
-  initial: { scale: 0 },
-  animate: {
-    scale: 1,
-    transition: {
-      duration: 0.8,
-      delay: 1.7,
-      type: "tween",
-    },
-  },
-};
-const UlVarients = {
-  initial: {
-    x: -250,
-  },
-  animate: {
-    x: 0,
-    transition: {
-      delay: 1.3,
-      type: "spring",
-      stiffness: "120",
-    },
-  },
-};
+import { sideBarVarients, linkVarients, shadeVarients, scaleVariantInner, UlVarients } from "../../../asserts/EmployeAs/data/FramerMotionVarients";
 
 export const SideBar = () => {
   const [user, setUser] = useState([]);

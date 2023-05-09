@@ -3,18 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import axios from "axios";
 import { motion } from "framer-motion";
-
-const scaleVariant = {
-  initial: { scale: 0 },
-  animate: {
-    scale: 1,
-    transition: {
-      duration: 0.8,
-      delay: 1,
-      type: "tween",
-    },
-  },
-};
+import { scaleVariant } from "../../../asserts/EmployeAs/data/FramerMotionVarients";
 
 export const Payroll = () => {
   const [totalNetPay, setTotalNetPay] = useState([]);
