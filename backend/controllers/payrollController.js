@@ -193,7 +193,7 @@ const getTotalPayment = asyncHandler(async (req, res) => {
 //@Route GET /api/v1/tea-factory/payrolls:id
 //@access public
 const getLastestPayroll = asyncHandler(async (req, res) => {
-  const recentPayroll = await Payroll.find({}, { empName: 1, empId: 1, netPay: 1, createdAt: 1 }).sort({ createdAt: -1 }).limit(4);
+  const recentPayroll = await Payroll.find({}, { empName: 1, empId: 1, netPay: 1, createdAt: 1 }).sort({ createdAt: -1 }).limit(5);
   if (!recentPayroll) {
     res.status(404);
     throw new Error("recent payroll not parsing");
