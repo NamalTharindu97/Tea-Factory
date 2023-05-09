@@ -10,9 +10,11 @@ const {
   getPayrollCount,
   getTotalTax,
   getTotalPayment,
+  getLastestPayroll,
 } = require("../controllers/payrollController");
 const router = express.Router();
 
+router.route("/count/Lastest/Payroll").get(getLastestPayroll);
 router.route("/count/totalPayment").get(getTotalPayment);
 router.route("/count/totalTax").get(getTotalTax);
 router.route("/count/payroll").get(getPayrollCount);
