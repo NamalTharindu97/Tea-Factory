@@ -3,22 +3,7 @@ import { Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material
 import axios from "axios";
 import "./deleteConfirm.scss";
 import { motion } from "framer-motion";
-
-const navBarVariants = {
-  initial: {
-    opacity: 0,
-    y: -50,
-  },
-  animate: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: 0.2,
-      type: "spring",
-      stiffness: 120,
-    },
-  },
-};
+import { navBarVariants } from "../../../asserts/EmployeAs/data/FramerMotionVarients";
 
 export const DeleteConfirmBtn = ({ id, type }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);

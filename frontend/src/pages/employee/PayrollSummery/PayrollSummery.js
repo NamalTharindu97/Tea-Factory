@@ -10,18 +10,7 @@ import { green } from "@mui/material/colors";
 import { ThemeProvider } from "@emotion/react";
 import "./payrollSummery.scss";
 import { motion } from "framer-motion";
-
-const scaleVariantForm = {
-  initial: { scale: 0 },
-  animate: {
-    scale: 1,
-    transition: {
-      duration: 1.2,
-      delay: 0.5,
-      type: "tween",
-    },
-  },
-};
+import { scaleVariantForm } from "../../../asserts/EmployeAs/data/FramerMotionVarients";
 
 export const PayrollSummery = () => {
   const [payrollData, setPayrollData] = useState([]);

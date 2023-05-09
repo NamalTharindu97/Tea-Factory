@@ -5,18 +5,7 @@ import RefreshIcon from "@mui/icons-material/Refresh";
 import "./dataFilter.scss";
 import { generatePDF } from "../GeneratePdf/generatePDF";
 import { motion } from "framer-motion";
-
-const scaleVariantCard = {
-  initial: { scale: 0 },
-  animate: {
-    scale: 1,
-    transition: {
-      duration: 1.3,
-      delay: 0.2,
-      type: "tween",
-    },
-  },
-};
+import { scaleVariantCard } from "../../../asserts/EmployeAs/data/FramerMotionVarients";
 
 export const DataFilter = ({ gender, age, roleName }) => {
   const [empData, setEmpData] = useState([]);

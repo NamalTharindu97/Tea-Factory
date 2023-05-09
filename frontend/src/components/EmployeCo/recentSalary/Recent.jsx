@@ -3,18 +3,8 @@ import "./recent.scss";
 import { motion } from "framer-motion";
 import axios from "axios";
 import FiberManualRecordTwoToneIcon from "@mui/icons-material/FiberManualRecordTwoTone";
+import { scaleVariant } from "../../../asserts/EmployeAs/data/FramerMotionVarients";
 
-const scaleVariant = {
-  initial: { scale: 0 },
-  animate: {
-    scale: 1,
-    transition: {
-      duration: 0.8,
-      delay: 1,
-      type: "tween",
-    },
-  },
-};
 export const Recent = () => {
   const [recentPayroll, setPayrolles] = useState([]);
 

@@ -21,18 +21,7 @@ import { SideBar } from "../../../components/EmployeCo/sidebar/SideBar";
 import { NavBar } from "../../../components/EmployeCo/navBar/NavBar";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
-
-const scaleVariantForm = {
-  initial: { scale: 0 },
-  animate: {
-    scale: 1,
-    transition: {
-      duration: 1.2,
-      delay: 0.5,
-      type: "tween",
-    },
-  },
-};
+import { scaleVariantForm } from "../../../asserts/EmployeAs/data/FramerMotionVarients";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required("Required"),

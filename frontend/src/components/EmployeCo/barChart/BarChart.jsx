@@ -3,29 +3,7 @@ import "./barChart.scss";
 import React, { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
 import { motion } from "framer-motion";
-
-const scaleVariant = {
-  initial: { scale: 0 },
-  animate: {
-    scale: 1,
-    transition: {
-      duration: 0.8,
-      delay: 1,
-      type: "tween",
-    },
-  },
-};
-const scaleVariantInner = {
-  initial: { scale: 0 },
-  animate: {
-    scale: 1,
-    transition: {
-      duration: 0.8,
-      delay: 1.7,
-      type: "tween",
-    },
-  },
-};
+import { scaleVariant, scaleVariantInner } from "../../../asserts/EmployeAs/data/FramerMotionVarients";
 
 export const BarChart = () => {
   const [monthlyCounts, setMonthlyCounts] = useState([]);

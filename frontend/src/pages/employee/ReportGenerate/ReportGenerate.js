@@ -12,18 +12,7 @@ import { ThemeProvider, useTheme } from "@emotion/react";
 import { Box } from "@mui/material";
 import { DataFilter } from "../../../components/EmployeCo/DataFilter/DataFilter";
 import { motion } from "framer-motion";
-
-const scaleVariantForm = {
-  initial: { scale: 0 },
-  animate: {
-    scale: 1,
-    transition: {
-      duration: 1.2,
-      delay: 0.5,
-      type: "tween",
-    },
-  },
-};
+import { scaleVariantForm } from "../../../asserts/EmployeAs/data/FramerMotionVarients";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;

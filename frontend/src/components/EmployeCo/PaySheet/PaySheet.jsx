@@ -9,18 +9,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-
-const scaleVariantSheet = {
-  initial: { scale: 0 },
-  animate: {
-    scale: 1,
-    transition: {
-      duration: 0.5,
-      delay: 0.8,
-      type: "tween",
-    },
-  },
-};
+import { scaleVariantSheet } from "../../../asserts/EmployeAs/data/FramerMotionVarients";
 
 const theme = createTheme({
   typography: {

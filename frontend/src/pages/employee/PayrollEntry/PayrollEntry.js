@@ -10,32 +10,7 @@ import { green } from "@mui/material/colors";
 import "./payrollEntry.scss";
 import { PaySheet } from "../../../components/EmployeCo/PaySheet/PaySheet";
 import { motion } from "framer-motion";
-
-const scaleVariantForm = {
-  initial: { scale: 0 },
-  animate: {
-    scale: 1,
-    transition: {
-      duration: 1.2,
-      delay: 0.5,
-      type: "tween",
-    },
-  },
-};
-
-const paySheetVarient = {
-  initial: {
-    y: -800,
-  },
-  animate: {
-    y: 0,
-    transition: {
-      delay: 0.2,
-      type: "spring",
-      stiffness: "120",
-    },
-  },
-};
+import { scaleVariantForm, paySheetVarient } from "../../../asserts/EmployeAs/data/FramerMotionVarients";
 
 export const PayrollEntry = () => {
   const [formData, setFormData] = useState(null);
