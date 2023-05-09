@@ -13,6 +13,7 @@ import axios from "axios";
 export default function EmpAdminPanal() {
   const [totalNet, setTotalNet] = useState();
   const [payrollCount, setPayrollCount] = useState();
+  const [totalTax, setTotalTaxCount] = useState();
 
   useEffect(() => {
     const getTotalNetPayCount = async () => {
@@ -22,6 +23,9 @@ export default function EmpAdminPanal() {
 
         const responsePayrollCount = await axios.get("/payrolls/count/payroll");
         setPayrollCount(responsePayrollCount.data);
+
+        const resTaxCount = await axios.get("/payrolls/count/totalTax");
+        setTotalTaxCount(resTaxCount.data.totalTax);
       } catch (error) {
         console.log(error);
       }
@@ -30,6 +34,8 @@ export default function EmpAdminPanal() {
     getTotalNetPayCount();
   }, []);
 
+  console.log(totalTax);
+
   return (
     <div className="empAdminPanal">
       <SideBar />
@@ -37,7 +43,7 @@ export default function EmpAdminPanal() {
         <NavBar />
         <div className="widgets">
           <Widget type="netPay" totalNet={totalNet} />
-          <Widget type="1" />
+          <Widget type="totalTax" totalTax={totalTax} />
           <Widget type="PayRollCount" payrollCount={payrollCount} />
           <Widget type="3" />
         </div>
