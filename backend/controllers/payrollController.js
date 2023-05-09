@@ -118,7 +118,9 @@ const getMonthlyEmployeeNetPay = asyncHandler(async (req, res) => {
 
   res.status(200).json(monthlyNetPay);
 });
-
+//@desc GET  getYearlyEmployeeNetPay
+//@Route GET /api/v1/tea-factory/payrolls:id
+//@access public
 const getYearlyEmployeeNetPay = asyncHandler(async (req, res) => {
   const totalNetPay = await Payroll.aggregate([
     // group all documents and calculate the sum of netPay
@@ -137,7 +139,9 @@ const getYearlyEmployeeNetPay = asyncHandler(async (req, res) => {
 
   res.status(200).json(totalNetPay[0]);
 });
-
+//@desc GET  getPayrollCount
+//@Route GET /api/v1/tea-factory/payrolls:id
+//@access public
 const getPayrollCount = asyncHandler(async (req, res) => {
   const payrollCount = await Payroll.countDocuments();
   if (!payrollCount) {
@@ -146,5 +150,23 @@ const getPayrollCount = asyncHandler(async (req, res) => {
   }
   res.status(200).json(payrollCount);
 });
+//@desc GET  getPayrollCount
+//@Route GET /api/v1/tea-factory/payrolls:id
+//@access public
+const getTotalTax = asyncHandler(async (req, res) => {
+  const totalTax = await Payroll.aggregate([
+    {
+      $group: {
+        _id: null,
+        totalTax: { $sum: "$totalDeduction" },
+      },
+    },
+  ]);
 
-module.exports = { getPayroll, getSinglePayroll, createPayroll, updatePayroll, deletePayroll, getMonthlyEmployeeNetPay, getYearlyEmployeeNetPay, getPayrollCount };
+  if (!totalTax) {
+    res.status(404);
+    throw new Error("total tax not parsing");
+  }
+  res.status(200).json(totalTax);
+});
+module.exports = { getPayroll, getSinglePayroll, createPayroll, updatePayroll, deletePayroll, getMonthlyEmployeeNetPay, getYearlyEmployeeNetPay, getPayrollCount, getTotalTax };

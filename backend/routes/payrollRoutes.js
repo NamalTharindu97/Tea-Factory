@@ -1,7 +1,18 @@
 const express = require("express");
-const { getPayroll, getSinglePayroll, createPayroll, updatePayroll, deletePayroll, getMonthlyEmployeeNetPay, getYearlyEmployeeNetPay, getPayrollCount } = require("../controllers/payrollController");
+const {
+  getPayroll,
+  getSinglePayroll,
+  createPayroll,
+  updatePayroll,
+  deletePayroll,
+  getMonthlyEmployeeNetPay,
+  getYearlyEmployeeNetPay,
+  getPayrollCount,
+  getTotalTax,
+} = require("../controllers/payrollController");
 const router = express.Router();
 
+router.route("/count/totalTax").get(getTotalTax);
 router.route("/count/payroll").get(getPayrollCount);
 router.route("/year/totalNetPay").get(getYearlyEmployeeNetPay);
 router.route("/totalNetPay").get(getMonthlyEmployeeNetPay);
