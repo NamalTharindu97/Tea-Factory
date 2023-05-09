@@ -167,6 +167,6 @@ const getTotalTax = asyncHandler(async (req, res) => {
     res.status(404);
     throw new Error("total tax not parsing");
   }
-  res.status(200).json(totalTax);
+  res.status(200).json(totalTax[0]); //sends the first item in the totalTax
 });
 module.exports = { getPayroll, getSinglePayroll, createPayroll, updatePayroll, deletePayroll, getMonthlyEmployeeNetPay, getYearlyEmployeeNetPay, getPayrollCount, getTotalTax };
