@@ -120,10 +120,26 @@ export const SideBar = () => {
     <motion.div className="SideBar" variants={sideBarVarients} initial="initial" animate="animate">
       <div className="top">
         <div className="item">
-          <motion.img className="avatar" src={user.img} alt="photo" variants={scaleVariantInner} />
-          <motion.span className="admin-logo" variants={shadeVarients}>
-            {user.name}
-          </motion.span>
+          {user ? (
+            <>
+              <motion.img className="avatar" src={user.img} alt="photo" variants={scaleVariantInner} />
+              <motion.span className="admin-logo" variants={shadeVarients}>
+                {user.name}
+              </motion.span>
+            </>
+          ) : (
+            <>
+              <motion.img
+                className="avatar"
+                src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1331&q=80"
+                alt="photo"
+                variants={scaleVariantInner}
+              />
+              <motion.span className="admin-logo" variants={shadeVarients}>
+                {user.name}
+              </motion.span>
+            </>
+          )}
         </div>
       </div>
       <div className="center">
