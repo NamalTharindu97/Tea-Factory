@@ -63,8 +63,8 @@ export const CardsData = [
       backGround: "linear-gradient(to bottom,#00802b, #00cc33 )",
       boxShadow: "0px 10px 20px 0px rgba(0, 128, 43, 0.5)",
     },
-    barValue: 70,
-    value: "3500 KG",
+    barValue: 40,
+    value: "700 KG",
     png: UilTrees,
     unit: "KG",
     series: [
@@ -80,8 +80,8 @@ export const CardsData = [
       backGround: "linear-gradient(180deg, #006A4E 0%, #1CAC78 100%)",
       boxShadow: "0px 10px 20px 0px rgba(0, 106, 78, 0.5)",
     },
-    barValue: 80,
-    value: "9500 Pkg",
+    barValue: 25,
+    value: "50 Pkg",
     png: UilBox,
     unit: "Packs",
     series: [
@@ -98,7 +98,7 @@ export const CardsData = [
       boxShadow: "0px 10px 20px 0px rgba(254, 190, 16, 0.5)",
     },
     barValue: 60,
-    value: "4,270 L",
+    value: "110 L",
     png: UilTear ,
     unit: "L",
     series: [

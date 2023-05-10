@@ -77,12 +77,12 @@ function App() {
   return (
     <div className="app">
       
-      <form onSubmit={handleSubmit}>
-      <h2>Add Inventory</h2>
+      <form className="AddInvform" onSubmit={handleSubmit}>
+      <h2 className="formTitle">Add Inventory</h2>
         {inputs.map((input) => (
           <Forminput key={input.id} {...input} value={values[input.name]} onChange={onChange} />
         ))}
-        <button>Add</button>
+        <button className="formButton">Add</button>
       </form>
     </div>
   );

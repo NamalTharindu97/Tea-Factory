@@ -12,7 +12,6 @@ const Analytics = () => {
 
         {/* <h2>Inventory Analytics</h2> */}
         <AnalyticMain/>
-        fdjgdkjfg
       </div>
     </div>
   );

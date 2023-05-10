@@ -8,7 +8,6 @@ const ViewInventory = () => {
       <div className="AppGlass">
         <Sidebar />
         <Table/>
-        View Inventory
       </div>
     </div>
   );

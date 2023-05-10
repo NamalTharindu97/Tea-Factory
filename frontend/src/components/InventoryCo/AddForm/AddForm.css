@@ -7,18 +7,18 @@
     background-position: center;
   }
   
-  form {
+  .AddInvform {
     background-color: white;
     padding: 0 60px;
     border-radius: 10px;
     box-shadow: 5px 10px 10px #d9d8d8;
   }
-  h1 {
-    color: rgb(65, 1, 65);
+  .formTitle {
+    color: black;
     text-align: center;
   }
   
-  button {
+  .formButton {
     width: 100%;
     height: 40px;
     padding: 10px;
