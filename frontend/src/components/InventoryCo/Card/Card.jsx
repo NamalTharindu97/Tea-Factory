@@ -1,9 +1,9 @@
 import React from "react";
 import "./Card.css";
-import { CircularProgressbar } from "react-circular-progressbar";
-import "react-circular-progressbar/dist/styles.css";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+// import "react-circular-progressbar/dist/styles.css";
 
-import { UilTimes } from "@iconscout/react-unicons";
+// import { UilTimes } from "@iconscout/react-unicons";
 
 const Card = (props) => {
   return <CompactCard param={props} />;
@@ -20,7 +20,12 @@ function CompactCard({ param }) {
       }}
     >
       <div className="radialBar">
-        <CircularProgressbar value={param.barValue} text={`${param.barValue}%`} />
+        <CircularProgressbar  value={param.barValue} text={`${param.barValue}%` }
+        className="inv-progress-bar" 
+        styles={buildStyles({
+          pathTransitionDuration: 0.15
+        })}
+        />
         <span>{param.title}</span>
       </div>
       <div className="detail">

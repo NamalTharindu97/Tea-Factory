@@ -6,9 +6,10 @@
     transition: all 300ms ease;
     text-decoration: none;
     background: linear-gradient(to bottom, #a9d4ab, #2E7D32);
+    box-shadow: 5px 0px 10px rgba(0, 0, 0, 0.3);
 }
 
-.logo{
+.inv-logo{
     display: flex;
     font-weight: bold;
     font-size: 22px;
@@ -17,12 +18,12 @@
     height: 1%;
 }
 
-.logo>img{
+.inv-logo>img{
     width: 5rem;
     height: 3rem;
 }
 
-.logo>span{
+.inv-logo>span{
 font-size: 1.5rem;
 }
 

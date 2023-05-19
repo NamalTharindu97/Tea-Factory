@@ -30,7 +30,7 @@ const Sidebar = () => {
       </div>
       <motion.div className="Sidebar" variants={sidebarVariants} animate={window.innerWidth <= 768 ? `${expanded}` : ""}>
         {/* logo */}
-        <div className="logo">
+        <div className="inv-logo">
           <img src={Logo} alt="logo" />
           <span>Ambrosia</span>
         </div>

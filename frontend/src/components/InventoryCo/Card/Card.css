@@ -13,35 +13,36 @@
     box-shadow: none!important;
 }
 
+
 /* radialBar */
-.radialBar{
+/* .radialBar{
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     gap: 1rem;
 }
-.CircularProgressbar{
+.inv-progress-bar .CircularProgressbar{
     width: 4rem!important;
     overflow: visible;
 }
 
-.CircularProgressbar-path{
-    stroke: white!important;
+.inv-progress-bar .CircularProgressbar-path{
+    stroke: white;
     stroke-width: 12px !important;
     filter: drop-shadow(2px 4px 6px white);
 }
-.CircularProgressbar-trail{
+.inv-progress-bar .CircularProgressbar-trail{
     display: none;
 }
-.CircularProgressbar-text{
-    fill: white!important;
+.inv-progress-bar .CircularProgressbar-text{
+    fill: white;
 }
 
 .radialBar>span{
     font-size: 17px;
     font-weight: bold;
-}
+} */
 
 
 /* details */

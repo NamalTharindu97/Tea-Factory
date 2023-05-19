@@ -1,0 +1,131 @@
+@import url(../../../index.css);
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Castoro+Titling&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@font-face {
+  font-family: "Poppins";
+  src: url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap")
+    format("truetype");
+}
+:root {
+  /* COLORS */
+  --primary: #27ae60;
+  --transparentPrimray: rgba(227, 120, 75, 0.4);
+  --DarkSpringGreen: #008066;
+  --VividSpringGreen: #00ffa8;
+  --LightGreen1: #16ff00;
+  --LightGreen2: #b4ff9f;
+  --DarkGreen1: #095709;
+  --DarkGreen2: #077807;
+  --red: #ff1717;
+  --blue: #0064c0;
+  --darkBlue: #111a2c;
+  --darkGray: #525c67;
+  --darkGray2: #757d85;
+  --gray: #898b9a;
+  --gray2: #bbbdc1;
+  --gray3: #cfd0d7;
+  --lightGray1: #dddddd;
+  --lightGray2: #f5f5f8;
+  --white2: #fbfbfb;
+  --white: #ffffff;
+  --black: #000000;
+  --grayGradient: linear-gradient(to bottom, #eaeaea, #aaaaaa, #6e6e6e, #373737, #000000);
+  --box-shadow: 0px 0px 12px rgb(255, 255, 255);
+  --text-shadow: 0px 0px 8px rgb(255, 255, 255);
+
+  /* TRANSPARENT COLORS */
+  --transparent: transparent;
+  --transparentBlack1: rgba(0, 0, 0, 0.1);
+  --transparentBlack7: rgba(0, 0, 0, 0.7);
+
+  /* Font Sizes */
+  --smallFontSize: 0.75rem;
+  --mediumFontSize: 1rem;
+  --largeFontSize: 1.5rem;
+  --extraLargeFontSize: 2rem;
+
+  /* Font Weights */
+  --thinFont: "Poppins Thin", sans-serif;
+  --extraLightFont: "Poppins ExtraLight", sans-serif;
+  --lightFont: "Poppins Light", sans-serif;
+  --regularFont: "Poppins Regular", sans-serif;
+  --mediumFont: "Poppins Medium", sans-serif;
+  --semiBoldFont: "Poppins SemiBold", sans-serif;
+  --boldFont: "Poppins Bold", sans-serif;
+  --extraBoldFont: "Poppins ExtraBold", sans-serif;
+  --blackFont: "Poppins Black", sans-serif;
+  --Castoro: "Castoro Titling", sans-serif;
+}
+.report-generate-container {
+  flex: 6;
+  .report-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    margin-right: 20px;
+    width: auto;
+    height: 80vh;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: var(--box-shadow);
+
+    .report-upper {
+      flex: 1;
+      display: flex;
+      justify-content: space-between;
+      .report-head {
+        margin: 0;
+        padding: 0;
+        font-family: var(--Castoro);
+        font-weight: 600;
+        font-size: 25px;
+        padding: 0;
+        margin: 0;
+        text-shadow: 0px 0px 8px rgb(255, 255, 255);
+      }
+      .report-head2 {
+        margin: 0;
+        padding: 0;
+        font-size: 15px;
+        padding: 0;
+        margin: 0;
+        margin-bottom: 25px;
+        color: #00e676;
+        text-shadow: 0px 0px 1px rgb(255, 255, 255);
+      }
+      .btn-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 130px;
+        .btn-tag {
+          margin: 0;
+          padding: 0;
+          display: flex;
+          flex-direction: row;
+          border-radius: 5px;
+          padding: 2px;
+          cursor: pointer;
+
+          &:hover {
+            text-shadow: var(--text-shadow);
+            color: var(--white);
+          }
+        }
+      }
+    }
+    .report-middle {
+      flex: 2;
+      .custom-label {
+        color: var(--white);
+        font-weight: 600;
+        font-family: var(--thinFont);
+        text-shadow: var(--text-shadow);
+      }
+    }
+    .report-lower {
+      flex: 8;
+      overflow: auto;
+    }
+  }
+}

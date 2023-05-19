@@ -31,6 +31,9 @@ const employeeSchema = mongoose.Schema(
       type: String,
       required: [true, "please enter password"],
     },
+    img: {
+      type: String,
+    },
   },
   {
     timestamps: true,

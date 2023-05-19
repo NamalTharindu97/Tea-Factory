@@ -1,91 +1,143 @@
-import "./AddForm.css";
-import Forminput from "../../../components/InventoryCo/FormInput/FormInput";
-import { useState } from "react";
+import React, { useState } from "react";
+import axios from "axios";
+import "./AddForm.css"
 
-function App() {
-  const [values, setValues] = useState({
-    username: "",
-    email: "",
-    birthday: "",
-    password: "",
-    confirmPassword: "",
+
+function AddForm() {
+  const [formData, setFormData] = useState({
+    Id:"",
+    name: "",
+    description: "",
+    quantity: "",
+    location: "",
+    inTime: "",
+    outTime:"",
+    supplier: ""
   });
 
-  const inputs = [
-    {
-      id: 1,
-      name: "Name",
-      type: "text",
-      placeholder: "Name",
-      errorMessage: "Name should be 3-16 characters and shouldn't be include any special characters!",
-      label: " Name",
-      pattern: "^[A-Za-z0-9]{3,16}$",
-      required: true,
-    },
-    {
-      id: 2,
-      name: "description",
-      type: "text",
-      placeholder: "description...",
-      label: " Description",
-      required: true,
-    },
-    {
-      id: 3,
-      name: "Quantity",
-      type: "Number",
-      placeholder: "Quantity",
-      label: " Quantity",
-    },
-    {
-      id: 4,
-      name: "location",
-      type: "text",
-      placeholder: "ex : Warehouse A",
-      label: " Location",
-      required: true,
-    },
-    {
-      id: 5,
-      name: "inTime",
-      type: "Time",
-      placeholder: "inTime",
-      label: " inTime",
-      required: true,
-    },
-    {
-      id: 6,
-      name: "Supplier",
-      type: "text",
-      placeholder: "Supplier name",
-      label: " Supplier",
-      required: true,
-    },
-  ];
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const data = new FormData(e.target);
+    axios
+      .post("http://localhost:5000/api/v1/tea-factory/inventory/", formData)
+      .then((response) => {
+        console.log("Form submitted successfully");
+        // Reset the form fields if needed
+        setFormData({
+          Id:"",
+          name: "",
+          description: "",
+          quantity: "",
+          location: "",
+          inTime: "",
+          outTime:"",
+          supplier: ""
+        });
+      })
+      .catch((error) => {
+        console.error("Error submitting form:", error);
+      });
   };
-
-  const onChange = (e) => {
-    setValues({ ...values, [e.target.name]: e.target.value });
-  };
-
-  console.log(values);
 
   return (
-    <div className="app">
-      
-      <form className="AddInvform" onSubmit={handleSubmit}>
+    <div className="AddInvform">
       <h2 className="formTitle">Add Inventory</h2>
-        {inputs.map((input) => (
-          <Forminput key={input.id} {...input} value={values[input.name]} onChange={onChange} />
-        ))}
-        <button className="formButton">Add</button>
+      <form onSubmit={handleSubmit}>
+        <label className="formLabel">
+          Id:
+          <input
+          className="formInput"
+            type="text"
+            name="Id"
+            value={formData.Id}
+            onChange={handleChange}
+          />
+        </label>
+        <br />
+        <label className="formLabel">
+          Name:
+          <input
+          className="formInput"
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+          />
+        </label>
+        <br />
+        <label className="formLabel">
+          Description:
+          <input
+          className="formInput"
+            type="text"
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+          />
+        </label >
+        <br />
+        <label className="formLabel">
+          Quantity:
+          <input
+          className="formInput"
+            type="number"
+            name="quantity"
+            value={formData.quantity}
+            onChange={handleChange}
+          />
+        </label>
+        <br />
+        <label className="formLabel">
+          Location:
+          <input
+          className="formInput"
+            type="text"
+            name="location"
+            value={formData.location}
+            onChange={handleChange}
+          />
+        </label>
+        <br />
+        <label className="formLabel">
+          In Time:
+          <input
+          className="formInput"
+            type="text"
+            name="inTime"
+            value={formData.inTime}
+            onChange={handleChange}
+          />
+        </label>
+        <br />
+        <label className="formLabel">
+          Out Time:
+          <input
+          className="formInput"
+            type="text"
+            name="outTime"
+            value={formData.outTime}
+            onChange={handleChange}
+          />
+        </label>
+        <br />
+        <label className="formLabel">
+          Supplier:
+          <input
+          className="formInput"
+            type="text"
+            name="supplier"
+            value={formData.supplier}
+            onChange={handleChange}
+          />
+        </label>
+        <br />
+        <button className="formButton" type="submit">Add</button>
       </form>
     </div>
   );
 }
 
-export default App;
+export default AddForm;

@@ -1,0 +1,61 @@
+.payroll-summery-inner {
+  flex: 6;
+  .spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+  }
+  .data-grid {
+    height: 600px;
+    color: white;
+    width: "100%";
+    margin-left: 20px;
+    margin-right: 20px;
+    .grid {
+      font-weight: 500;
+      border-radius: 20px;
+      font-size: 16px;
+      font-family: var(--thinFont);
+
+      .update-button {
+        background-color: var(--LightGreen1);
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 4px;
+        text-shadow: 0px 0px 8px rgb(255, 255, 255);
+        cursor: pointer;
+        &:hover {
+          box-shadow: 0px 0px 12px rgb(255, 255, 255);
+        }
+      }
+
+      .delete-button {
+        background-color: var(--red);
+        color: white;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 4px;
+        text-shadow: 0px 0px 8px rgb(255, 255, 255);
+        cursor: pointer;
+        &:hover {
+          box-shadow: 0px 0px 12px rgb(255, 255, 255);
+        }
+      }
+
+      .custom-header {
+        color: var(--black);
+        font-size: 16px;
+        font-weight: 800;
+        font-family: var(--Castoro);
+        text-shadow: 0px 0px 8px rgb(255, 255, 255);
+      }
+
+      .custom-cell {
+        color: var(--lightGray2);
+        text-shadow: 0px 0px 8px rgb(255, 255, 255);
+      }
+    }
+  }
+}

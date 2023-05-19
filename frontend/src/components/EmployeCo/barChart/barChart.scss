@@ -3,6 +3,18 @@
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  background-color: var(--white);
   border-radius: 25px;
+  background: transparent;
+  margin-left: 20px;
+  margin-right: 20px;
+  box-shadow: 0px 0px 12px rgb(255, 255, 255);
+}
+
+.inner-bar-component {
+  height: 100%;
+  width: 100%;
+}
+
+.barChart .inner-bar-component .chartjs-size-monitor .chartjs-size-monitor-expand .chartjs-size-monitor-shrink > div > canvas {
+  color: #ffffff; 
 }

@@ -9,7 +9,7 @@ export default function inventoryAdminPanal() {
       <div className="AppGlass">
         <Sidebar />
         <MainDashbord/>
-        
+        User Profile
       </div>
     </div>
   );

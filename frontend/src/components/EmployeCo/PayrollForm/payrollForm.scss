@@ -1,0 +1,29 @@
+@import url(../../../index.css);
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Castoro+Titling&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@font-face {
+  font-family: "Poppins";
+  src: url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap")
+    format("truetype");
+}
+
+.payroll-form-inner {
+  display: flex;
+  flex-direction: column;
+  label {
+    color: var(--white2);
+    font-size: 13px;
+    text-shadow: 0px 0px 8px rgb(255, 255, 255);
+  }
+
+  .profile-btn {
+    width: 300px;
+    margin-top: 20px;
+    color: var(--white2);
+    text-shadow: 0px 0px 8px rgb(255, 255, 255);
+
+    &:hover {
+      box-shadow: 0px 0px 12px rgb(255, 255, 255);
+    }
+  }
+}

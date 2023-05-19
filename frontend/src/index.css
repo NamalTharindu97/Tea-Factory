@@ -1,4 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Castoro+Titling&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@font-face {
+  font-family: "Poppins";
+  src: url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap")
+    format("truetype");
+}
+
 :root {
   /* COLORS */
   --primary: #27ae60;
@@ -7,9 +16,11 @@
   --VividSpringGreen: #00ffa8;
   --LightGreen1: #16ff00;
   --LightGreen2: #b4ff9f;
+  --LightGreen3: #00e676;
   --DarkGreen1: #095709;
   --DarkGreen2: #077807;
   --red: #ff1717;
+  --darkRed: #8b0000;
   --blue: #0064c0;
   --darkBlue: #111a2c;
   --darkGray: #525c67;
@@ -23,11 +34,16 @@
   --white: #ffffff;
   --black: #000000;
   --grayGradient: linear-gradient(to bottom, #eaeaea, #aaaaaa, #6e6e6e, #373737, #000000);
+  --grayGradient2: linear-gradient(to bottom, #bbbdc1, #8a8a8d, #5b5a5b, #2f2e2f, #000000);
+  --grayGradientUp: linear-gradient(to top, #eaeaea, #aaaaaa, #6e6e6e, #373737, #000000);
+  --greenGradient: linear-gradient(to top, #80ff95, #72f289, #65e57d, #57d872, #48cb66);
 
   /* TRANSPARENT COLORS */
   --transparent: transparent;
   --transparentBlack1: rgba(0, 0, 0, 0.1);
   --transparentBlack7: rgba(0, 0, 0, 0.7);
+  --box-shadow: 0px 0px 12px rgb(255, 255, 255);
+  --text-shadow: 0px 0px 8px rgb(255, 255, 255);
 
   /* Font Sizes */
   --smallFontSize: 0.75rem;
@@ -56,7 +72,7 @@
 
 /* Set the background color of the scrollbar track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: transparent;
 }
 
 /* Set the color of the scrollbar thumb */
@@ -82,5 +98,69 @@ body {
 .empAdminPanal {
   display: flex;
   height: 100vh;
-  background-image: var(--white2);
+  background-image: var(--grayGradient);
+}
+.profile-page {
+  display: flex;
+  height: 100vh;
+  background-image: var(--grayGradient);
+}
+
+.EmployeeInfo {
+  display: flex;
+  height: 100vh;
+  background-image: var(--grayGradient2);
+}
+
+.ProUpdateForm {
+  display: flex;
+  height: 100vh;
+  background-image: var(--grayGradient);
+}
+.Delete-btn {
+  font-family: var(--Castoro);
+}
+
+.BarPage {
+  display: flex;
+  height: 100vh;
+  background-image: var(--grayGradient);
+}
+
+.PiePage {
+  display: flex;
+  height: 100vh;
+  background-image: var(--grayGradient);
+}
+
+.PayrollPage {
+  display: flex;
+  height: 100vh;
+  background-image: var(--grayGradient);
+}
+
+.PayrollEntry {
+  display: flex;
+  height: 100vh;
+  font-family: var(--thinFont);
+  background-image: var(--grayGradient);
+}
+
+.PayrollSummery {
+  display: flex;
+  height: 100vh;
+  font-family: var(--thinFont);
+  background-image: var(--grayGradient2);
+}
+.PayRollUpdateForm {
+  display: flex;
+  height: 100vh;
+  font-family: var(--thinFont);
+  background-image: var(--grayGradient);
+}
+.ReportGenerate {
+  display: flex;
+  height: 100vh;
+  font-family: var(--thinFont);
+  background-image: var(--grayGradient2);
 }

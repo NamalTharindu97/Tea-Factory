@@ -1,9 +1,65 @@
 .widget {
+  position: relative; /* make widget a positioned container */
   display: flex;
   flex: 1;
   justify-content: space-between;
   padding: 10px;
   height: 100px;
-  background-color: var(--white);
+  background: transparent;
+  box-shadow: 0px 0px 12px rgb(255, 255, 255);
   border-radius: 25px;
+  font-family: var(--thinFont);
+
+  .left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative; /* make left a positioned container */
+
+    .left-top-coner {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 50px;
+      width: 50px;
+    }
+
+    .left-bottom-coner {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      text-shadow: var(--text-shadow);
+      font-weight: 600;
+      font-family: var(--Castoro);
+    }
+  }
+
+  .right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end; /* align content to the right */
+    position: relative; /* make right a positioned container */
+
+    .right-top-coner {
+      position: absolute;
+      top: 0;
+      right: 0;
+      color: var(--darkblue);
+      font-size: 15px;
+      font-family: var(--Castoro);
+      font-weight: 500;
+      color: var(--darkblue);
+      text-shadow: 1px 3px 0 #969696, 1px 13px 5px #aba8a8;
+      color: var(--darkblue);
+    }
+
+    .right-left-coner {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
+  }
 }

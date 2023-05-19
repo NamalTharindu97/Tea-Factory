@@ -7,12 +7,18 @@ const {
   deleteEmployee,
   loginEmployee,
   currentEmployee,
+  getEmpCount,
+  getEmployeeCount,
+  getMonthlyEmployeeCount,
 } = require("../controllers/employeeController");
 const validateToken = require("../middleware/validateTokenHandler");
 const router = express.Router();
 
 router.route("/current").get(validateToken, currentEmployee);
+router.route("/genderCount").get(getEmployeeCount);
+router.route("/monthlyEmployeCount").get(getMonthlyEmployeeCount);
 router.route("/login").post(loginEmployee);
+router.route("/count").get(getEmpCount);
 router.route("/").get(getEmployee);
 router.route("/:id").get(getSingleEmployee);
 router.route("/").post(createEmployee);

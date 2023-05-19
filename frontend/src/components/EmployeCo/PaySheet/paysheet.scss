@@ -1,0 +1,145 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url(../../../index.css);
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Castoro+Titling&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@font-face {
+  font-family: "Poppins";
+  src: url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap")
+    format("truetype");
+}
+
+:root {
+  /* COLORS */
+  --primary: #27ae60;
+  --transparentPrimray: rgba(227, 120, 75, 0.4);
+  --DarkSpringGreen: #008066;
+  --VividSpringGreen: #00ffa8;
+  --LightGreen1: #16ff00;
+  --LightGreen2: #b4ff9f;
+  --LightGreen3: #00e676;
+  --DarkGreen1: #095709;
+  --DarkGreen2: #077807;
+  --red: #ff1717;
+  --darkRed: #8b0000;
+  --blue: #0064c0;
+  --darkBlue: #111a2c;
+  --darkGray: #525c67;
+  --darkGray2: #757d85;
+  --gray: #898b9a;
+  --gray2: #bbbdc1;
+  --gray3: #cfd0d7;
+  --lightGray1: #dddddd;
+  --lightGray2: #f5f5f8;
+  --white2: #fbfbfb;
+  --white: #ffffff;
+  --black: #000000;
+  --grayGradient: linear-gradient(to bottom, #eaeaea, #aaaaaa, #6e6e6e, #373737, #000000);
+  --grayGradient2: linear-gradient(to bottom, #bbbdc1, #8a8a8d, #5b5a5b, #2f2e2f, #000000);
+  --grayGradientUp: linear-gradient(to top, #eaeaea, #aaaaaa, #6e6e6e, #373737, #000000);
+
+  /* TRANSPARENT COLORS */
+  --transparent: transparent;
+  --transparentBlack1: rgba(0, 0, 0, 0.1);
+  --transparentBlack7: rgba(0, 0, 0, 0.7);
+  --box-shadow: 0px 0px 12px rgb(255, 255, 255);
+  --text-shadow: 0px 0px 8px rgb(255, 255, 255);
+
+  /* Font Sizes */
+  --smallFontSize: 0.75rem;
+  --mediumFontSize: 1rem;
+  --largeFontSize: 1.5rem;
+  --extraLargeFontSize: 2rem;
+
+  /* Font Weights */
+  --thinFont: "Poppins Thin", sans-serif;
+  --extraLightFont: "Poppins ExtraLight", sans-serif;
+  --lightFont: "Poppins Light", sans-serif;
+  --regularFont: "Poppins Regular", sans-serif;
+  --mediumFont: "Poppins Medium", sans-serif;
+  --semiBoldFont: "Poppins SemiBold", sans-serif;
+  --boldFont: "Poppins Bold", sans-serif;
+  --extraBoldFont: "Poppins ExtraBold", sans-serif;
+  --blackFont: "Poppins Black", sans-serif;
+  --Castoro: "Castoro Titling", sans-serif;
+}
+
+.PaySheet {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--thinFont);
+  margin: 10px;
+  text-shadow: var(--text-shadow);
+
+  .sheet {
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+
+    .slip-heading-1 {
+      padding: 0;
+      margin: 0;
+      color: var(--darkBlue);
+      font-weight: 600;
+      font-size: 18px;
+    }
+
+    .sheet-upper {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100px;
+    }
+
+    .slip-item {
+      display: flex;
+      flex-direction: row;
+      height: 20px;
+      width: 300px;
+      justify-content: space-between;
+      margin-bottom: 1px;
+    }
+    .slip-item-label {
+      flex: 1;
+      font-weight: bold;
+      text-align: left;
+      margin-right: 0px;
+    }
+    .slip-item-value {
+      flex: 1;
+      text-align: left;
+      color: var(--white);
+    }
+    .net-pay {
+      font-size: 18px;
+      margin-top: 40px;
+      margin-bottom: 30px;
+      color: var(--white);
+    }
+    .basic-tag {
+      margin: 0;
+      padding: 0;
+      margin-top: 20px;
+      font-size: 15px;
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+    .earings {
+      color: var(--DarkGreen2);
+    }
+    .deductions {
+      color: var(--darkRed);
+    }
+    .profile-btn {
+      width: 200px;
+      align-self: center;
+      color: var(--white2);
+      text-shadow: 0px 0px 8px rgb(255, 255, 255);
+
+      &:hover {
+        box-shadow: 0px 0px 12px rgb(255, 255, 255);
+      }
+    }
+  }
+}
