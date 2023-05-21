@@ -1,5 +1,5 @@
-import Enzyme from "enzyme";
 import React from "react";
+import Enzyme from "enzyme";
 import Adapter from "@cfaester/enzyme-adapter-react-18";
 import { shallow } from "enzyme";
 import { NavBar } from "../components/EmployeCo/navBar/NavBar";

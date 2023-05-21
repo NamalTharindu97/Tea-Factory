@@ -34,7 +34,7 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().max(20, "Must be 20 characters or less").required("Required"),
 });
 
-const roles = ["HR Manager", "Inventory Manager", "Supplier Manager", "Production Manager"];
+const roles = ["HR Manager", "Inventory Manager", "Suplier Manager", "Production Manager"];
 
 const theme = createTheme({
   typography: {

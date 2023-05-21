@@ -6,6 +6,9 @@ module.exports = {
     "^axios$": "../frontend/src/__mocks__/axios.js", // Mock Axios module
     "^react-router-dom$": "../frontend/src/__mocks__/react-router-dom.js", // Mock react-router-dom package
     "^d3-ease$": "../frontend/src/__mocks__/d3-ease.js",
+    "^.*\\.png$": "../frontend/src/__mocks__/logoMock.js",
+    "^useState$": "../frontend/src/__mocks__/useState.js",
+    "^jsPDF$": "../frontend/src/__mocks__/jsPDF.js",
   },
   transform: {
     "^.+\\.[jt]sx?$": "babel-jest", // Update the transform configuration to include TypeScript files
@@ -20,4 +23,5 @@ module.exports = {
   moduleDirectories: ["node_modules", "src"],
   moduleFileExtensions: ["js", "jsx", "json", "node"],
   testPathIgnorePatterns: ["/node_modules/", "/build/", "/dist/"],
+  testEnvironment: "jsdom",
 };
