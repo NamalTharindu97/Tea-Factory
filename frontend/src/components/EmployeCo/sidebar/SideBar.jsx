@@ -13,7 +13,7 @@ import DonutSmallOutlinedIcon from "@mui/icons-material/DonutSmallOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import FilterNoneRoundedIcon from "@mui/icons-material/FilterNoneRounded";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { sideBarVarients, linkVarients, shadeVarients, scaleVariantInner, UlVarients } from "../../../asserts/EmployeAs/data/FramerMotionVarients";
