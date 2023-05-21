@@ -17,6 +17,7 @@ import { PayRollUpdateForm } from "./pages/employee/PayRollUpdateForm/PayRollUpd
 import { ReportGenerate } from "./pages/employee/ReportGenerate/ReportGenerate";
 import ProductionList from "./pages/production/ProductionList";
 import ProductionForm from "./pages/production/ProductionForm/ProductionForm";
+import ProductionAdd from "./pages/production/ProductionAddForm/ProductionAdd";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
         <Route path="/EmployeeAdminPanal/ReportGenerate" element={<ReportGenerate />} />
         <Route path="/ProductionAdminPanal/ProductionList" element={<ProductionList />} />
         <Route path="/ProductionAdminPanal/ProductionList/ProductionForm/:id" element={<ProductionForm />} />
+        <Route path="/ProductionAdminPanal/ProductionAdd" element={<ProductionAdd />} />
       </Routes>
     </Router>
   );
