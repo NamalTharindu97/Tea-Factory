@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "./pages/login/login";
 import EmployeeAdminPanal from "./pages/employee/AdminPanal/empAdminPanal";
 import InventoryAdminPanal from "./pages/inventory/inventoryAdminPanal";
-import SupplierAdminPanal from "./pages/supplier/supplierAdminPanal";
+import SupplierAdminPanal from "./pages/supplier/supplierAdminPanal/supplierAdminPanal";
 import ProductionAdminPanal from "./pages/production/productionAdminPanal";
 import { Profile } from "./pages/employee/ProfileForm/Profile";
 import { EmployeeInfo } from "./pages/employee/EmployeeInfo/EmployeeInfo";
@@ -15,6 +15,7 @@ import { PayrollEntry } from "./pages/employee/PayrollEntry/PayrollEntry";
 import { PayrollSummery } from "./pages/employee/PayrollSummery/PayrollSummery";
 import { PayRollUpdateForm } from "./pages/employee/PayRollUpdateForm/PayRollUpdateForm";
 import { ReportGenerate } from "./pages/employee/ReportGenerate/ReportGenerate";
+
 
 function App() {
   return (
