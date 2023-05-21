@@ -7,7 +7,7 @@ const ProductionSideBar = () => {
     <div className="ProductionSideBar">
       <ul>
         <li>
-          <Link to="/productions">All Productions</Link>
+          <Link to="/ProductionAdminPanal/ProductionList">All Productions</Link>
         </li>
         <li>
           <Link to="/productions/create">CreateProduction</Link>
