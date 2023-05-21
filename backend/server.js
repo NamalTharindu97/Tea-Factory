@@ -16,6 +16,8 @@ app.use("/api/v1/tea-factory/employees", require("../backend/routes/employeeRout
 app.use("/api/v1/tea-factory/inventory", require("../backend/routes/inventoryRoutes"));
 app.use("/api/v1/tea-factory/payrolls", require("../backend/routes/payrollRoutes"));
 app.use("/api/v1/tea-factory/productions", require("../backend/routes/productionRoutes"));
+app.use("/api/v1/tea-factory/supliers",require("../backend/routes/suplierRoutes"));
+
 app.use(errorHandler);
 app.use(validateToken);
 
