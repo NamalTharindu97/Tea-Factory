@@ -10,7 +10,7 @@ const ProductionSideBar = () => {
           <Link to="/ProductionAdminPanal/ProductionList">All Productions</Link>
         </li>
         <li>
-          <Link to="/productions/create">CreateProduction</Link>
+          <Link to="/ProductionAdminPanal/ProductionAdd">CreateProduction</Link>
         </li>
         <li>
           <Link to="/productions/create">SingleProduction</Link>
