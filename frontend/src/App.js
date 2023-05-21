@@ -15,6 +15,7 @@ import { PayrollEntry } from "./pages/employee/PayrollEntry/PayrollEntry";
 import { PayrollSummery } from "./pages/employee/PayrollSummery/PayrollSummery";
 import { PayRollUpdateForm } from "./pages/employee/PayRollUpdateForm/PayRollUpdateForm";
 import { ReportGenerate } from "./pages/employee/ReportGenerate/ReportGenerate";
+import SupplierSummery from "./pages/supplier/SupplierSummery/SupplierSummery";
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
         <Route path="/EmployeeAdminPanal/PayrollSummery" element={<PayrollSummery />} />
         <Route path="/EmployeeAdminPanal/PayrollSummery/PayRollUpdateForm/:id" element={<PayRollUpdateForm />} />
         <Route path="/EmployeeAdminPanal/ReportGenerate" element={<ReportGenerate />} />
+        <Route path="/SupplierAdminPanal/SupplierSummery" element={<SupplierSummery />} />
       </Routes>
     </Router>
   );
