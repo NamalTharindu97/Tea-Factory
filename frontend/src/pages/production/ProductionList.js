@@ -21,7 +21,7 @@ const ProductionList = () => {
 
   const handleUpdate = (id) => {
     const product = production.find((sup) => sup._id === id);
-    navigate(`/SupplierAdminPanal/SupplierSummery/UpdateSupplier/${id}`, { state: { product } });
+    navigate(`/ProductionAdminPanal/ProductionList/ProductionForm/${id}`, { state: { product } });
   };
 
   const handleDelete = async (id) => {
@@ -36,15 +36,14 @@ const ProductionList = () => {
     <div>
       {production.map((sup) => (
         <ul key={sup._id}>
-          <li>{sup.address}</li>
-          <li>{sup.bank}</li>
-          <li>{sup.bankNo}</li>
-          <li>{sup.createdAt}</li>
-          <li>{sup.email}</li>
-          <li>{sup.item}</li>
-          <li>{sup.name}</li>
-          <li>{sup.phone}</li>
-          <li>{sup.updatedAt}</li>
+          <li>{sup.ProdutionID}</li>
+          <li>{sup.description}</li>
+          <li>{sup.startDate}</li>
+          <li>{sup.endDate}</li>
+          <li>{sup.status}</li>
+          <li>{sup.teaType}</li>
+          <li>{sup.batchNumber}</li>
+
           <button onClick={() => handleUpdate(sup._id)}>update</button>
           <button onClick={() => handleDelete(sup._id)}>delete</button>
         </ul>
