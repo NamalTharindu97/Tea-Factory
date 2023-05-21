@@ -66,3 +66,10 @@
 test("Always true test case", () => {
   expect(true).toBe(true);
 });
+test("Always true test case", () => {
+  expect(true).toBe(true);
+});
+
+test("Always true test case", () => {
+  expect(true).toBe(true);
+});
