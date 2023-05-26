@@ -37,6 +37,7 @@
   --grayGradient2: linear-gradient(to bottom, #bbbdc1, #8a8a8d, #5b5a5b, #2f2e2f, #000000);
   --grayGradientUp: linear-gradient(to top, #eaeaea, #aaaaaa, #6e6e6e, #373737, #000000);
   --greenGradient: linear-gradient(to top, #80ff95, #72f289, #65e57d, #57d872, #48cb66);
+  --newGradient:  linear-gradient(to left top, #50e470, #77e989, #96eda1, #b2f1b9, #ccf4d0, #d2f7e2, #def9f0, #eefaf8, #f2fbfd, #f7fcff, #fcfdff, #ffffff);
 
   /* TRANSPARENT COLORS */
   --transparent: transparent;
@@ -164,3 +165,17 @@ body {
   font-family: var(--thinFont);
   background-image: var(--grayGradient2);
 }
+
+.summery-container{
+  background-image: var(--newGradient);
+}
+.bor{
+  background-color: var(--newGradient);
+}
+.page{
+  background-color: var(--newGradient);
+}
+
+
+
+

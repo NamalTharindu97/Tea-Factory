@@ -1,0 +1,52 @@
+.app {
+    
+  }
+  
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 750px;
+    background-color: #3a9c52;
+    color: #fff;
+    transition: transform 0.3s ease-in-out;
+    border-radius: 25px;
+   margin-left: -15px;
+    
+  }
+  
+  .sidebar-menu {
+    list-style-type: none;
+    padding: 0;
+    margin-left: 50px;;
+  }
+  
+  .sidebar-item {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+
+  }
+  
+  .sidebar-item:hover {
+    background-color: #064d1d;
+    border-radius: 20px;
+  }
+  
+  .sidebar-item.active {
+    background-color: #6e6969;
+    border-radius: 45px;
+  }
+  
+  .sidebar-label {
+    margin-left: 10px;
+  }
+  
+  .content {
+    flex: 1;
+    padding: 20px;
+  }
+  

@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "./pages/login/login";
 import EmployeeAdminPanal from "./pages/employee/AdminPanal/empAdminPanal";
 import InventoryAdminPanal from "./pages/inventory/Dashbord/inventoryAdminPanal";
-import SupplierAdminPanal from "./pages/supplier/supplierAdminPanal";
+import SupplierAdminPanal from "./pages/supplier/supplierAdminPanal/supplierAdminPanal";
 import ProductionAdminPanal from "./pages/production/productionAdminPanal";
-import AddInventory from "./pages/inventory/AddInventory/AddInventory"
+import AddInventory from "./pages/inventory/AddInventory/AddInventory";
 import ViewInventory from "./pages/inventory/ViewInventory/ViewInventory";
 import Analytics from "./pages/inventory/Analytics/Analytics";
 import { Profile } from "./pages/employee/ProfileForm/Profile";
@@ -19,9 +19,6 @@ import { PayrollSummery } from "./pages/employee/PayrollSummery/PayrollSummery";
 import { PayRollUpdateForm } from "./pages/employee/PayRollUpdateForm/PayRollUpdateForm";
 import { ReportGenerate } from "./pages/employee/ReportGenerate/ReportGenerate";
 import UpdateForm from "./pages/inventory/UpdateForm/UpdateForm";
-import ProductionList from "./pages/production/ProductionList";
-import ProductionForm from "./pages/production/ProductionForm/ProductionForm";
-import ProductionAdd from "./pages/production/ProductionAddForm/ProductionAdd";
 
 function App() {
   return (
@@ -46,9 +43,6 @@ function App() {
         <Route path="/EmployeeAdminPanal/PayrollSummery" element={<PayrollSummery />} />
         <Route path="/EmployeeAdminPanal/PayrollSummery/PayRollUpdateForm/:id" element={<PayRollUpdateForm />} />
         <Route path="/EmployeeAdminPanal/ReportGenerate" element={<ReportGenerate />} />
-        <Route path="/ProductionAdminPanal/ProductionList" element={<ProductionList />} />
-        <Route path="/ProductionAdminPanal/ProductionList/ProductionForm/:id" element={<ProductionForm />} />
-        <Route path="/ProductionAdminPanal/ProductionAdd" element={<ProductionAdd />} />
       </Routes>
     </Router>
   );
