@@ -10,7 +10,7 @@ const getSingleSuplier = asyncHandler(async (req, res) => {
   const suplier = await Suplier.findById(req.params.id);
   if (!suplier) {
     res.status(404);
-    throw new Error("supplier is not coming");
+    throw new Error("Supplier is not found");
   }
   res.status(200).json(suplier);
 });
@@ -41,23 +41,52 @@ const updateSuplier = asyncHandler(async (req, res) => {
   const suplier = await Suplier.findById(req.params.id);
   if (!suplier) {
     res.status(404);
-    throw new Error("Suplier Not Found");
+    throw new Error("Supplier not found");
   }
-  const newSuplier = await Suplier.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-  });
-  res.status(200).json(suplier);
+  const updatedSuplier = await Suplier.findByIdAndUpdate(
+    req.params.id,
+    req.body,
+    {
+      new: true,
+    }
+  );
+  res.status(200).json(updatedSuplier);
 });
 
 const deleteSuplier = asyncHandler(async (req, res) => {
   const suplier = await Suplier.findById(req.params.id);
   if (!suplier) {
     res.status(404);
-    throw new Error("suplier Not Found");
+    throw new Error("Supplier not found");
   }
-  const deleteSuplier = await Suplier.findByIdAndDelete(req.params.id);
-  res.status(200).json(deleteSuplier);
+  const deletedSuplier = await Suplier.findByIdAndDelete(req.params.id);
+  res.status(200).json(deletedSuplier);
 });
+const getsupplierCount = asyncHandler(async (req, res) => {
+  const supplierCount = await Suplier.countDocuments();
+  if (!supplierCount) {
+    res.status(404);
+    throw new Error("Supplier count not parsing");
+  }
+  res.status(200).json(supplierCount);
+});
+const getItemCount = asyncHandler(async (req, res) => {
+  const itemCounts = {};
+
+  const teaCount = await Suplier.countDocuments({ item: 'tea' });
+  itemCounts.tea = teaCount;
+
+  const fuelCount = await Suplier.countDocuments({ item: 'fuel' });
+  itemCounts.fuel = fuelCount;
+
+  const chemicalCount = await Suplier.countDocuments({ item: 'chemical' });
+  itemCounts.chemical = chemicalCount;
+
+  res.status(200).json(itemCounts);
+});
+
+
+
 
 module.exports = {
   getSuplier,
@@ -65,4 +94,9 @@ module.exports = {
   createSuplier,
   updateSuplier,
   deleteSuplier,
+  getsupplierCount,
+  getItemCount,
+
+
+
 };
