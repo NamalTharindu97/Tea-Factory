@@ -1,6 +1,5 @@
-/* eslint-disable jsx-a11y/img-redundant-alt */
-/* eslint-disable jsx-a11y/alt-text */
 import "./navbar.scss";
+import React from "react";
 import SearchSharpIcon from "@mui/icons-material/SearchSharp";
 import LanguageSharpIcon from "@mui/icons-material/LanguageSharp";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
@@ -14,7 +13,7 @@ import { navBarVarientsOriginal } from "../../../asserts/EmployeAs/data/FramerMo
 export const NavBar = () => {
   return (
     <motion.div className="navbar" variants={navBarVarientsOriginal} initial="initial" animate="animate">
-      <div className="wrapper">
+      <div data-testid="myDiv" className="wrapper">
         <div className="search">
           <input className="search-input" type="text" placeholder="Search..." />
           <SearchSharpIcon />

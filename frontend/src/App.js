@@ -19,6 +19,9 @@ import { PayrollSummery } from "./pages/employee/PayrollSummery/PayrollSummery";
 import { PayRollUpdateForm } from "./pages/employee/PayRollUpdateForm/PayRollUpdateForm";
 import { ReportGenerate } from "./pages/employee/ReportGenerate/ReportGenerate";
 import UpdateForm from "./pages/inventory/UpdateForm/UpdateForm";
+import ProductionList from "./pages/production/ProductionList";
+import ProductionForm from "./pages/production/ProductionForm/ProductionForm";
+import ProductionAdd from "./pages/production/ProductionAddForm/ProductionAdd";
 
 function App() {
   return (
@@ -43,6 +46,9 @@ function App() {
         <Route path="/EmployeeAdminPanal/PayrollSummery" element={<PayrollSummery />} />
         <Route path="/EmployeeAdminPanal/PayrollSummery/PayRollUpdateForm/:id" element={<PayRollUpdateForm />} />
         <Route path="/EmployeeAdminPanal/ReportGenerate" element={<ReportGenerate />} />
+        <Route path="/ProductionAdminPanal/ProductionList" element={<ProductionList />} />
+        <Route path="/ProductionAdminPanal/ProductionList/ProductionForm/:id" element={<ProductionForm />} />
+        <Route path="/ProductionAdminPanal/ProductionAdd" element={<ProductionAdd />} />
       </Routes>
     </Router>
   );
