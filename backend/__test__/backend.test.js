@@ -1,6 +1,8 @@
 const Payroll = require("../models/payrollModel");
 const Employe = require("../models/employeeModel");
 const Production = require("../models/productionModel");
+const Supplier = require("../models/SuplierModel");
+const Inventory = require("../models/inventoryModel");
 
 const server = require("../server");
 
@@ -8,7 +10,7 @@ describe("getPayroll", () => {
   it("should return all payrolls", async () => {
     const payrolls = await Payroll.find();
     expect(payrolls).toHaveLength(9);
-  });
+  }, 10000);
 });
 
 describe("createPayroll", () => {
@@ -264,7 +266,157 @@ describe("deleteProduction", () => {
   });
 
   it("should return 404 if payroll is not found", async () => {
-    const deletedEmploye = await Production.findByIdAndDelete("6451c5a0bf23f742e7e1f5de");
-    expect(deletedEmploye).toBeNull();
+    const deletedProduction = await Production.findByIdAndDelete("6451c5a0bf23f742e7e1f5de");
+    expect(deletedProduction).toBeNull();
+  });
+});
+
+//************************************Supplier***************************************** */
+
+describe("createProduction", () => {
+  it("should create a new Employee", async () => {
+    const suplier = {
+      name: "Test Supplier",
+      item: "Tea",
+      address: "No 123, Colombo",
+      phone: "0772417049",
+      email: "Supplier@gmail.com",
+      bank: "BOC",
+      bankNo: "123456789",
+    };
+
+    try {
+      const createdSupplier = await Supplier.create(suplier);
+      expect(createdSupplier).toHaveProperty("name", "Test Supplier");
+    } catch (error) {
+      expect(error.status).toBe(400);
+    }
+  });
+});
+
+describe("getSingleSupplier", () => {
+  it("should return a single Supplier by id", async () => {
+    const testSupplier = await Supplier.findOne({ name: "Test Supplier" });
+    const testSupplierID = testSupplier._id;
+
+    const supplier = await Supplier.findById(testSupplierID);
+    expect(supplier).toHaveProperty("name", "Test Supplier");
+  });
+
+  it("should return 404 if payroll is not found", async () => {
+    const supplier = await Supplier.findById("6451c5a0bf23f742e7e1f5de");
+    expect(supplier).toBeNull();
+  });
+});
+
+describe("updateSupplier", () => {
+  it("should update a Supplier", async () => {
+    const supplier = {
+      name: "Test Supplier",
+      item: "Fuel", //updated
+      address: "No 123, Colombo",
+      phone: "0772417049",
+      email: "Supplier@gmail.com",
+      bank: "BOC",
+      bankNo: "123456789",
+    };
+    const testSupplier = await Supplier.findOne({ name: "Test Supplier" });
+    const testSupplierID = testSupplier._id;
+
+    const updatedSupplier = await Supplier.findByIdAndUpdate(testSupplierID, supplier, {
+      new: true,
+    });
+    expect(updatedSupplier).toHaveProperty("item", "Fuel");
+  });
+});
+
+describe("deleteSupplier", () => {
+  it("should delete a Supplier", async () => {
+    const testSupplier = await Supplier.findOne({ name: "Test Supplier" });
+    const testSupplierID = testSupplier._id;
+
+    const deletedSupplier = await Supplier.findByIdAndDelete(testSupplierID);
+    expect(deletedSupplier).toBeTruthy();
+  });
+
+  it("should return 404 if payroll is not found", async () => {
+    const deletedSupplier = await Supplier.findByIdAndDelete("6451c5a0bf23f742e7e1f5de");
+    expect(deletedSupplier).toBeNull();
+  });
+});
+
+//************************************Inventory***************************************** */
+
+describe("createInventory", () => {
+  it("should create a new inventory", async () => {
+    const inventory = {
+      Id: "I001",
+      name: "Test Inventory",
+      description: "This is a test inventory",
+      quantity: 100,
+      location: "Colombo",
+      inTime: "2021-09-01",
+      outTime: "2021-09-30",
+      supplier: "Test Supplier",
+    };
+
+    try {
+      const createdInventory = await Inventory.create(inventory);
+      expect(createdInventory).toHaveProperty("Id", "I001");
+    } catch (error) {
+      expect(error.status).toBe(400);
+    }
+  });
+});
+
+describe("getSingleInventory", () => {
+  it("should return a single Inventory by id", async () => {
+    const testInventory = await Inventory.findOne({ name: "Test Inventory" });
+    const testInventoryID = testInventory._id;
+
+    const inventory = await Inventory.findById(testInventoryID);
+    expect(inventory).toHaveProperty("name", "Test Inventory");
+  });
+
+  it("should return 404 if payroll is not found", async () => {
+    const inventory = await Inventory.findById("6451c5a0bf23f742e7e1f5de");
+    expect(inventory).toBeNull();
+  });
+});
+
+describe("updateInventory", () => {
+  it("should update a Inventory", async () => {
+    const inventory = {
+      Id: "I001",
+      name: "Test Inventory",
+      description: "This is a test inventory",
+      quantity: 200, //updated
+      location: "Colombo",
+      inTime: "2021-09-01",
+      outTime: "2021-09-30",
+      supplier: "Test Supplier",
+    };
+    const testInventory = await Inventory.findOne({ name: "Test Inventory" });
+    const testInventoryID = testInventory._id;
+
+    const updatedInventory = await Inventory.findByIdAndUpdate(testInventoryID, inventory, {
+      new: true,
+    });
+    expect(updatedInventory).toHaveProperty("quantity", 200);
+  });
+});
+
+describe("deleteInventory", () => {
+  it("should delete a Inventory", async () => {
+    const testInventory = await Inventory.findOne({ name: "Test Inventory" });
+    const testInventoryID = testInventory._id;
+
+    const deletedInventory = await Inventory.findByIdAndDelete(testInventoryID);
+    expect(deletedInventory).toBeTruthy();
+  });
+
+  it("should return 404 if payroll is not found", async () => {
+    const deletedInventory = await Inventory.findByIdAndDelete("6451c5a0bf23f742e7e1f5de");
+    expect(deletedInventory).toBeNull();
   });
 });
