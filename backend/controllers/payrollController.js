@@ -16,7 +16,7 @@ const getSinglePayroll = asyncHandler(async (req, res) => {
   const payroll = await Payroll.findById(req.params.id);
   if (!payroll) {
     res.status(404);
-    throw new Error("Employee Not Found");
+    throw new Error("Payroll Not Found");
   }
   res.status(200).json(payroll);
 });
