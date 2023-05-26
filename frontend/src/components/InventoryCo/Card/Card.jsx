@@ -51,6 +51,7 @@ function CompactCard() {
         boxShadow: "0px 10px 20px 0px rgba(0, 128, 43, 0.5)",
       }}
     >
+
       <div className="radialBar">
         <CircularProgressbar
           value={percentage}
