@@ -1,10 +1,17 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Modal from 'react-modal';
+import Image1 from "../../../asserts/ProductionAs/images/1.png";
 import "./productionAdd.css";
+import ProductionFooter from "../../../components/ProductionCo/ProductionFooter/ProductionFooter";
 
-const ProductionAdd = () => {
+
+const ProductionAdd = (props) => {
   const navigate = useNavigate();
+  const {handleCloseModal} = props
+
+  
 
   const [productionData, setProductionData] = useState({
     ProdutionID: "",
@@ -76,46 +83,152 @@ const ProductionAdd = () => {
       });
       navigate("/ProductionAdminPanal/ProductionList");
     }
+
   };
+
   return (
+
+    <div>
+     <h3 style={{ textAlign: 'center' }}>Create New Production</h3>
     <form onSubmit={handleSubmit} className="production-form">
-      <div>
-        <label>Production ID:</label>
-        <input type="text" name="ProdutionID" value={productionData.ProdutionID} onChange={handleChange} className={errors.ProdutionID ? "error" : ""} />
-        {errors.ProdutionID && <div className="error-message">{errors.ProdutionID}</div>}
+  
+
+      <div className="image1">
+      <img src={Image1} alt="Tea Cup Image" width={500} height={400} />
       </div>
-      <div>
-        <label>Description:</label>
-        <textarea name="description" value={productionData.description} onChange={handleChange} className={errors.description ? "error" : ""}></textarea>
-        {errors.description && <div className="error-message">{errors.description}</div>}
-      </div>
-      <div>
-        <label>Start Date:</label>
-        <input type="text" name="startDate" value={productionData.startDate} onChange={handleChange} className={errors.startDate ? "error" : ""} />
-        {errors.startDate && <div className="error-message">{errors.startDate}</div>}
-      </div>
-      <div>
-        <label>End Date:</label>
-        <input type="text" name="endDate" value={productionData.endDate} onChange={handleChange} className={errors.endDate ? "error" : ""} />
-        {errors.endDate && <div className="error-message">{errors.endDate}</div>}
-      </div>
-      <div>
-        <label>Status:</label>
-        <input type="text" name="status" value={productionData.status} onChange={handleChange} className={errors.status ? "error" : ""} />
-        {errors.status && <div className="error-message">{errors.status}</div>}
-      </div>
-      <div>
-        <label>Tea Type:</label>
-        <input type="text" name="teaType" value={productionData.teaType} onChange={handleChange} className={errors.teaType ? "error" : ""} />
-        {errors.teaType && <div className="error-message">{errors.teaType}</div>}
-      </div>
-      <div>
-        <label>Batch Number:</label>
-        <input type="text" name="batchNumber" value={productionData.batchNumber} onChange={handleChange} className={errors.batchNumber ? "error" : ""} />
-        {errors.batchNumber && <div className="error-message">{errors.batchNumber}</div>}
-      </div>
-      <button type="submit">Submit</button>
-    </form>
+      <div className="form1">
+
+        <label>
+          Production ID
+          
+          <input
+            type="text"
+            name="ProdutionID"
+            value={productionData.ProdutionID}
+            onChange={handleChange}
+            className={errors.ProdutionID ? "error" : ""}
+          />
+          {errors.ProdutionID && (
+            <div className="error-message">{errors.ProdutionID}</div>
+          )}
+        </label>
+      
+        
+
+        <label>
+          Description
+          <br />
+          <input
+            type="text"
+            name="description"
+            value={productionData.description}
+            onChange={handleChange}
+            className={errors.description ? "error" : ""}
+          />
+          {errors.description && (
+            <div className="error-message">{errors.description}</div>
+          )}
+        </label>
+       
+
+        <label>
+          Start Date
+         
+          <input
+            type="text"
+            name="startDate"
+            value={productionData.startDate}
+            onChange={handleChange}
+            className={errors.startDate ? "error" : ""}
+          />
+          {errors.startDate && (
+            <div className="error-message">{errors.startDate}</div>
+          )}
+        </label>
+     
+
+        <label>
+          End Date
+   
+          <input
+            type="text"
+            name="endDate"
+            value={productionData.endDate}
+            onChange={handleChange}
+            className={errors.endDate ? "error" : ""}
+          />
+          {errors.endDate && (
+            <div className="error-message">{errors.endDate}</div>
+          )}
+        </label>
+    
+      
+
+     <div className="labs">
+
+        <label>
+          Status
+  
+          <input
+            type="text"
+            name="status"
+            value={productionData.status}
+            onChange={handleChange}
+            className={errors.status ? "error" : ""}
+          />
+          {errors.status && (
+            <div className="error-message">{errors.status}</div>
+          )}
+        </label>
+    
+
+        <label>
+          Tea Type
+     
+          <input
+            type="text"
+            name="teaType"
+            value={productionData.teaType}
+            onChange={handleChange}
+            className={errors.teaType ? "error" : ""}
+          />
+          {errors.teaType && (
+            <div className="error-message">{errors.teaType}</div>
+          )}
+        </label>
+     
+
+        <label>
+          Batch Number
+          
+          <input
+            type="text"
+            name="batchNumber"
+            value={productionData.batchNumber}
+            onChange={handleChange}
+            className={errors.batchNumber ? "error" : ""}
+          />
+          {errors.batchNumber && (
+            <div className="error-message">{errors.batchNumber}</div>
+          )}
+        </label>
+        <br />
+
+       
+        <button style={{ backgroundColor:"#19b626", padding: '12px 25px', borderRadius: '5px', margin: '0 10px' }}>Save</button>
+        <button style={{ backgroundColor:"#19b626", padding: '12px 25px', borderRadius: '5px', margin: '0 10px' }} onClick={handleCloseModal}>Close</button>
+
+</div>
+</div>
+ 
+ </form>
+ <div className="foot">
+<ProductionFooter/>
+</div>
+       
+    </div>
+
+
   );
 };
 

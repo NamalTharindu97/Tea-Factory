@@ -1,0 +1,8 @@
+.production-admin-panal-container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  padding: auto;
+  align-items: center;
+}
+

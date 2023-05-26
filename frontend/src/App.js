@@ -15,8 +15,9 @@ import { PayrollEntry } from "./pages/employee/PayrollEntry/PayrollEntry";
 import { PayrollSummery } from "./pages/employee/PayrollSummery/PayrollSummery";
 import { PayRollUpdateForm } from "./pages/employee/PayRollUpdateForm/PayRollUpdateForm";
 import { ReportGenerate } from "./pages/employee/ReportGenerate/ReportGenerate";
-import ProductionList from "./pages/production/ProductionList";
+import ProductionList from "./pages/production/ProductionList/ProductionList";
 import ProductionForm from "./pages/production/ProductionForm/ProductionForm";
+import ProductionView from "./pages/production/ProductionView/ProductionView";
 import ProductionAdd from "./pages/production/ProductionAddForm/ProductionAdd";
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
         <Route path="/EmployeeAdminPanal/ReportGenerate" element={<ReportGenerate />} />
         <Route path="/ProductionAdminPanal/ProductionList" element={<ProductionList />} />
         <Route path="/ProductionAdminPanal/ProductionList/ProductionForm/:id" element={<ProductionForm />} />
+        <Route path="/ProductionAdminPanal/ProductionList/ProductionView/:id" element={<ProductionView />} />
         <Route path="/ProductionAdminPanal/ProductionAdd" element={<ProductionAdd />} />
       </Routes>
     </Router>

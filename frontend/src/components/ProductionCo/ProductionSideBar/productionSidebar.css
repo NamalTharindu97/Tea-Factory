@@ -1,8 +1,18 @@
 .ProductionSideBar {
-  background-color: #f5f5f5;
+  background-color: #348304;
   width: 250px;
-  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }
+
+.ProductionSideBar img {
+  max-width: 100%;
+  height: auto;
+}
+
 
 .ProductionSideBar ul {
   list-style-type: none;

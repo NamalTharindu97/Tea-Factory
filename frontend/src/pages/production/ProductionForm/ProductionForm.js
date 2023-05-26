@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import "./productionForm.css";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
+import Image2 from "../../../asserts/ProductionAs/images/1.png";
+import Modal from 'react-modal';
+import ProductionFooter from "../../../components/ProductionCo/ProductionFooter/ProductionFooter";
 import axios from "axios";
 
-const ProductionForm = () => {
+const ProductionForm = (props) => {
+
   const location = useLocation();
   const product = location.state.product;
   const { id } = useParams();
   const navigate = useNavigate();
+  const {handleCloseModal} = props
 
   const [productionData, setProductionData] = useState({
     ProdutionID: product.ProdutionID,
@@ -81,8 +86,20 @@ const ProductionForm = () => {
     }
   };
 
+
   return (
+
+    <div>
+    <h3 style={{ textAlign: 'center' }}>Update Production Here</h3>
+
+    
     <form onSubmit={handleSubmit} className="production-form">
+    
+  
+    <div className="image1">
+      <img src={Image2} alt="Tea Cup Image" width={500} height={400} />
+      </div>
+      <div className="form2">
       <div>
         <label>Production ID:</label>
         <input type="text" name="ProdutionID" value={productionData.ProdutionID} onChange={handleChange} className={errors.ProdutionID ? "error" : ""} />
@@ -118,8 +135,18 @@ const ProductionForm = () => {
         <input type="text" name="batchNumber" value={productionData.batchNumber} onChange={handleChange} className={errors.batchNumber ? "error" : ""} />
         {errors.batchNumber && <div className="error-message">{errors.batchNumber}</div>}
       </div>
-      <button type="submit">Submit</button>
+      <button style={{ backgroundColor:"#19b626", padding: '12px 25px', borderRadius: '5px', margin: '0 10px' }}>Update</button>
+        <button style={{ backgroundColor:"#19b626", padding: '12px 25px', borderRadius: '5px', margin: '0 10px' }} onClick={handleCloseModal}>Close</button>
+  </div>
+  
+   
     </form>
+    
+    <div className="foot1">
+        <ProductionFooter/>
+    </div>
+  
+    </div>
   );
 };
 
