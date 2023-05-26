@@ -8,7 +8,6 @@ const getInventoryItem = asyncHandler(async (req, res) => {
   res.status(200).json(inventories);
 });
 
-
 //GET Single Inventory
 //GET - http://localhost:5000/api/v1/tea-factory/inventory/:id
 const getSingleInventory = async (req, res, next) => {
@@ -19,7 +18,6 @@ const getSingleInventory = async (req, res, next) => {
     next(err);
   }
 };
-
 
 //Create
 // POST- http://localhost:5000/api/v1/tea-factory/inventory/
@@ -33,7 +31,6 @@ const createInventory = async (req, res, next) => {
   }
 };
 
-
 //UPDATE
 //PUT - http://localhost:5000/api/v1/tea-factory/inventory/:id
 const updateInventory = async (req, res, next) => {
@@ -44,7 +41,6 @@ const updateInventory = async (req, res, next) => {
     next(err);
   }
 };
-
 
 //DELETE  Inventory
 //DELETE - http://localhost:5000/api/v1/tea-factory/inventory/:id
@@ -57,6 +53,24 @@ const deleteInventory = async (req, res, next) => {
   }
 };
 
+//GET total quntity
+//http://localhost:5000/api/v1/tea-factory/inventory/getquantity
+const getquantity = asyncHandler(async (req, res) => {
+  const totalQty = await Inventory.aggregate([
+    {
+      $group: {
+        _id: null,
+        totalQty: { $sum: "$quantity" },
+      },
+    },
+  ]);
+  if (!totalQty) {
+    res.status(404);
+    throw new Error("total quantity not parsing");
+  }
+  res.status(200).json(totalQty[0]);
+});
+
 //GET  current  Employee
 const currentEmployee = asyncHandler(async (req, res) => {
   res.status(200).json(req.user);
@@ -68,5 +82,6 @@ module.exports = {
   createInventory,
   updateInventory,
   deleteInventory,
+  getquantity,
   currentEmployee,
 };

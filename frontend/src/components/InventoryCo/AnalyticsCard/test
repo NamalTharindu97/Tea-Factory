@@ -1,0 +1,113 @@
+import React, { useEffect, useState } from "react";
+import "./AnalyticsCard.css";
+import { motion } from "framer-motion";
+import "react-circular-progressbar/dist/styles.css";
+import Chart from "react-apexcharts";
+
+import { UilTimes } from "@iconscout/react-unicons";
+import axios from "axios";
+
+const Card = (props) => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = () => {
+    axios
+      .get("http://localhost:5000/api/v1/tea-factory/inventory/")
+      .then((response) => {
+        setData(response.data);
+
+        // Process the data to extract the required fields for the chart
+        const chartData = response.data.map((item) => ({
+          x: item.createdTime,
+          y: item.quantity,
+        }));
+
+        // Pass the chartData to the ExpandedCard component
+        setChartData(chartData);
+      })
+      .catch((error) => console.error("Error fetching data:", error));
+  };
+
+  const [expanded, setExpanded] = useState(false);
+  const [chartData, setChartData] = useState([]);
+
+  return <ExpandedCard param={props} chartData={chartData} setExpanded={() => setExpanded(false)} />;
+};
+
+// ExpandedCard
+function ExpandedCard({ param, chartData, setExpanded }) {
+  cconst data = {
+    options: {
+      chart: {
+        type: "area",
+        height: "auto",
+      },
+      dropShadow: {
+        enabled: false,
+        enabledOnSeries: undefined,
+        top: 0,
+        left: 0,
+        blur: 3,
+        color: "#000",
+        opacity: 0.35,
+      },
+      fill: {
+        color: ["#fff"],
+        type: "gradient",
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      stroke: {
+        curve: "smooth",
+        colors: ["white"],
+      },
+      tooltip: {
+        x: {
+          format: "dd/MM/yy HH:mm",
+        },
+      },
+      grid: {
+        show: true,
+      },
+      xaxis: {
+        type: "datetime",
+        categories: [
+          "2018-09-19T00:00:00.000Z",
+          "2018-09-19T01:30:00.000Z",
+          "2018-09-19T02:30:00.000Z",
+          "2018-09-19T03:30:00.000Z",
+          "2018-09-19T04:30:00.000Z",
+          "2018-09-19T05:30:00.000Z",
+          "2018-09-19T06:30:00.000Z",
+        ],
+      },
+    },
+  };
+
+  return (
+    <motion.div
+      className="ExpandedCard"
+      style={{
+        background: param.color.backGround,
+        boxShadow: param.color.boxShadow,
+      }}
+      layoutId="expandableCard"
+    >
+      <div style={{ alignSelf: "flex-end", cursor: "pointer", color: "white" }}>
+        <UilTimes onClick={setExpanded} />
+      </div>
+      <span>{param.title}</span>
+      <div className="chartContainer">
+        <Chart series={[{ data: chartData }]} type="area" options={options} />
+      </div>
+      <span></span>
+    </motion.div>
+  );
+}
+
+export default Card;

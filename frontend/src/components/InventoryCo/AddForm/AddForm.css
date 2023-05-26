@@ -1,0 +1,25 @@
+/* AddForm.css */
+
+/* .TextField__error {
+  outline: 2px solid red;
+} */
+
+.TextField__helperText {
+  color: red;
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: auto;
+}
+
+.form-card {
+  max-width: 650px;
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+

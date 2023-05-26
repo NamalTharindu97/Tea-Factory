@@ -1,0 +1,51 @@
+:root {
+    --yellow: linear-gradient(180deg, #f8d49a -146.42%, #fad79d -46.42%);
+    --orange: #fca61f;
+    --black: #242d49;
+    --gray: #788097;
+    --purple: green -gradient(180deg, green 0%, green 100%);
+    --pink: green;
+    --glass: rgba(255, 255, 255, 0.54);
+    --boxShadow: 0px 19px 60px rgb(0 0 0 / 8%);
+    --smboxShadow: -79px 51px 60px rgba(0, 0, 0, 0.08);
+    --activeItem: #2f852054;
+  }
+  
+  .App {
+    /* background: linear-gradient(1.6.37deg, #ffe1bc 29.63%, #ffefd1 51.55%, #f3c6f1 ); */
+    background: white;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .AppGlass {
+    display: grid;
+    height: 100%;
+    width: 100%;
+    background-color: var(--glass);
+    overflow: hidden;
+    /* border-radius: 2rem; */
+    grid-template-columns: 15rem auto 15rem;
+    gap: 25px;
+  }
+  
+  
+  @media screen and (max-width: 1200px) {
+    .AppGlass{
+      grid-template-columns: 10% 50% auto;
+      overflow-y: scroll;
+    }
+  }
+  
+  @media screen and (max-width: 768px){
+    .AppGlass{
+      grid-template-columns: 1fr;
+    }
+    .AppGlass::-webkit-scrollbar{
+      display: none;
+    }
+  }
+  

@@ -1,0 +1,28 @@
+.App {
+  background: white;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Inter", sans-serif;
+}
+
+.AppGlass {
+  display: grid;
+  height: 97%;
+  width: 97%;
+  background-color: var(--glass);
+  grid-template-columns: 15rem auto 5rem;
+  gap: 25px;
+}
+
+.scroll {
+  flex: 1;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.right-Side{
+  display: flex;
+  flex-direction: row;
+}

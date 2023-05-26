@@ -16,7 +16,7 @@ const inventorySchema = mongoose.Schema(
       required: [true, "please enter description"],
     },
     quantity: {
-      type: String,
+      type: Number,
       required: [true, "please enter quantity"],
     },
     location: {
@@ -29,7 +29,6 @@ const inventorySchema = mongoose.Schema(
     },
     outTime: {
       type: String,
-      required: [true, "please enter outTime"],
     },
     supplier: {
       type: String,

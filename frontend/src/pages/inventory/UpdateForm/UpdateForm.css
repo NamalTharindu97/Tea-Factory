@@ -1,0 +1,20 @@
+.App {
+  /* background: linear-gradient(1.6.37deg, #ffe1bc 29.63%, #ffefd1 51.55%, #f3c6f1 ); */
+  background: white;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Inter', sans-serif;
+}
+
+.AppGlass {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  background-color: var(--glass);
+  overflow: hidden;
+  /* border-radius: 2rem; */
+  grid-template-columns: 15rem auto 15rem;
+  gap: 25px;
+}
