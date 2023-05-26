@@ -1,18 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./AnalyticsCard.css";
 import { motion } from "framer-motion";
 import "react-circular-progressbar/dist/styles.css";
 import Chart from "react-apexcharts";
-import axios from "axios";
+
 import { UilTimes } from "@iconscout/react-unicons";
+import axios from "axios";
 
 const Card = (props) => {
-  const [expanded, setExpanded] = useState(false);
-  return <ExpandedCard param={props} setExpanded={() => setExpanded(false)} />;
-};
-
-// ExpandedCard
-function ExpandedCard({ param, setExpanded }) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -22,20 +17,30 @@ function ExpandedCard({ param, setExpanded }) {
   const fetchData = () => {
     axios
       .get("http://localhost:5000/api/v1/tea-factory/inventory/")
-      .then((response) => setData(response.data))
+      .then((response) => {
+        setData(response.data);
+
+        // Process the data to extract the required fields for the chart
+        const chartData = response.data.map((item) => ({
+          x: item.createdTime,
+          y: item.quantity,
+        }));
+
+        // Pass the chartData to the ExpandedCard component
+        setChartData(chartData);
+      })
       .catch((error) => console.error("Error fetching data:", error));
   };
 
-  const quantityData = data.map((item) => item.quantity);
+  const [expanded, setExpanded] = useState(false);
+  const [chartData, setChartData] = useState([]);
 
-  const series = [
-    {
-      name: "Quantity",
-      data: quantityData,
-    },
-  ];
+  return <ExpandedCard param={props} chartData={chartData} setExpanded={() => setExpanded(false)} />;
+};
 
-  const chartOptions = {
+// ExpandedCard
+function ExpandedCard({ param, chartData, setExpanded }) {
+  cconst data = {
     options: {
       chart: {
         type: "area",
@@ -98,7 +103,7 @@ function ExpandedCard({ param, setExpanded }) {
       </div>
       <span>{param.title}</span>
       <div className="chartContainer">
-        <Chart series={series} type="area" options={chartOptions} />
+        <Chart series={[{ data: chartData }]} type="area" options={options} />
       </div>
       <span></span>
     </motion.div>

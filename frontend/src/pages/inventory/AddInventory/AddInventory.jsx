@@ -1,6 +1,7 @@
 import React from 'react'
 import Sidebar from "../../../components/InventoryCo/Sidebar/Sidebar"
 import AddForm from "../../../components/InventoryCo/AddForm/AddForm"
+import UserProfile from '../../../components/InventoryCo/UserProfile/UserProfile'
 
 const AddInventory = () => {
   return (
@@ -8,6 +9,7 @@ const AddInventory = () => {
       <div className="AppGlass">
         <Sidebar />
         <AddForm/>
+        <UserProfile/>
         
       </div>
     </div>

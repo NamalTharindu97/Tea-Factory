@@ -10,22 +10,7 @@ import {
   UilTear, 
   // UilSignOutAlt,
 } from "@iconscout/react-unicons";
-import React, { useState, useEffect } from "react";
 
-function FetchCardData() {
-  const [data, setData] = useState([]);
-  const [totalQuantity, setTotalQuantity] = useState(0);
-
-  useEffect(() => {
-    fetch("http://localhost:5000/api/v1/tea-factory/inventory/")
-      .then((response) => response.json())
-      .then((data) => setData(data));
-  }, []);
-
-  useEffect(() => {
-    setTotalQuantity(data.reduce((total, item) => total + item.quantity, 0));
-  }, [data]);
-}
 
 //Sidebar data
 export const SidebarData = [

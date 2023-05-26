@@ -4,6 +4,7 @@ import AnalyticsCards from "../../../components/InventoryCo/AnalyticsCards/Analy
 import HorizontalScroll from "react-scroll-horizontal";
 import Cards from "../../../components/InventoryCo/Cards/Cards";
 import AnalyticMain from "../../../components/InventoryCo/AnalyticsCards/AnalyticMain";
+import DashboardSummary from "../../../components/InventoryCo/DashbordSummery/DashbordSummery";
 const Analytics = () => {
   return (
     <div className="App">
@@ -12,6 +13,7 @@ const Analytics = () => {
 
         {/* <h2>Inventory Analytics</h2> */}
         <AnalyticMain/>
+        <DashboardSummary/>
       </div>
     </div>
   );

@@ -1,42 +1,25 @@
-.AddInvform {
-  background-color: white;
-  padding: 0 60px;
-  border-radius: 10px;
-  box-shadow: 5px 10px 10px #d9d8d8;
+/* AddForm.css */
+
+/* .TextField__error {
+  outline: 2px solid red;
+} */
+
+.TextField__helperText {
+  color: red;
 }
 
-.formTitle {
-  color: black;
-  text-align: center;
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: auto;
 }
 
-.formButton {
-  width: 25%;
-  height: 40px;
-  padding: 10px;
-  border: none;
-  background-color: #009c2e;
-  color: white;
-  border-radius: .6rem;
-  font-weight: bold;
-  font-style: 18px;
-  cursor: pointer;
-  margin-top: 15px;
-  margin-bottom: 30px;
-}
-
-.formInput {
-  padding: 10px;
-  margin: 10px 0px;
-  border-radius: 5px;
-  border: 1px solid gray;
-  text-align: right; /* Align inputs to the 
-  right */
+.form-card {
+  max-width: 650px;
+  padding: 20px;
   width: 100%;
+  box-sizing: border-box;
 }
 
-.formLabel {
-  font-style: 12px;
-  color: gray;
-  text-align: right; /* Align labels to the right */
-}

@@ -5,7 +5,7 @@
     padding-top: 4rem;
     transition: all 300ms ease;
     text-decoration: none;
-    background: linear-gradient(to bottom, #a9d4ab, #2E7D32);
+    background: linear-gradient(180deg, #006A4E 0%, #1CAC78 100%);
     box-shadow: 5px 0px 10px rgba(0, 0, 0, 0.3);
 }
 
@@ -13,14 +13,15 @@
     display: flex;
     font-weight: bold;
     font-size: 22px;
-    align-items: left;
+    align-items: center;
     justify-content: center;
     height: 1%;
 }
 
 .inv-logo>img{
-    width: 5rem;
-    height: 3rem;
+    width: 4rem;
+    height: 4rem;
+    margin-right: 10px;
 }
 
 .inv-logo>span{
@@ -47,14 +48,14 @@ font-size: 1.5rem;
     font-size: 14px;
     border-radius: 0.7rem;
     text-decoration: none;
-    color: black;
+    color: white;
 }
 .menuItem:hover{
     cursor: pointer;
 }
 
 .active{
-    background: var(--activeItem);
+    background: #40d267;
     margin-left: 0;
     transition: all 300ms ease;
 }
@@ -63,7 +64,7 @@ font-size: 1.5rem;
     content: '' ;
     width: 8px;
     height: 100%;
-    background: var(--pink);
+    background: #00bc31;
     margin-right: calc(1rem- 8px);
 }
 

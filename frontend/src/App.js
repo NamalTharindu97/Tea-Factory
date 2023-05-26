@@ -18,19 +18,21 @@ import { PayrollEntry } from "./pages/employee/PayrollEntry/PayrollEntry";
 import { PayrollSummery } from "./pages/employee/PayrollSummery/PayrollSummery";
 import { PayRollUpdateForm } from "./pages/employee/PayRollUpdateForm/PayRollUpdateForm";
 import { ReportGenerate } from "./pages/employee/ReportGenerate/ReportGenerate";
+import UpdateForm from "./pages/inventory/UpdateForm/UpdateForm";
 
 function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/InventoryAdminPanal" element={<InventoryAdminPanal />} />
         <Route path="/" element={<Login />} />
         <Route path="/EmployeeAdminPanal" element={<EmployeeAdminPanal />} />
-        <Route path="/InventoryAdminPanal" element={<InventoryAdminPanal />} />
         <Route path="/SupplierAdminPanal" element={<SupplierAdminPanal />} />
         <Route path="/ProductionAdminPanal" element={<ProductionAdminPanal />} />
         <Route path="/addInventory" element={<AddInventory />} />
         <Route path="/viewInventory" element={<ViewInventory />} />
         <Route path="/analyzeInventory" element={<Analytics />} />
+        <Route path="/updateInventory/:id" element={<UpdateForm />} />
         <Route path="/EmployeeAdminPanal/Profile" element={<Profile />} />
         <Route path="/EmployeeAdminPanal/EmployeeInfo" element={<EmployeeInfo />} />
         <Route path="/EmployeeAdminPanal/EmployeeInfo/Employee/:id" element={<ProUpdateForm />} />
