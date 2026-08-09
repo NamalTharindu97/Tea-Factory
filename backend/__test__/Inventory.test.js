@@ -1,85 +1,57 @@
-const Inventory = require("../models/inventoryModel");
 const mongoose = require("mongoose");
-require("dotenv").config();
+const Inventory = require("../models/inventoryModel");
 
 beforeAll(async () => {
   await mongoose.connect(process.env.CONNECTION_STRING);
+  await Inventory.deleteMany({});
 });
 
 afterAll(async () => {
+  await Inventory.deleteMany({});
   await mongoose.disconnect();
 });
 
-describe("createInventory", () => {
-  it("should create a new inventory", async () => {
-    const inventory = {
-      Id: "I001",
-      name: "Test Inventory",
-      description: "This is a test inventory",
-      quantity: 100,
-      location: "Colombo",
-      inTime: "2021-09-01",
-      outTime: "2021-09-30",
-      supplier: "Test Supplier",
-    };
+describe("Inventory CRUD", () => {
+  const item = {
+    Id: "INV-100",
+    name: "Tea Leaves",
+    description: "Fresh tea leaves",
+    quantity: 100,
+    location: "Warehouse A",
+    inTime: "10:00",
+    outTime: "",
+    supplier: "Test Supplier",
+  };
 
-    try {
-      const createdInventory = await Inventory.create(inventory);
-      expect(createdInventory).toHaveProperty("Id", "I001");
-    } catch (error) {
-      expect(error.status).toBe(400);
-    }
-  });
-});
-
-describe("getSingleInventory", () => {
-  it("should return a single Inventory by id", async () => {
-    const testInventory = await Inventory.findOne({ name: "Test Inventory" });
-    const testInventoryID = testInventory._id;
-
-    const inventory = await Inventory.findById(testInventoryID);
-    expect(inventory).toHaveProperty("name", "Test Inventory");
+  it("should create an inventory item", async () => {
+    const created = await Inventory.create(item);
+    expect(created).toHaveProperty("name", "Tea Leaves");
   });
 
-  it("should return 404 if payroll is not found", async () => {
-    const inventory = await Inventory.findById("6451c5a0bf23f742e7e1f5de");
+  it("should return all inventory", async () => {
+    const inventories = await Inventory.find();
+    expect(inventories).toHaveLength(1);
+  });
+
+  it("should return a single item by id", async () => {
+    const testItem = await Inventory.findOne({ Id: "INV-100" });
+    const inventory = await Inventory.findById(testItem._id);
+    expect(inventory).toHaveProperty("name", "Tea Leaves");
+  });
+
+  it("should return null if item not found", async () => {
+    const inventory = await Inventory.findById("64677989f12048fa998ad2de");
     expect(inventory).toBeNull();
   });
-});
 
-describe("updateInventory", () => {
-  it("should update a Inventory", async () => {
-    const inventory = {
-      Id: "I001",
-      name: "Test Inventory",
-      description: "This is a test inventory",
-      quantity: 200, //updated
-      location: "Colombo",
-      inTime: "2021-09-01",
-      outTime: "2021-09-30",
-      supplier: "Test Supplier",
-    };
-    const testInventory = await Inventory.findOne({ name: "Test Inventory" });
-    const testInventoryID = testInventory._id;
-
-    const updatedInventory = await Inventory.findByIdAndUpdate(testInventoryID, inventory, {
-      new: true,
-    });
-    expect(updatedInventory).toHaveProperty("quantity", 200);
-  });
-});
-
-describe("deleteInventory", () => {
-  it("should delete a Inventory", async () => {
-    const testInventory = await Inventory.findOne({ name: "Test Inventory" });
-    const testInventoryID = testInventory._id;
-
-    const deletedInventory = await Inventory.findByIdAndDelete(testInventoryID);
-    expect(deletedInventory).toBeTruthy();
+  it("should update an inventory item", async () => {
+    const testItem = await Inventory.findOne({ Id: "INV-100" });
+    const updated = await Inventory.findByIdAndUpdate(testItem._id, { quantity: 500 }, { new: true });
+    expect(updated).toHaveProperty("quantity", 500);
   });
 
-  it("should return 404 if payroll is not found", async () => {
-    const deletedInventory = await Inventory.findByIdAndDelete("6451c5a0bf23f742e7e1f5de");
-    expect(deletedInventory).toBeNull();
+  it("should delete an inventory item", async () => {
+    const deleted = await Inventory.findOneAndDelete({ Id: "INV-100" });
+    expect(deleted).toHaveProperty("name", "Tea Leaves");
   });
 });

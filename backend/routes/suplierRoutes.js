@@ -1,6 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const { getSuplier, getSingleSuplier, createSuplier, updateSuplier, deleteSuplier } = require("../controllers/suplierController");
+const validateToken = require("../middleware/validateTokenHandler");
+
+router.use(validateToken);
 
 router.route("/").get(getSuplier);
 router.route("/:id").get(getSingleSuplier);

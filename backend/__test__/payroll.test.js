@@ -1,118 +1,131 @@
-const Payroll = require("../models/payrollModel");
 const mongoose = require("mongoose");
-require("dotenv").config();
+const Payroll = require("../models/payrollModel");
+const Employe = require("../models/employeeModel");
+const { computePayroll } = require("../controllers/payrollController");
 
 beforeAll(async () => {
   await mongoose.connect(process.env.CONNECTION_STRING);
+  await Promise.all([Payroll.deleteMany({}), Employe.deleteMany({})]);
 });
 
 afterAll(async () => {
+  await Promise.all([Payroll.deleteMany({}), Employe.deleteMany({})]);
   await mongoose.disconnect();
 });
 
-describe("getPayroll", () => {
+describe("Payroll compute logic", () => {
+  const employee = {
+    _id: "64677989f12048fa998ad2de",
+    name: "Compute Test",
+    basicSalary: 100000,
+  };
+
+  it("should compute earnings, EPF, APIT and net pay server-side", () => {
+    const result = computePayroll(employee, {
+      overtimeHours: 10,
+      overtimeRate: 1000,
+      allowances: 5000,
+      bonus: 10000,
+      loanDeduction: 5000,
+    });
+    expect(result.basicSalary).toBe(100000);
+    expect(result.overtime).toBe(10000);
+    expect(result.totalEarnings).toBe(125000);
+    expect(result.epfEmployee).toBe(8000); // 8% of basic
+    expect(result.epfEmployer).toBe(12000);
+    expect(result.etf).toBe(3000);
+    // taxable = 125000 - 8000 = 117000 -> below 150k relief -> APIT 0
+    expect(result.apitTax).toBe(0);
+    expect(result.totalDeduction).toBe(13000); // 8000 + 0 + 5000
+    expect(result.netPay).toBe(112000);
+  });
+
+  it("should apply progressive APIT above the relief threshold", () => {
+    const result = computePayroll(employee, { basicSalary: 500000 });
+    // taxable = 500000 - 40000 = 460000
+    // bands: 150k@0, 50k@6%, 50k@12%, 50k@18%, 50k@24%, 110k@30%
+    expect(result.apitTax).toBe(63000);
+  });
+
+  it("should round to 2 decimal places", () => {
+    const result = computePayroll(employee, { overtimeHours: 3.333, overtimeRate: 999.999, basicSalary: 1 / 3 });
+    expect(result.basicSalary).toBe(0.33);
+    expect(result.overtime).toBe(3333);
+  });
+});
+
+describe("Payroll CRUD", () => {
+  let employee;
+
+  beforeAll(async () => {
+    employee = await Employe.create({
+      name: "Payroll Tester",
+      employeeId: "E700",
+      email: "payroll@test.com",
+      phone: "0771111111",
+      gender: "male",
+      age: 30,
+      role: "Production Worker",
+      basicSalary: 50000,
+      password: "12345",
+    });
+  });
+
+  const base = { employee: null, period: "2026-05" };
+  const withEmp = (extra = {}) => ({ ...base, employee: employee._id, ...extra });
+
+  it("should create a new payroll linked to an employee", async () => {
+    const created = await Payroll.create({
+      ...withEmp(),
+      employeeName: employee.name,
+      basicSalary: 50000,
+      overtime: 0,
+      epfEmployee: 4000,
+      apitTax: 0,
+      totalEarnings: 50000,
+      totalDeduction: 4000,
+      netPay: 46000,
+    });
+    expect(created).toHaveProperty("employeeName", "Payroll Tester");
+    expect(created.period).toBe("2026-05");
+  });
+
+  it("should enforce one pay slip per employee per period", async () => {
+    await expect(
+      Payroll.create({
+        ...withEmp(),
+        employeeName: employee.name,
+        basicSalary: 50000,
+        totalEarnings: 50000,
+        totalDeduction: 4000,
+        netPay: 46000,
+      })
+    ).rejects.toThrow();
+  });
+
   it("should return all payrolls", async () => {
     const payrolls = await Payroll.find();
-    expect(payrolls).toHaveLength(9);
-  }, 10000);
-});
-
-describe("createPayroll", () => {
-  it("should create a new payroll", async () => {
-    const payroll = {
-      empName: "Kamal",
-      empId: "Emp-5",
-      basicSalary: 50000,
-      overtime: 10000,
-      bonus: 5000,
-      totoalEarnings: 65000,
-      fedaralTax: 1000,
-      stateTax: 1000,
-      medicare: 1000,
-      totalDeduction: 3000,
-      netPay: 62000,
-    };
-
-    try {
-      const createdPayroll = await Payroll.create(payroll);
-      expect(createdPayroll).toHaveProperty("empName", "Kamal");
-    } catch (error) {
-      expect(error.status).toBe(400);
-    }
+    expect(payrolls).toHaveLength(1);
   });
-});
 
-describe("getSinglePayroll", () => {
   it("should return a single payroll by id", async () => {
-    const testPayroll = await Payroll.findOne({ empName: "Kamal" });
-    const testPayrollID = testPayroll._id;
-
-    const payroll = await Payroll.findById(testPayrollID);
-    expect(payroll).toHaveProperty("empName", "Kamal");
+    const testPayroll = await Payroll.findOne({ period: "2026-05" });
+    const found = await Payroll.findById(testPayroll._id);
+    expect(found).toHaveProperty("employeeName", "Payroll Tester");
   });
 
-  it("should return 404 if payroll is not found", async () => {
-    const payroll = await Payroll.findById("645245aafa72385acd6f5c45");
-    expect(payroll).toBeNull();
+  it("should return null if payroll is not found", async () => {
+    const found = await Payroll.findById("64677989f12048fa998ad2de");
+    expect(found).toBeNull();
   });
-});
 
-describe("updatePayroll", () => {
   it("should update a payroll", async () => {
-    const payroll = {
-      empName: "Kamal",
-      empId: "Test_1", //updated
-      basicSalary: 70000, //updated
-      overtime: 10000,
-      bonus: 5000,
-      totoalEarnings: 65000,
-      fedaralTax: 1000,
-      stateTax: 1000,
-      medicare: 1000,
-      totalDeduction: 3000,
-      netPay: 62000,
-    };
-
-    const testPayroll = await Payroll.findOne({ empName: "Kamal" });
-    const testPayrollID = testPayroll._id;
-
-    const updatedPayroll = await Payroll.findByIdAndUpdate(testPayrollID, payroll, {
-      new: true,
-    });
-    expect(updatedPayroll).toHaveProperty("empId", "Test_1");
-    expect(updatedPayroll).toHaveProperty("basicSalary", 70000);
+    const updated = await Payroll.findOneAndUpdate({ period: "2026-05" }, { status: "paid" }, { new: true });
+    expect(updated).toHaveProperty("status", "paid");
   });
 
-  it("should return 400 if payroll is not found", async () => {
-    const payroll = {
-      empName: "Kamal",
-      empId: "Emp-6", //updated
-      basicSalary: 50000,
-      overtime: 10000,
-      bonus: 5000,
-      totoalEarnings: 65000,
-      fedaralTax: 1000,
-      stateTax: 1000,
-      medicare: 1000,
-      totalDeduction: 3000,
-      netPay: 62000,
-    };
-
-    const updatedPayroll = await Payroll.findByIdAndUpdate("645245aafa72385acd6f5c42", payroll);
-  });
-});
-
-describe("deletePayroll", () => {
   it("should delete a payroll", async () => {
-    const payroll = await Payroll.findOne({ empName: "Kamal" });
-    const payrollId = payroll._id;
-
-    const deletedPayroll = await Payroll.findByIdAndDelete(payrollId);
-    expect(deletedPayroll).toBeTruthy();
-  });
-
-  it("should return 404 if payroll is not found", async () => {
-    const deletedPayroll = await Payroll.findByIdAndDelete("647086937a12fcb3fd3440d5");
-    expect(deletedPayroll).toBeNull();
+    const deleted = await Payroll.findOneAndDelete({ period: "2026-05" });
+    expect(deleted).toHaveProperty("employeeName", "Payroll Tester");
   });
 });

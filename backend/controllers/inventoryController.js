@@ -13,6 +13,9 @@ const getInventoryItem = asyncHandler(async (req, res) => {
 const getSingleInventory = async (req, res, next) => {
   try {
     const inventory = await Inventory.findById(req.params.id);
+    if (!inventory) {
+      return res.status(404).json({ message: "Inventory Not Found" });
+    }
     res.status(200).json(inventory);
   } catch (err) {
     next(err);
@@ -35,7 +38,12 @@ const createInventory = async (req, res, next) => {
 //PUT - http://localhost:5000/api/v1/tea-factory/inventory/:id
 const updateInventory = async (req, res, next) => {
   try {
-    const updateInventory = await Inventory.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true });
+    const { Id, name, description, quantity, location, inTime, outTime, supplier } = req.body;
+    const updateInventory = await Inventory.findByIdAndUpdate(
+      req.params.id,
+      { $set: { Id, name, description, quantity, location, inTime, outTime, supplier } },
+      { new: true, runValidators: true }
+    );
     res.status(200).json(updateInventory);
   } catch (err) {
     next(err);
@@ -64,11 +72,7 @@ const getquantity = asyncHandler(async (req, res) => {
       },
     },
   ]);
-  if (!totalQty) {
-    res.status(404);
-    throw new Error("total quantity not parsing");
-  }
-  res.status(200).json(totalQty[0]);
+  res.status(200).json(totalQty[0] || { totalQty: 0 });
 });
 
 //GET  current  Employee

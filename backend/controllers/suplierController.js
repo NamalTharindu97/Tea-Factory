@@ -43,10 +43,13 @@ const updateSuplier = asyncHandler(async (req, res) => {
     res.status(404);
     throw new Error("Suplier Not Found");
   }
-  const newSuplier = await Suplier.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-  });
-  res.status(200).json(suplier);
+  const { name, item, address, phone, email, bank, bankNo } = req.body;
+  const newSuplier = await Suplier.findByIdAndUpdate(
+    req.params.id,
+    { name, item, address, phone, email, bank, bankNo },
+    { new: true, runValidators: true }
+  );
+  res.status(200).json(newSuplier);
 });
 
 const deleteSuplier = asyncHandler(async (req, res) => {

@@ -1,93 +1,68 @@
-const Employe = require("../models/employeeModel");
 const mongoose = require("mongoose");
-require("dotenv").config();
+const Employe = require("../models/employeeModel");
 
 beforeAll(async () => {
   await mongoose.connect(process.env.CONNECTION_STRING);
+  await Employe.deleteMany({});
 });
 
 afterAll(async () => {
+  await Employe.deleteMany({});
   await mongoose.disconnect();
 });
 
-describe("getEmployee", () => {
+describe("Employee CRUD", () => {
+  const employee = {
+    name: "Test User",
+    employeeId: "E999",
+    email: "TestUser@gmail.com",
+    phone: "0772417049",
+    gender: "male",
+    age: 25,
+    role: "HR Manager",
+    password: "12345",
+  };
+
+  it("should create a new employee", async () => {
+    const created = await Employe.create(employee);
+    expect(created).toHaveProperty("name", "Test User");
+    expect(created).toHaveProperty("employeeId", "E999");
+    expect(created.age).toBe(25);
+    expect(created.status).toBe("active");
+  });
+
+  it("should reject duplicate employee ids", async () => {
+    await expect(Employe.create(employee)).rejects.toThrow();
+  });
+
+  it("should allow duplicate employee names (name is no longer unique)", async () => {
+    const dup = await Employe.create({ ...employee, employeeId: "E998", email: "dup@gmail.com" });
+    expect(dup).toHaveProperty("name", "Test User");
+  });
+
   it("should return all employees", async () => {
     const employees = await Employe.find();
-    expect(employees).toHaveLength(13);
+    expect(employees).toHaveLength(2);
   });
-});
 
-describe("createEmployee", () => {
-  it("should create a new Employee", async () => {
-    const employe = {
-      name: "Test User",
-      email: "TestUser@gmail.com",
-      phone: "0772417049",
-      gender: "male",
-      img: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
-      age: "25",
-      role: "HR Manager",
-      password: "12345",
-    };
-
-    try {
-      const createdEmployee = await Employe.create(employe);
-      expect(createdEmployee).toHaveProperty("name", "Test User");
-    } catch (error) {
-      expect(error.status).toBe(400);
-    }
-  });
-});
-
-describe("getSingleEmploye", () => {
-  it("should return a single payroll by id", async () => {
+  it("should return a single employee by id", async () => {
     const testUser = await Employe.findOne({ name: "Test User" });
-    const testUserID = testUser._id;
-
-    const employe = await Employe.findById(testUserID);
+    const employe = await Employe.findById(testUser._id);
     expect(employe).toHaveProperty("name", "Test User");
   });
 
-  it("should return 404 if payroll is not found", async () => {
-    const payroll = await Employe.findById("64677989f12048fa998ad2de");
-    expect(payroll).toBeNull();
-  });
-});
-
-describe("updateEmploye", () => {
-  it("should update a Employe", async () => {
-    const employe = {
-      name: "Test User",
-      email: "TestUser@gmail.com",
-      phone: "0772417049",
-      gender: "male",
-      img: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
-      age: "25",
-      role: "Inventory Manager", //updated
-      password: "12345",
-    };
-
-    const testUser = await Employe.findOne({ name: "Test User" });
-    const testUserID = testUser._id;
-
-    const updatedEmploye = await Employe.findByIdAndUpdate(testUserID, employe, {
-      new: true,
-    });
-    expect(updatedEmploye).toHaveProperty("role", "Inventory Manager");
-  });
-});
-
-describe("deleteEmploye", () => {
-  it("should delete a Employe", async () => {
-    const testUser = await Employe.findOne({ name: "Test User" });
-    const testUserID = testUser._id;
-
-    const deletedEmploye = await Employe.findByIdAndDelete(testUserID);
-    expect(deletedEmploye).toBeTruthy();
+  it("should return null for a missing employee", async () => {
+    const employe = await Employe.findById("64677989f12048fa998ad2de");
+    expect(employe).toBeNull();
   });
 
-  it("should return 404 if payroll is not found", async () => {
-    const deletedEmploye = await Employe.findByIdAndDelete("646a0970e0df889ab9516322");
-    expect(deletedEmploye).toBeNull();
+  it("should update an employee", async () => {
+    const updated = await Employe.findOneAndUpdate({ employeeId: "E999" }, { position: "Senior Manager" }, { new: true });
+    expect(updated).toHaveProperty("position", "Senior Manager");
+  });
+
+  it("should delete an employee", async () => {
+    const deleted = await Employe.findOneAndDelete({ employeeId: "E999" });
+    expect(deleted).toHaveProperty("name", "Test User");
   });
 });
