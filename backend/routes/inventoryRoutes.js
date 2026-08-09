@@ -3,12 +3,14 @@ const { getInventoryItem, getSingleInventory, createInventory, updateInventory, 
 const validateToken = require("../middleware/validateTokenHandler");
 const router = express.Router();
 
-router.route("/current").get(validateToken, currentEmployee);
+router.use(validateToken);
+
+router.route("/current").get(currentEmployee);
+router.route("/count/getquantity").get(getquantity);
 router.route("/").get(getInventoryItem);
 router.route("/:id").get(getSingleInventory);
-router.post("/" ,createInventory);
+router.post("/", createInventory);
 router.route("/:id").put(updateInventory);
-router.delete("/:id",deleteInventory);
-router.get("/count/getquantity",getquantity);
+router.delete("/:id", deleteInventory);
 
 module.exports = router;

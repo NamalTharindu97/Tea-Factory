@@ -14,6 +14,9 @@ const getProduction = asyncHandler(async (req, res) => {
 const getSingleProduction = async (req, res, next) => {
   try {
     const production = await Production.findById(req.params.id);
+    if (!production) {
+      return res.status(404).json({ message: "Production Not Found" });
+    }
     res.status(200).json(production);
   } catch (err) {
     next(err);
@@ -49,8 +52,9 @@ const createProduction = asyncHandler(async (req, res) => {
      res.status(404);
      throw new Error("Production Not Found");
    }
-   const updatedProduction = await Production.findByIdAndUpdate(req.params.id, req.body, {
-     new: true,
+   const { ProdutionID, description, startDate, endDate, status, teaType, batchNumber } = req.body;
+   const updatedProduction = await Production.findByIdAndUpdate(req.params.id, { ProdutionID, description, startDate, endDate, status, teaType, batchNumber }, {
+     new: true, runValidators: true,
    });
    res.status(200).json(updatedProduction);
  });
