@@ -1,0 +1,62 @@
+services:
+  mongodb:
+    image: mongo:6
+    container_name: tea-factory-mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - tea-factory-mongo-data:/data/db
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  backend:
+    build: ./backend
+    image: tea-factory-backend
+    container_name: tea-factory-backend
+    env_file:
+      # Optional: backend/.env is tracked/committed, but the stack must also run without it.
+      - path: ./backend/.env
+        required: false
+    environment:
+      # Overrides the (dead) Atlas CONNECTION_STRING from backend/.env with the local MongoDB service.
+      CONNECTION_STRING: mongodb://mongodb:27017/Tea-Factory
+      # Must match what nginx proxies to (backend:5000); code default is 5001, so pin it.
+      PORT: "5000"
+      # Dev-only fallback so login works even if backend/.env is absent. Set a real secret in production.
+      ACCESS_TOKEN_SECRET: dev-only-secret-change-me
+    ports:
+      # Host port 5000 is taken by macOS ControlCenter (AirPlay Receiver) on this machine.
+      # The frontend nginx still reaches the backend on port 5000 via the compose network.
+      # Change back to "5000:5000" once port 5000 is free.
+      - "5050:5000"
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    container_name: tea-factory-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  seed:
+    image: tea-factory-backend
+    profiles: ["seed"]
+    command: node seed.js
+    environment:
+      MONGODB_URI: mongodb://mongodb:27017/Tea-Factory
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    restart: "no"
+
+volumes:
+  tea-factory-mongo-data:
