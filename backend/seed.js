@@ -15,9 +15,9 @@ const empDates = [
   "2026-05-12", "2026-06-18", "2026-07-08", "2026-08-02",
 ];
 
-const payrollDates = [
-  "2026-01-31", "2026-02-28", "2026-03-31", "2026-04-30",
-  "2026-05-31", "2026-06-30", "2026-07-31", "2026-08-01",
+const payrollMonths = [
+  "2026-01", "2026-02", "2026-03", "2026-04",
+  "2026-05", "2026-06", "2026-07", "2026-08",
 ];
 
 async function seed() {
@@ -35,15 +35,27 @@ async function seed() {
   const password = bcrypt.hashSync("1234", 10);
 
   const employeeSeeds = [
-    { name: "Namal Perera", email: "namal@teafactory.lk", phone: "0711234567", gender: "male", age: "34", role: "HR Manager" },
-    { name: "Kavinda Silva", email: "kavinda@teafactory.lk", phone: "0722345678", gender: "male", age: "29", role: "Inventory Manager" },
-    { name: "Aruna Bandara", email: "aruna@teafactory.lk", phone: "0733456789", gender: "male", age: "41", role: "Suplier Manager" },
-    { name: "Tharindu Jayawardena", email: "tharindu@teafactory.lk", phone: "0744567890", gender: "male", age: "36", role: "Production Manager" },
-    { name: "Sanduni Weerasinghe", email: "sanduni@teafactory.lk", phone: "0755678901", gender: "female", age: "26", role: "HR Assistant" },
-    { name: "Nadeesha Fernando", email: "nadeesha@teafactory.lk", phone: "0766789012", gender: "female", age: "31", role: "Inventory Clerk" },
-    { name: "Ruwan Wijesinghe", email: "ruwan@teafactory.lk", phone: "0777890123", gender: "male", age: "38", role: "Production Worker" },
-    { name: "Ishara Gunasekara", email: "ishara@teafactory.lk", phone: "0788901234", gender: "female", age: "27", role: "Quality Inspector" },
-  ].map((e, i) => ({ ...e, password, img: IMG, createdAt: empDates[i], updatedAt: empDates[i] }));
+    { name: "Namal Perera", email: "namal@teafactory.lk", phone: "0711234567", gender: "male", age: 34, role: "HR Manager", department: "General", position: "HR Manager", basicSalary: 85000 },
+    { name: "Kavinda Silva", email: "kavinda@teafactory.lk", phone: "0722345678", gender: "male", age: 29, role: "Inventory Manager", department: "Warehouse", position: "Inventory Manager", basicSalary: 80000 },
+    { name: "Aruna Bandara", email: "aruna@teafactory.lk", phone: "0733456789", gender: "male", age: 41, role: "Suplier Manager", department: "General", position: "Suplier Manager", basicSalary: 78000 },
+    { name: "Tharindu Jayawardena", email: "tharindu@teafactory.lk", phone: "0744567890", gender: "male", age: 36, role: "Production Manager", department: "Production", position: "Production Manager", basicSalary: 82000 },
+    { name: "Sanduni Weerasinghe", email: "sanduni@teafactory.lk", phone: "0755678901", gender: "female", age: 26, role: "HR Assistant", department: "General", position: "HR Assistant", basicSalary: 65000 },
+    { name: "Nadeesha Fernando", email: "nadeesha@teafactory.lk", phone: "0766789012", gender: "female", age: 31, role: "Inventory Clerk", department: "Warehouse", position: "Inventory Clerk", basicSalary: 60000 },
+    { name: "Ruwan Wijesinghe", email: "ruwan@teafactory.lk", phone: "0777890123", gender: "male", age: 38, role: "Production Worker", department: "Production", position: "Production Worker", basicSalary: 55000 },
+    { name: "Ishara Gunasekara", email: "ishara@teafactory.lk", phone: "0788901234", gender: "female", age: 27, role: "Quality Inspector", department: "Quality", position: "Quality Inspector", basicSalary: 70000 },
+  ].map((e, i) => ({
+    ...e,
+    employeeId: `E${String(i + 1).padStart(3, "0")}`,
+    nic: `90${String(900000000 + i * 111111).padStart(9, "0")}`,
+    epfNo: `EPF-${String(i + 1).padStart(4, "0")}`,
+    bankAccount: `1001-${String(234567 + i * 111111)}`,
+    address: `${i + 1} Estate Lane, Tea Valley`,
+    hireDate: empDates[i],
+    password,
+    img: IMG,
+    createdAt: empDates[i],
+    updatedAt: empDates[i],
+  }));
 
   const inventorySeeds = [
     { Id: "INV-001", name: "Fresh Tea Leaves", description: "Freshly plucked green leaf from estate", quantity: 1200, location: "Factory Warehouse A", inTime: "2026-08-01 06:00", outTime: "", supplier: "Uva Highlands Estates" },
@@ -58,16 +70,45 @@ async function seed() {
     { Id: "INV-010", name: "Cardboard Boxes", description: "Recycled cardboard export boxes", quantity: 250, location: "Factory Warehouse A", inTime: "2026-08-05 10:00", outTime: "", supplier: "Ceylon Packaging Co" },
   ];
 
-  const payrollSeeds = [
-    { empName: "Namal Perera", empId: "E001", basicSalary: 85000, overtime: 5000, bonus: 10000, totoalEarnings: 100000, fedaralTax: 10000, stateTax: 5000, medicare: 2000, totalDeduction: 17000, netPay: 83000 },
-    { empName: "Kavinda Silva", empId: "E002", basicSalary: 80000, overtime: 4000, bonus: 8000, totoalEarnings: 92000, fedaralTax: 9200, stateTax: 4600, medicare: 1840, totalDeduction: 15640, netPay: 76360 },
-    { empName: "Aruna Bandara", empId: "E003", basicSalary: 78000, overtime: 3000, bonus: 5000, totoalEarnings: 86000, fedaralTax: 8600, stateTax: 4300, medicare: 1720, totalDeduction: 14620, netPay: 71380 },
-    { empName: "Tharindu Jayawardena", empId: "E004", basicSalary: 82000, overtime: 6000, bonus: 9000, totoalEarnings: 97000, fedaralTax: 9700, stateTax: 4850, medicare: 1940, totalDeduction: 16490, netPay: 80510 },
-    { empName: "Sanduni Weerasinghe", empId: "E005", basicSalary: 65000, overtime: 2000, bonus: 3000, totoalEarnings: 70000, fedaralTax: 7000, stateTax: 3500, medicare: 1400, totalDeduction: 11900, netPay: 58100 },
-    { empName: "Nadeesha Fernando", empId: "E006", basicSalary: 60000, overtime: 1000, bonus: 2000, totoalEarnings: 63000, fedaralTax: 6300, stateTax: 3150, medicare: 1260, totalDeduction: 10710, netPay: 52290 },
-    { empName: "Ruwan Wijesinghe", empId: "E007", basicSalary: 55000, overtime: 8000, bonus: 1500, totoalEarnings: 64500, fedaralTax: 6450, stateTax: 3225, medicare: 1290, totalDeduction: 10965, netPay: 53535 },
-    { empName: "Ishara Gunasekara", empId: "E008", basicSalary: 70000, overtime: 2500, bonus: 4000, totoalEarnings: 76500, fedaralTax: 7650, stateTax: 3825, medicare: 1530, totalDeduction: 13005, netPay: 63495 },
-  ].map((p, i) => ({ ...p, createdAt: payrollDates[i], updatedAt: payrollDates[i] }));
+  const employees = await Employee.insertMany(employeeSeeds, { timestamps: false });
+
+  const payrollSeeds = employees.map((emp, i) => {
+    const basicSalary = emp.basicSalary;
+    const overtime = 2000 + i * 1000;
+    const bonus = 1500 + i * 1200;
+    const totalEarnings = basicSalary + overtime + bonus;
+    const epfEmployee = Math.round(basicSalary * 0.08);
+    const epfEmployer = Math.round(basicSalary * 0.12);
+    const etf = Math.round(basicSalary * 0.03);
+    const apitTax = Math.round(totalEarnings * 0.06);
+    const loanDeduction = 0;
+    const totalDeduction = epfEmployee + apitTax + loanDeduction;
+    const netPay = totalEarnings - totalDeduction;
+    const period = payrollMonths[i];
+    return {
+      employee: emp._id,
+      employeeName: emp.name,
+      period,
+      basicSalary,
+      overtimeHours: Math.round(overtime / 1250),
+      overtimeRate: 1250,
+      overtime,
+      allowances: 0,
+      bonus,
+      epfEmployee,
+      epfEmployer,
+      etf,
+      apitTax,
+      loanDeduction,
+      totalEarnings,
+      totalDeduction,
+      netPay,
+      status: i % 3 === 0 ? "pending" : "paid",
+      paidOn: i % 3 === 0 ? null : `${period}-28`,
+      createdAt: `${period}-28`,
+      updatedAt: `${period}-28`,
+    };
+  });
 
   const productionSeeds = [
     { ProdutionID: "PRO-001", description: "First flush black tea production", startDate: "2026-05-01", endDate: "2026-05-15", status: "Completed", teaType: "Black Tea", batchNumber: "BT-2026-001" },
@@ -86,7 +127,7 @@ async function seed() {
   ];
 
   const counts = {
-    employees: (await Employee.insertMany(employeeSeeds, { timestamps: false })).length,
+    employees: employees.length,
     inventory: (await Inventory.insertMany(inventorySeeds)).length,
     payrolls: (await Payroll.insertMany(payrollSeeds, { timestamps: false })).length,
     productions: (await Production.insertMany(productionSeeds)).length,

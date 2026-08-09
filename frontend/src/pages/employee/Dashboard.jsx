@@ -5,6 +5,7 @@ import LocalAtmIcon from "@mui/icons-material/LocalAtm";
 import PersonIcon from "@mui/icons-material/Person";
 import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
 import PaymentsIcon from "@mui/icons-material/Payments";
+import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import PaidIcon from "@mui/icons-material/Paid";
 import axios from "axios";
@@ -79,7 +80,7 @@ const RecentPayrolls = () => {
                         <b>{p.empName}</b> was paid <b className="tabular">{formatMoney(p.netPay)}</b>
                       </Typography>
                     }
-                    secondary={p.createdAt ? `Paid on ${new Date(p.createdAt).toLocaleDateString()}` : ""}
+                    secondary={p.createdAt ? `Pay period ${p.createdAt}` : ""}
                     secondaryTypographyProps={{ variant: "caption" }}
                   />
                 </ListItem>
@@ -170,7 +171,7 @@ const EmployeeDashboard = () => {
       <Grid container spacing={2.5} sx={{ mb: 2 }}>
         {[
           { title: "Total Net Pay", value: stats ? formatMoney(stats.net) : "", icon: LocalAtmIcon, accent: "primary", caption: "Payroll net this year" },
-          { title: "Total Tax Pay", value: stats ? formatMoney(stats.tax) : "", icon: PersonIcon, accent: "accent", caption: "Deducted taxes" },
+          { title: "Total Tax Pay", value: stats ? formatMoney(stats.tax) : "", icon: AccountBalanceWalletIcon, accent: "accent", caption: "Deducted taxes" },
           { title: "Payroll Count", value: stats ? formatNumber(stats.count) : "", icon: ReceiptLongIcon, accent: "info", caption: "Pay slips generated" },
           { title: "Total Payments", value: stats ? formatMoney(stats.pay) : "", icon: PaymentsIcon, accent: "danger", caption: "Gross payments" },
         ].map((card, i) => (
