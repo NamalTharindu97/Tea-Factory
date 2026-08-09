@@ -1,1 +1,10 @@
 export const useNavigate = jest.fn();
+export const useLocation = jest.fn(() => ({ pathname: "/EmployeeAdminPanal" }));
+export const useParams = jest.fn(() => ({}));
+export const Link = "a";
+export const Navigate = "div";
+export const BrowserRouter = "div";
+export const Routes = "div";
+export const Route = "div";
+export const Outlet = "div";
+export default {};

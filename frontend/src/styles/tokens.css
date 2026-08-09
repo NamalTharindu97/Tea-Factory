@@ -1,0 +1,143 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+:root {
+  color-scheme: light;
+
+  /* Surfaces */
+  --bg: #f3f6f3;
+  --surface: #ffffff;
+  --surface-muted: #f7f9f7;
+  --border: #e3e9e4;
+  --border-strong: #cbd6cd;
+
+  /* Text */
+  --text: #1c2a21;
+  --text-muted: #5f7166;
+  --text-faint: #8da096;
+
+  /* Brand */
+  --primary: #1d7a46;
+  --primary-hover: #16683b;
+  --primary-active: #115a31;
+  --primary-soft: #e3f3e9;
+  --accent: #d9a441;
+  --accent-soft: #f7edd5;
+
+  /* Feedback */
+  --success: #2f9e44;
+  --warning: #d97706;
+  --danger: #c0392b;
+  --info: #2563eb;
+  --danger-soft: #fdecea;
+
+  /* Elevation */
+  --shadow-sm: 0 1px 2px rgba(28, 42, 33, 0.06);
+  --shadow-md: 0 4px 12px rgba(28, 42, 33, 0.08);
+  --shadow-lg: 0 12px 32px rgba(28, 42, 33, 0.14);
+
+  /* Shape */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 999px;
+
+  /* Layout */
+  --sidebar-width: 264px;
+  --sidebar-collapsed-width: 76px;
+  --topbar-height: 64px;
+
+  /* Typography */
+  --font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.85rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.375rem;
+  --font-size-2xl: 1.75rem;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg: #101612;
+  --surface: #171f1a;
+  --surface-muted: #1c2620;
+  --border: #27332b;
+  --border-strong: #35443a;
+
+  --text: #e7efe9;
+  --text-muted: #9db0a3;
+  --text-faint: #6f8377;
+
+  --primary: #38c172;
+  --primary-hover: #4cd087;
+  --primary-active: #2eb568;
+  --primary-soft: #1b3a28;
+  --accent: #e5b45b;
+  --accent-soft: #3a3118;
+
+  --success: #4ade80;
+  --warning: #f59e0b;
+  --danger: #e05d4f;
+  --info: #60a5fa;
+  --danger-soft: #3a211e;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.5);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-md);
+  line-height: 1.55;
+  background-color: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+::selection {
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: var(--radius-full);
+  border: 2px solid var(--bg);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-faint);
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
