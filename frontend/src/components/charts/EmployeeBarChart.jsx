@@ -28,7 +28,7 @@ export const EmployeeBarChart = ({ height = 320 }) => {
   const series = [
     {
       name: "New Employees",
-      data: byMonth.slice(0, 6),
+      data: byMonth,
     },
   ];
 
@@ -38,7 +38,7 @@ export const EmployeeBarChart = ({ height = 320 }) => {
     plotOptions: { bar: { borderRadius: 6, columnWidth: "55%" } },
     colors: [chartPalette().primary],
     dataLabels: { enabled: false },
-    xaxis: { categories: MONTHS.slice(0, 6) },
+    xaxis: { categories: MONTHS },
     yaxis: { labels: { formatter: (v) => Math.round(v) } },
     grid: { borderColor: chartPalette().grid, strokeDashArray: 4 },
     legend: { show: false },
