@@ -32,8 +32,8 @@ router.route("/").get(getEmployee);
 router.route("/:id").get(getSingleEmployee);
 
 // Employee management is HR-only
-router.route("/").post(requireRole("HR Manager"), createEmployee);
-router.route("/:id").put(requireRole("HR Manager"), updateEmployee);
-router.route("/:id").delete(requireRole("HR Manager"), deleteEmployee);
+router.route("/").post(requireRole("HR Manager", "HR Assistant"), createEmployee);
+router.route("/:id").put(requireRole("HR Manager", "HR Assistant"), updateEmployee);
+router.route("/:id").delete(requireRole("HR Manager", "HR Assistant"), deleteEmployee);
 
 module.exports = router;

@@ -9,7 +9,7 @@ import logo from "../asserts/EmployeAs/Img/logo.png";
 export const SidebarContent = ({ collapsed = false, onNavigate }) => {
   const { user, role, logout } = useAuth();
   const location = useLocation();
-  const section = NAV.find((s) => s.role === role);
+  const section = NAV.find((s) => (s.roles || [s.role]).includes(role));
 
   const isActive = (path) => location.pathname === path || location.pathname.startsWith(`${path}/`);
 

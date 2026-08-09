@@ -16,6 +16,7 @@ import HandshakeIcon from "@mui/icons-material/Handshake";
 export const NAV = [
   {
     role: "HR Manager",
+    roles: ["HR Manager", "HR Assistant"],
     title: "Employee Management",
     items: [
       { label: "Dashboard", path: "/hr/dashboard", icon: DashboardIcon },
@@ -29,6 +30,7 @@ export const NAV = [
   },
   {
     role: "Inventory Manager",
+    roles: ["Inventory Manager", "Inventory Clerk", "Quality Inspector"],
     title: "Inventory Management",
     items: [
       { label: "Dashboard", path: "/InventoryAdminPanal", icon: DashboardIcon },
@@ -39,6 +41,7 @@ export const NAV = [
   },
   {
     role: "Production Manager",
+    roles: ["Production Manager", "Production Worker"],
     title: "Production Management",
     items: [
       { label: "Dashboard", path: "/ProductionAdminPanal", icon: DashboardIcon },
@@ -48,6 +51,7 @@ export const NAV = [
   },
   {
     role: "Suplier Manager",
+    roles: ["Suplier Manager"],
     title: "Supplier Management",
     items: [
       { label: "Dashboard", path: "/SupplierAdminPanal", icon: DashboardIcon },

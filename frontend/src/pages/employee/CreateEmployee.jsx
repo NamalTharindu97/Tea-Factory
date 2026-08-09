@@ -7,11 +7,7 @@ import * as Yup from "yup";
 import { toast, ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import PageHeader from "../../components/ui/PageHeader";
-
-const ROLES = ["HR Manager", "Inventory Manager", "Suplier Manager", "Production Manager", "HR Assistant", "Inventory Clerk", "Production Worker", "Quality Inspector"];
-const DEPARTMENTS = ["General", "Production", "Warehouse", "Quality", "Administration", "Finance"];
-
-const DEFAULT_AVATAR = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
+import { ROLES, DEPARTMENTS, DEFAULT_AVATAR, CLOUDINARY_CLOUD_NAME, CLOUDINARY_UPLOAD_PRESET, CLOUDINARY_ENABLED } from "../../config/constants";
 
 const CreateEmployee = () => {
   const navigate = useNavigate();
@@ -50,12 +46,14 @@ const CreateEmployee = () => {
       let imageUrl = preview || DEFAULT_AVATAR;
       setUploading(true);
       try {
-        if (fileRef.current?.files?.[0]) {
+        if (fileRef.current?.files?.[0] && CLOUDINARY_ENABLED) {
           const data = new FormData();
           data.append("file", fileRef.current.files[0]);
-          data.append("upload_preset", "upload");
-          const uploadRes = await axios.post("https://api.cloudinary.com/v1_1/namal97/image/upload", data);
+          data.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
+          const uploadRes = await axios.post(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`, data);
           imageUrl = uploadRes.data.url || DEFAULT_AVATAR;
+        } else if (fileRef.current?.files?.[0]) {
+          imageUrl = preview || DEFAULT_AVATAR;
         }
         await axios.post("/employees/", { ...values, img: imageUrl, basicSalary: Number(values.basicSalary) || 0 });
         toast.success("Employee created!");

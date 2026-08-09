@@ -229,12 +229,16 @@ const getTotalPayment = asyncHandler(async (req, res) => {
 //@Route GET /api/v1/tea-factory/payrolls/count/Lastest/Payroll
 //@access HR Manager
 const getLastestPayroll = asyncHandler(async (req, res) => {
-  const recentPayroll = await Payroll.find({}, { employeeName: 1, employee: 1, netPay: 1, period: 1, createdAt: 1 }).sort({ createdAt: -1 }).limit(5);
+  const recentPayroll = await Payroll.find({}, { employeeName: 1, employee: 1, netPay: 1, period: 1, createdAt: 1 })
+    .populate("employee", "employeeId img")
+    .sort({ createdAt: -1 })
+    .limit(5);
   const formattedPayroll = recentPayroll.map((payroll) => {
     const date = payroll.period || new Date(payroll.createdAt).toISOString().slice(0, 7);
     return {
       empName: payroll.employeeName,
-      empId: payroll.employee,
+      empId: payroll.employee ? payroll.employee.employeeId : payroll.employee,
+      empImg: payroll.employee && payroll.employee.img ? payroll.employee.img : null,
       netPay: payroll.netPay,
       createdAt: date,
     };

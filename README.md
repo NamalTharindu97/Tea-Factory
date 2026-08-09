@@ -38,6 +38,18 @@ The seed creates one user per role. All passwords are `1234`:
 
 Login redirects by role, so the four names above land on the four different admin dashboards.
 
+### Optional: Cloudinary profile photos
+
+Employee photo upload goes through Cloudinary. To enable it, create `frontend/.env` (a template lives in `frontend/.env.example`):
+
+```
+REACT_APP_CLOUDINARY_CLOUD_NAME=your_cloud_name
+REACT_APP_CLOUDINARY_UPLOAD_PRESET=your_unsigned_preset
+```
+
+When unset, photos fall back to the default avatar and the app keeps working.
+
+
 ## Run locally (without Docker)
 
 ```bash

@@ -1,5 +1,5 @@
-import React from "react";
-import { Box, Button, Card, CardContent, Grid, TextField, MenuItem, Autocomplete, RadioGroup, FormControlLabel, Radio, Typography, CircularProgress } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Box, Button, Card, CardContent, Grid, TextField, MenuItem, Autocomplete, RadioGroup, FormControlLabel, Radio, Typography, CircularProgress, Skeleton } from "@mui/material";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import axios from "axios";
 import { useFormik } from "formik";
@@ -8,9 +8,7 @@ import { toast, ToastContainer } from "react-toastify";
 import PageHeader from "../../components/ui/PageHeader";
 import EmptyState from "../../components/ui/EmptyState";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
-
-const ROLES = ["HR Manager", "Inventory Manager", "Suplier Manager", "Production Manager", "HR Assistant", "Inventory Clerk", "Production Worker", "Quality Inspector"];
-const DEPARTMENTS = ["General", "Production", "Warehouse", "Quality", "Administration", "Finance"];
+import { ROLES, DEPARTMENTS } from "../../config/constants";
 
 const EmployeeUpdateForm = ({ employee, id }) => {
   const navigate = useNavigate();
@@ -169,17 +167,45 @@ const EmployeeUpdate = () => {
   const { id } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
-  const employee = location.state?.employee;
+  const [employee, setEmployee] = useState(location.state?.employee || null);
+  const [loading, setLoading] = useState(!location.state?.employee);
+
+  useEffect(() => {
+    if (employee) return;
+    let cancelled = false;
+    axios
+      .get(`/employees/${id}`)
+      .then((res) => {
+        if (!cancelled) setEmployee(res.data);
+      })
+      .catch(() => {
+        if (!cancelled) setEmployee(null);
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [id, employee]);
 
   return (
     <>
       <PageHeader title="Update Employee" subtitle={employee ? `Editing ${employee.name}` : "Update an employee"} />
-      {!employee ? (
+      {loading ? (
+        <Card>
+          <CardContent>
+            <Skeleton height={24} sx={{ mb: 2 }} />
+            <Skeleton height={80} />
+            <Skeleton height={80} sx={{ mt: 2 }} />
+          </CardContent>
+        </Card>
+      ) : !employee ? (
         <Card>
           <EmptyState
             icon={ErrorOutlineIcon}
-            title="No employee selected"
-            description="Please open this page from the Employee Information table using the Edit action."
+            title="Employee not found"
+            description="This employee could not be loaded. It may have been removed."
             action={
               <Button variant="contained" onClick={() => navigate("/hr/employees")}>
                 Back to employees

@@ -5,7 +5,7 @@ const requireRole = require("../middleware/requireRole");
 const router = express.Router();
 
 // AI insights are HR-only
-router.use(validateToken, requireRole("HR Manager"));
+router.use(validateToken, requireRole("HR Manager", "HR Assistant"));
 
 router.route("/anomalies").get(getAnomalies);
 router.route("/attrition").get(getAttrition);

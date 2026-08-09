@@ -7,9 +7,13 @@ export const normalizeRole = (role) => (role === "Supplier Manager" ? "Suplier M
 
 export const ROLE_HOME = {
   "HR Manager": "/hr/dashboard",
+  "HR Assistant": "/hr/dashboard",
   "Inventory Manager": "/InventoryAdminPanal",
-  "Suplier Manager": "/SupplierAdminPanal",
+  "Inventory Clerk": "/InventoryAdminPanal",
+  "Quality Inspector": "/InventoryAdminPanal",
   "Production Manager": "/ProductionAdminPanal",
+  "Production Worker": "/ProductionAdminPanal",
+  "Suplier Manager": "/SupplierAdminPanal",
 };
 
 export const AuthProvider = ({ children }) => {
