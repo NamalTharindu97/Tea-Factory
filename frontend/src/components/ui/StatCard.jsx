@@ -41,7 +41,15 @@ export const StatCard = ({ title, value, icon: Icon, accent = "primary", suffix,
   }
 
   return (
-    <Card sx={{ height: "100%" }}>
+    <Card
+      sx={{
+        height: "100%",
+        border: "1px solid var(--border)",
+        borderRadius: "var(--radius-md)",
+        transition: "transform 0.15s ease, box-shadow 0.15s ease",
+        "&:hover": { transform: "translateY(-2px)", boxShadow: "var(--shadow-md)" },
+      }}
+    >
       <CardContent sx={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 2 }}>
         <Box sx={{ minWidth: 0 }}>
           <Typography variant="body2" color="text.secondary" noWrap>
@@ -64,7 +72,7 @@ export const StatCard = ({ title, value, icon: Icon, accent = "primary", suffix,
             justifyContent: "center",
             width: 52,
             height: 52,
-            borderRadius: 2,
+            borderRadius: "var(--radius-md)",
             bgcolor: tone.soft,
             color: tone.color,
             flexShrink: 0,

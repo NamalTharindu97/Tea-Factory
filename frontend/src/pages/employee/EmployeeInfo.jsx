@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { Button, Chip, MenuItem, TextField } from "@mui/material";
+import { Avatar, Box, Button, Chip, MenuItem, TextField, Typography } from "@mui/material";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import PeopleIcon from "@mui/icons-material/People";
@@ -8,6 +8,7 @@ import axios from "axios";
 import PageHeader from "../../components/ui/PageHeader";
 import DataTable from "../../components/ui/DataTable";
 import ConfirmDialog from "../../components/ui/ConfirmDialog";
+import { DEFAULT_AVATAR } from "../../config/constants";
 
 const roleColor = (role) => {
   if (role?.includes("HR")) return "primary";
@@ -56,7 +57,21 @@ const EmployeeInfo = () => {
   const columns = useMemo(
     () => [
       { field: "employeeId", headerName: "ID", width: 90, renderCell: (p) => <strong>{p.value}</strong> },
-      { field: "name", headerName: "Name", width: 190, renderCell: (p) => <strong>{p.value}</strong> },
+      {
+        field: "name",
+        headerName: "Name",
+        width: 240,
+        renderCell: (p) => (
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, minWidth: 0 }}>
+            <Avatar src={p.row.img || DEFAULT_AVATAR} alt={p.value} sx={{ width: 34, height: 34, bgcolor: "var(--primary-soft)", color: "var(--primary)", fontSize: "0.8rem" }}>
+              {p.value ? p.value.charAt(0).toUpperCase() : ""}
+            </Avatar>
+            <Typography variant="body2" sx={{ fontWeight: 600, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+              {p.value}
+            </Typography>
+          </Box>
+        ),
+      },
       { field: "email", headerName: "Email", width: 220 },
       { field: "phone", headerName: "Phone", width: 130 },
       { field: "department", headerName: "Department", width: 130 },

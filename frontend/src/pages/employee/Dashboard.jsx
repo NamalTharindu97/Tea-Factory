@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Grid, Card, CardContent, Typography, Box, List, ListItem, ListItemIcon, ListItemText, Divider, Skeleton } from "@mui/material";
+import { Grid, Card, CardContent, Typography, Box, List, ListItem, ListItemAvatar, ListItemText, Avatar, Divider, Skeleton, Button } from "@mui/material";
 import { motion } from "framer-motion";
-import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import LocalAtmIcon from "@mui/icons-material/LocalAtm";
 import PersonIcon from "@mui/icons-material/Person";
 import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
 import PaymentsIcon from "@mui/icons-material/Payments";
+import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
+import PaidIcon from "@mui/icons-material/Paid";
 import axios from "axios";
 import StatCard, { formatMoney, formatNumber } from "../../components/ui/StatCard";
 import PageHeader from "../../components/ui/PageHeader";
@@ -13,6 +14,9 @@ import EmptyState from "../../components/ui/EmptyState";
 import EmployeeLineChart from "../../components/charts/EmployeeLineChart";
 import EmployeePieChart from "../../components/charts/EmployeePieChart";
 import EmployeeBarChart from "../../components/charts/EmployeeBarChart";
+import { useAuth } from "../../context/AuthContext";
+import { DEFAULT_AVATAR } from "../../config/constants";
+import { useNavigate } from "react-router-dom";
 
 const chartCard = (title) => ({
   mb: 3,
@@ -20,6 +24,13 @@ const chartCard = (title) => ({
   border: "1px solid var(--border)",
   borderRadius: "var(--radius-md)",
 });
+
+const greeting = () => {
+  const h = new Date().getHours();
+  if (h < 12) return "Good morning";
+  if (h < 17) return "Good afternoon";
+  return "Good evening";
+};
 
 const RecentPayrolls = () => {
   const [payrolls, setPayrolls] = useState(null);
@@ -33,11 +44,11 @@ const RecentPayrolls = () => {
 
   if (payrolls === null) {
     return (
-      <Card>
+      <Card sx={{ height: "100%" }}>
         <CardContent>
           <Skeleton width="55%" height={28} sx={{ mb: 2 }} />
           {[0, 1, 2].map((i) => (
-            <Skeleton key={i} height={24} sx={{ my: 1 }} />
+            <Skeleton key={i} height={48} sx={{ my: 1 }} />
           ))}
         </CardContent>
       </Card>
@@ -56,20 +67,23 @@ const RecentPayrolls = () => {
           <List disablePadding>
             {payrolls.map((p, i) => (
               <Box key={i}>
-                <ListItem disableGutters sx={{ px: 0 }}>
-                  <ListItemIcon sx={{ minWidth: 30 }}>
-                    <FiberManualRecordIcon sx={{ fontSize: 10, color: "var(--primary)" }} />
-                  </ListItemIcon>
+                <ListItem disableGutters alignItems="center" sx={{ px: 0, gap: 1.5 }}>
+                  <ListItemAvatar sx={{ minWidth: 0 }}>
+                    <Avatar src={p.empImg || DEFAULT_AVATAR} alt={p.empName} sx={{ width: 40, height: 40, bgcolor: "var(--primary-soft)", color: "var(--primary)", fontSize: "0.9rem" }}>
+                      {p.empName ? p.empName.charAt(0).toUpperCase() : <PersonIcon fontSize="small" />}
+                    </Avatar>
+                  </ListItemAvatar>
                   <ListItemText
                     primary={
-                      <Typography variant="body2">
-                        Employee <b>{p.empName}</b> was paid <b>{formatMoney(p.netPay)}</b>
+                      <Typography variant="body2" noWrap>
+                        <b>{p.empName}</b> was paid <b className="tabular">{formatMoney(p.netPay)}</b>
                       </Typography>
                     }
-                    secondary={p.createdAt ? new Date(p.createdAt).toLocaleDateString() : ""}
+                    secondary={p.createdAt ? `Paid on ${new Date(p.createdAt).toLocaleDateString()}` : ""}
+                    secondaryTypographyProps={{ variant: "caption" }}
                   />
                 </ListItem>
-                {i < payrolls.length - 1 ? <Divider /> : null}
+                {i < payrolls.length - 1 ? <Divider component="li" /> : null}
               </Box>
             ))}
           </List>
@@ -80,6 +94,8 @@ const RecentPayrolls = () => {
 };
 
 const EmployeeDashboard = () => {
+  const { user } = useAuth();
+  const navigate = useNavigate();
   const [stats, setStats] = useState(null);
 
   useEffect(() => {
@@ -114,6 +130,41 @@ const EmployeeDashboard = () => {
 
   return (
     <Box>
+      <Box
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: 2,
+          alignItems: "center",
+          justifyContent: "space-between",
+          mb: 3,
+          p: { xs: 2.5, md: 3 },
+          borderRadius: "var(--radius-lg)",
+          background: "linear-gradient(120deg, var(--primary) 0%, #2f9e44 100%)",
+          color: "#fff",
+        }}
+      >
+        <Box>
+          <Typography variant="caption" sx={{ opacity: 0.85 }}>
+            {new Date().toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long", year: "numeric" })}
+          </Typography>
+          <Typography variant="h4" sx={{ fontWeight: 700, fontSize: { xs: "1.4rem", md: "1.7rem" }, mt: 0.5 }}>
+            {greeting()}, {user?.name || "there"} 👋
+          </Typography>
+          <Typography variant="body2" sx={{ opacity: 0.9, mt: 0.5 }}>
+            Here's how the factory is doing today across payroll and employees.
+          </Typography>
+        </Box>
+        <Box sx={{ display: "flex", gap: 1.5, flexWrap: "wrap" }}>
+          <Button variant="contained" sx={{ bgcolor: "#fff", color: "var(--primary)", "&:hover": { bgcolor: "#f0f7f2" } }} startIcon={<PersonAddAlt1Icon />} onClick={() => navigate("/hr/employees/new")}>
+            New Employee
+          </Button>
+          <Button variant="outlined" sx={{ borderColor: "rgba(255,255,255,0.5)", color: "#fff", "&:hover": { borderColor: "#fff", bgcolor: "rgba(255,255,255,0.12)" } }} startIcon={<PaidIcon />} onClick={() => navigate("/hr/payroll/new")}>
+            Payroll Entry
+          </Button>
+        </Box>
+      </Box>
+
       <PageHeader title="Employee Dashboard" subtitle="Overview of payroll and employee metrics" />
 
       <Grid container spacing={2.5} sx={{ mb: 2 }}>

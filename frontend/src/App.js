@@ -31,9 +31,9 @@ const Suppliers = lazy(() => import("./pages/supplier/Suppliers"));
 const AddSupplier = lazy(() => import("./pages/supplier/AddSupplier"));
 const EditSupplier = lazy(() => import("./pages/supplier/EditSupplier"));
 
-const HR = ["HR Manager"];
-const INV = ["Inventory Manager"];
-const PROD = ["Production Manager"];
+const HR = ["HR Manager", "HR Assistant"];
+const INV = ["Inventory Manager", "Inventory Clerk", "Quality Inspector"];
+const PROD = ["Production Manager", "Production Worker"];
 const SUPL = ["Suplier Manager"];
 
 const LoadingScreen = () => (

@@ -25,7 +25,7 @@ export const EmployeeLineChart = ({ height = 320 }) => {
     if (item._id >= 1 && item._id <= 12) byMonth[item._id - 1] = item.totalNetPay;
   });
 
-  const series = [{ name: "Net Pay", data: byMonth.slice(0, 9) }];
+  const series = [{ name: "Net Pay", data: byMonth }];
 
   const options = {
     ...baseOptions(),
@@ -33,7 +33,7 @@ export const EmployeeLineChart = ({ height = 320 }) => {
     stroke: { curve: "smooth", width: 3 },
     colors: [chartPalette().accent],
     dataLabels: { enabled: false },
-    xaxis: { categories: MONTHS.slice(0, 9) },
+    xaxis: { categories: MONTHS },
     yaxis: { labels: { formatter: (v) => new Intl.NumberFormat("en-LK").format(v) } },
     grid: { borderColor: chartPalette().grid, strokeDashArray: 4 },
   };

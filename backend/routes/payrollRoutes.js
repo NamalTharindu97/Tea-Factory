@@ -18,7 +18,7 @@ const requireRole = require("../middleware/requireRole");
 const router = express.Router();
 
 // Payroll management is HR-only
-router.use(validateToken, requireRole("HR Manager"));
+router.use(validateToken, requireRole("HR Manager", "HR Assistant"));
 
 router.route("/count/Lastest/Payroll").get(getLastestPayroll);
 router.route("/count/totalPayment").get(getTotalPayment);
